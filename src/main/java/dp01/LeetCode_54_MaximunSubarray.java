@@ -22,16 +22,16 @@ public class LeetCode_54_MaximunSubarray {
     }
 
     public static int maxSubArray(int[] list) {
-        int maxn = Integer.MIN_VALUE;
+        int max = Integer.MIN_VALUE;
         int sum = 0;
         for (int i = 0; i < list.length; i++) {
             sum += list[i];
-            if(sum > maxn)
-                maxn = sum;
+            if(sum > max)
+                max = sum;
             if(0 > sum)
                 sum = 0;
         }
 
-        return maxn;
+        return max;
     }
 }
