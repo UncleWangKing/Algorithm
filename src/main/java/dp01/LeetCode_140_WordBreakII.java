@@ -21,19 +21,35 @@ public class LeetCode_140_WordBreakII {
         HashMap<String, List<String>> m = new HashMap();
         return helper(s, wordDict, m);
     }
-    /**
-     *
-     */
+
     public static List<String> helper(String s, List<String> wordDict, HashMap<String, List<String>> m) {
+        /**
+         * m作为dp的重复子问题缓存
+         */
         if (m.containsKey(s))
             return m.get(s);
+        /**
+         * 0 == s 代表分完 用Arrays.asList("")返回是一个巧法 给上层判断是否最后一个字符串
+         */
         if (0 == s.length())
             return Arrays.asList("");
         List<String> res = new ArrayList<String>();
+        /**
+         * 以单词为单位拆分
+         */
         for (String word : wordDict) {
+            /**
+             * 字符串长度小于匹配串 则不用截取匹配 直接跳过
+             */
             if (s.length() < word.length() || ! s.substring(0, word.length()).equals(word))
                 continue;
+            /**
+             * 递归出子串的拆分
+             */
             List<String> rem = helper(s.substring(word.length()), wordDict, m);
+            /**
+             * 将子串加上自身 组成自身的拆分串
+             */
             for (String str : rem) {
                 res.add(word + (0 == str.length() ? "" : " ") + str);
             }
