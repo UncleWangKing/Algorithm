@@ -25,11 +25,14 @@ public class LeetCode_140_WordBreakII {
      *
      */
     public static List<String> helper(String s, List<String> wordDict, HashMap<String, List<String>> m) {
-        if (m.containsKey(s)) return m.get(s);
-        if (0 == s.length()) return Arrays.asList("");
+        if (m.containsKey(s))
+            return m.get(s);
+        if (0 == s.length())
+            return Arrays.asList("");
         List<String> res = new ArrayList<String>();
         for (String word : wordDict) {
-            if (s.length() < word.length() || ! s.substring(0, word.length()).equals(word)) continue;
+            if (s.length() < word.length() || ! s.substring(0, word.length()).equals(word))
+                continue;
             List<String> rem = helper(s.substring(word.length()), wordDict, m);
             for (String str : rem) {
                 res.add(word + (0 == str.length() ? "" : " ") + str);
