@@ -9,28 +9,28 @@ public class LeetCode_70_ClimbingStairs {
     public static void main(String[] args) {
         int n = 40;
         long[] dp = new long[n+1];
-        System.out.println(f_dp(n, dp));
+        System.out.println(climbStairs_dp(n, dp));
         System.out.println(count);
         count = 0;
-        System.out.println(f(n));
+        System.out.println(climbStairs(n));
         System.out.println(count);
     }
-    public static long f_dp(int n, long[] dp){
+    public static long climbStairs_dp(int n, long[] dp){
         ++count;
         if(1 == n)
             return 1;
         else if(2 == n)
             return 2;
         if(0 == dp[n])
-            dp[n] = f_dp(n-1, dp) + f_dp(n-2, dp);
+            dp[n] = climbStairs_dp(n-1, dp) + climbStairs_dp(n-2, dp);
         return dp[n];
     }
-    public static long f(int n){
+    public static long climbStairs(int n){
         ++count;
         if(1 == n)
             return 1;
         else if(2 == n)
             return 2;
-        return f(n-1) + f(n-2);
+        return climbStairs(n-1) + climbStairs(n-2);
     }
 }
