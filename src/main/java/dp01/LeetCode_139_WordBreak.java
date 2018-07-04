@@ -20,15 +20,15 @@ public class LeetCode_139_WordBreak {
      * 本题还有一个值得注意的地方，一定要考虑到单词长度是有上限的！，所以每次不需要遍历0~i而是x~i(i-x为单词最大长度)
      */
     public static boolean wordBreak(String s, List<String> wordDict) {
-        if(s==null || s.length()==0)
+        if(null == s || 0 == s.length())
             return true;
         boolean[] res = new boolean[s.length()+1];
         res[0] = true;
         for (int i = 0; i < s.length(); i++) {
-            StringBuilder str = new StringBuilder(s.substring(0,i+1));
+            StringBuilder str = new StringBuilder(s.substring(0, i + 1));
             for(int j = 0; j <= i; j++){
                 if(res[j] && wordDict.contains(str.toString())){
-                    res[i+1] = true;
+                    res[i + 1] = true;
                     break;
                 }
                 str.deleteCharAt(0);
