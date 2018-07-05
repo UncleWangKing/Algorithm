@@ -58,6 +58,28 @@ public class LeetCode_64_MinimumPathSum {
 
     /**
      * 状态转换方程:
+     * dp[i][j] = min(dp[i-1][j] + grid[i-1][j], dp[i][j-1] + grid[i][j-1]) (dp[i][j]代表“到达”第i行j列所需最小花费)
+     * 根据行列大小来选择遍历顺序 可更加节约内存
+     */
+    public static int minPathSum_dp_loop_bestMemory(int[][] grid) {
+        int m = grid.length, n = grid[0].length;
+        int dp[] = new int[n];
+
+        for (int i = 1; i < n; ++i) dp[i] = dp[i-1] + grid[0][i-1];
+        for (int i = 1; i < m; ++i) {
+            /**
+             * 单独解决dp[0]累加更新问题
+             */
+            dp[0] += grid[i-1][0];
+            for (int j = 1; j < n; ++j) {
+                dp[j] = Math.min(dp[j] + grid[i-1][j], dp[j-1] + grid[i][j-1]);
+            }
+        }
+        return dp[n-1] + grid[m-1][n-1];
+    }
+
+    /**
+     * 状态转换方程:
      * dp[i][j] = grid[i][j] + min(dp[i-1][j], dp[i][j-1]) (dp[i][j]代表“经过”第i行j列所需最小花费)
      */
     public static int minPathSum_dp_otherWay_loop(int[][] grid) {
