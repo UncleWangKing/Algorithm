@@ -8,10 +8,14 @@ import java.util.Arrays;
  */
 public class LeetCode_62_UniquePaths {
     public static void main(String[] args) {
-        System.out.println(uniquePaths(7,3));
+        System.out.println(uniquePaths_dp(7,3));
     }
 
-    public static int uniquePaths(int m, int n) {
+    /**
+     * 状态转换方程:
+     * dp[i][j] = dp[i-1][j] + dp[i][j-1]
+     */
+    public static int uniquePaths_dp(int m, int n) {
         int [][]dp = new int[m][n];
         //初始化为1
         for (int i = 0; i < m; i++) {
@@ -28,7 +32,7 @@ public class LeetCode_62_UniquePaths {
         return dp[m-1][n-1];
     }
 
-    public static int uniquePaths_lessMemory(int m, int n) {
+    public static int uniquePaths_dp_lessMemory(int m, int n) {
         int []dp = new int[n];
         Arrays.fill(dp, 1);
         for (int i = 1; i < m; i++) {

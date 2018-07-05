@@ -69,7 +69,7 @@ public class LeetCode_70_ClimbingStairs {
         dp[1] = 1;
         dp[2] = 2;
         for (int i = 3; i < n+1; i++) {
-            res = dp[i] = dp[i - 2] + dp[i - 1];
+            res = dp[i] = dp[i-2] + dp[i-1];
         }
         return res;
     }
