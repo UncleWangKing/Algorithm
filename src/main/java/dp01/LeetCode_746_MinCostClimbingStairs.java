@@ -22,6 +22,7 @@ public class LeetCode_746_MinCostClimbingStairs {
      * 1.可以从0 或者 1位置为起始点！
      * 2.梯顶不是最后一个数 而是最后一个数后一个位置！
      * dp[i] = min(dp[i- 2] + cost[i - 2], dp[i - 1] + cost[i - 1])
+     * 自底向上(bottom-up)
      */
     public static int minCostClimbingStairs_recursion(int n, int[] cost) {
         if(0 == n || 1 == n)
@@ -37,6 +38,7 @@ public class LeetCode_746_MinCostClimbingStairs {
      * 1.可以从0 或者 1位置为起始点！
      * 2.梯顶不是最后一个数 而是最后一个数后一个位置！
      * dp[i] = min(dp[i- 2] + cost[i - 2], dp[i - 1] + cost[i - 1])
+     * 自底向上(bottom-up)
      */
     public static int minCostClimbingStairs_dp_recursion(int n, int[] cost, int[] dp) {
         if(0 == n || 1 == n)
@@ -53,6 +55,7 @@ public class LeetCode_746_MinCostClimbingStairs {
      * 1.可以从0 或者 1位置为起始点！
      * 2.梯顶不是最后一个数 而是最后一个数后一个位置！
      * dp[i] = min(dp[i- 2] + cost[i - 2], dp[i - 1] + cost[i - 1])
+     * 自底向上(bottom-up)
      * 改为循环
      */
     public static int minCostClimbingStairs_dp_loop(int[] cost) {
@@ -68,6 +71,7 @@ public class LeetCode_746_MinCostClimbingStairs {
      * 1.可以从0 或者 1位置为起始点！
      * 2.梯顶不是最后一个数 而是最后一个数后一个位置！
      * dp[i] = min(dp[i- 2] + cost[i - 2], dp[i - 1] + cost[i - 1])
+     * 自底向上(bottom-up)
      * 改为循环
      * 优化内存使用(滚动数组---只使用每一轮计算所需的缓存，通常是上一轮或者多轮的结果)
      * 分析可得 只需要两个int变量交替使用即可达到要求
