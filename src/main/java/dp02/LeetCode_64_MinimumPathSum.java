@@ -34,7 +34,7 @@ public class LeetCode_64_MinimumPathSum {
 
     /**
      * 动态转换方程:
-     * dp[i][j] = grid[i][j] + min(dp[i - 1][j], dp[i][j - 1]) (dp[i][j]代表“经过”第i行j列所需最小花费)
+     * dp[i][j] = grid[i][j] + min(dp[i-1][j], dp[i][j-1]) (dp[i][j]代表“经过”第i行j列所需最小花费)
      */
     public static int minPathSum_dp_otherWay_loop(int[][] grid) {
         int m = grid.length, n = grid[0].length;

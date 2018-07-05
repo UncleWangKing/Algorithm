@@ -4,12 +4,16 @@ package dp01;
  * @author ZhangDaPang 285296372@qq.com
  * @date 2018/7/3 10:11
  */
+
+/**
+ * -Xss180k 栈空间 3000次爆栈
+ */
 public class LeetCode_70_ClimbingStairs {
     public static void main(String[] args) {
-        int n = 40;
+        int n = 30;
         int[] dp = new int[n+1];
-        System.out.println("climbStairs_recursion");
-        System.out.println(climbStairs_recursion(n));
+//        System.out.println("climbStairs_recursion");
+//        System.out.println(climbStairs_recursion(n));
         System.out.println("climbStairs_dp_recursion");
         System.out.println(climbStairs_dp_recursion(n, dp));
         System.out.println("climbStairs_dp_loop");
