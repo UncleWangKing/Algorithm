@@ -8,9 +8,14 @@ public class LeetCode_64_MinimumPathSum {
     public static void main(String[] args) {
         int grid[][] = {{1,3,1},
                         {1,5,1},
-                        {4,2,1}};
+                        {4,2,10000}};
         System.out.println(minPathSum(grid));
     }
+
+    /**
+     * 动态转换方程:
+     * dp[i][j] = grid[i][j] + min(dp[i - 1][j]
+     */
     public static int minPathSum(int[][] grid) {
         int m = grid.length, n = grid[0].length;
         int dp[][] = new int[m][n];

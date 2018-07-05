@@ -8,10 +8,10 @@ import java.util.Arrays;
  */
 public class LeetCode_62_UniquePaths {
     public static void main(String[] args) {
-        System.out.println("uniquePaths_dp");
-        System.out.println(uniquePaths_dp(6,3));
-        System.out.println("uniquePaths_dp_lessMemory");
-        System.out.println(uniquePaths_dp_lessMemory(6,3));
+        System.out.println("uniquePaths_dp_loop");
+        System.out.println(uniquePaths_dp_loop(6,3));
+        System.out.println("uniquePaths_dp_loop_lessMemory");
+        System.out.println(uniquePaths_dp_loop_lessMemory(6,3));
         System.out.println("uniquePaths_math");
         System.out.println(uniquePaths_math(6,3));
     }
@@ -32,7 +32,7 @@ public class LeetCode_62_UniquePaths {
      *
      *  此处选择横向扫描
      */
-    public static int uniquePaths_dp(int m, int n) {
+    public static int uniquePaths_dp_loop(int m, int n) {
         int [][]dp = new int[m][n];
         //初始化为1
         Arrays.fill(dp[0], 1);
@@ -65,7 +65,7 @@ public class LeetCode_62_UniquePaths {
      * --> dp[j] = dp[j] + dp[j-1]; --- 此刻等号右边dp[j]代表上方，dp[j-1]代表左方
      * --> dp[j] += dp[j-1];
      */
-    public static int uniquePaths_dp_lessMemory(int m, int n) {
+    public static int uniquePaths_dp_loop_lessMemory(int m, int n) {
         int []dp = new int[n];
         Arrays.fill(dp, 1);
         for (int i = 1; i < m; i++) {
