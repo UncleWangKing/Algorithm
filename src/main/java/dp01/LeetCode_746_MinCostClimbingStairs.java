@@ -6,35 +6,81 @@ package dp01;
  */
 public class LeetCode_746_MinCostClimbingStairs {
     public static void main(String[] args) {
-        int [] list = {1, 100, 1, 1, 1, 100, 1, 1, 100, 1};
+        int [] cost = {1, 100, 1, 1, 1, 100, 1, 1, 100, 100};
+//        int [] cost = {10, 15, 20};
 
-        System.out.println(minCostClimbingStairs_dp_recursion(list.length, list));
-        System.out.println(minCostClimbingStairs_dp_loop(list));
+        System.out.println(minCostClimbingStairs_dp_loop(cost));
+        int [] dp = new int[cost.length + 1];
+        System.out.println(minCostClimbingStairs_dp_recursion(cost.length, cost, dp));
+        System.out.println(minCostClimbingStairs_recursion(cost.length, cost));
+        System.out.println("------------");
+        System.out.println(minCostClimbingStairs_dp_loop_less_Memory(cost));
     }
 
     /**
-     * 关键:可以从0 或者 1位置为起始点
+     * 关键:
+     * 1.可以从0 或者 1位置为起始点！
+     * 2.梯顶不是最后一个数 而是最后一个数后一个位置！
      * dp[i] = min(dp[i- 2] + cost[i - 2], dp[i - 1] + cost[i - 1])
      */
-    public static int minCostClimbingStairs_dp_recursion(int n, int[] cost) {
+    public static int minCostClimbingStairs_recursion(int n, int[] cost) {
         if(0 == n || 1 == n)
             return 0;
         else if(2 == n)
             return Math.min(cost[0], cost[1]);
 
-
-        return Math.min(minCostClimbingStairs_dp_recursion(n - 2, cost) + cost[n - 2], minCostClimbingStairs_dp_recursion(n - 1, cost) + cost[n - 1]);
+        return Math.min(minCostClimbingStairs_recursion(n - 2, cost) + cost[n - 2], minCostClimbingStairs_recursion(n - 1, cost) + cost[n - 1]);
     }
 
     /**
-     * 关键:可以从0 或者 1位置为起始点
+     * 关键:
+     * 1.可以从0 或者 1位置为起始点！
+     * 2.梯顶不是最后一个数 而是最后一个数后一个位置！
      * dp[i] = min(dp[i- 2] + cost[i - 2], dp[i - 1] + cost[i - 1])
      */
+    public static int minCostClimbingStairs_dp_recursion(int n, int[] cost, int[] dp) {
+        if(0 == n || 1 == n)
+            return 0;
+        else if(2 == n)
+            return Math.min(cost[0], cost[1]);
+        if(0 == dp[n])
+            dp[n] = Math.min(minCostClimbingStairs_dp_recursion(n - 2, cost, dp) + cost[n - 2], minCostClimbingStairs_dp_recursion(n - 1, cost, dp) + cost[n - 1]);
+        return dp[n];
+    }
+
+    /**
+     * 关键:
+     * 1.可以从0 或者 1位置为起始点！
+     * 2.梯顶不是最后一个数 而是最后一个数后一个位置！
+     * dp[i] = min(dp[i- 2] + cost[i - 2], dp[i - 1] + cost[i - 1])
+     * 改为循环
+     */
     public static int minCostClimbingStairs_dp_loop(int[] cost) {
-        int[] dp = new int[cost.length+1];
+        int[] dp = new int[cost.length + 1];
         for (int i = 2; i < cost.length + 1; ++i) {
             dp[i] = Math.min(dp[i- 2] + cost[i - 2], dp[i - 1] + cost[i - 1]);
         }
         return dp[cost.length];
+    }
+
+    /**
+     * 关键:
+     * 1.可以从0 或者 1位置为起始点！
+     * 2.梯顶不是最后一个数 而是最后一个数后一个位置！
+     * dp[i] = min(dp[i- 2] + cost[i - 2], dp[i - 1] + cost[i - 1])
+     * 改为循环
+     * 优化内存使用(滚动数组---只使用每一轮计算所需的缓存，通常是上一轮或者多轮的结果)
+     * 分析可得 只需要两个int变量交替使用即可达到要求
+     */
+    public static int minCostClimbingStairs_dp_loop_less_Memory(int[] cost) {
+        int temp1 = 0;
+        int temp2 = 0;
+        int res = 0;
+        for (int i = 2; i < cost.length + 1; ++i) {
+            res = Math.min(temp1 + cost[i - 2], temp2 + cost[i - 1]);
+            temp1 = temp2;
+            temp2 = res;
+        }
+        return res;
     }
 }

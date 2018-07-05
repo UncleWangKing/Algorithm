@@ -23,13 +23,13 @@ public class LeetCode_70_ClimbingStairs {
      * 看似递归是自顶向下 但是只是将问题划分出来
      * 真正的结果是弹栈时从dp[1]->dp[n]的结果出现
      */
-    public static int climbStairs(int n){
+    public static int climbStairs_recursion(int n){
         ++count;
         if(1 == n)
             return 1;
         else if(2 == n)
             return 2;
-        return climbStairs(n-2) + climbStairs(n-1);
+        return climbStairs_recursion(n-2) + climbStairs_recursion(n-1);
     }
 
     /**
@@ -78,7 +78,7 @@ public class LeetCode_70_ClimbingStairs {
      * 状态转换方程:
      * dp[i] = dp[i-2] + dp[i-1]
      * 改为循环 更直观的bottom-up
-     * 并优化内存使用
+     * 优化内存使用(滚动数组---只使用每一轮计算所需的缓存，通常是上一轮或者多轮的结果)
      * 分析可得 只需要两个int变量交替使用即可达到要求
      */
     public static int climbStairs_dp_loop_lessMemory(int n){
