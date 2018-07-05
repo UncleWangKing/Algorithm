@@ -20,7 +20,7 @@ public class LeetCode_70_ClimbingStairs {
 
     /**
      * 状态转换方程:
-     * dp[i] = dp[i-2] + dp[i-1] (dp[i]代表到达第i层所需最小次数)
+     * dp[i] = dp[i-2] + dp[i-1] (dp[i]代表有多少种方法可到达第i层)
      * 自顶向下(top-down) OR 自底向上(bottom-up) ？
      * 答案:自底向上(bottom-up)
      * 看似递归是自顶向下 但是只是将问题划分出来
@@ -36,7 +36,7 @@ public class LeetCode_70_ClimbingStairs {
 
     /**
      * 状态转换方程:
-     * dp[i] = dp[i-2] + dp[i-1] (dp[i]代表到达第i层所需最小次数)
+     * dp[i] = dp[i-2] + dp[i-1] (dp[i]代表有多少种方法可到达第i层)
      * 自顶向下(top-down) OR 自底向上(bottom-up) ？
      * 答案:自底向上(bottom-up)
      * 看似递归是自顶向下 但是只是将问题划分出来
@@ -55,7 +55,7 @@ public class LeetCode_70_ClimbingStairs {
 
     /**
      * 状态转换方程:
-     * dp[i] = dp[i-2] + dp[i-1] (dp[i]代表到达第i层所需最小次数)
+     * dp[i] = dp[i-2] + dp[i-1] (dp[i]代表有多少种方法可到达第i层)
      * 改为循环 更直观的bottom-up
      */
     public static int climbStairs_dp_loop(int n){
@@ -76,7 +76,7 @@ public class LeetCode_70_ClimbingStairs {
 
     /**
      * 状态转换方程:
-     * dp[i] = dp[i-2] + dp[i-1] (dp[i]代表到达第i层所需最小次数)
+     * dp[i] = dp[i-2] + dp[i-1] (dp[i]代表有多少种方法可到达第i层)
      * 改为循环 更直观的bottom-up
      * 优化内存使用(滚动数组---只使用每一轮计算所需的缓存，通常是上一轮或者多轮的结果)
      * 分析可得 只需要两个int变量交替使用即可达到要求
