@@ -8,12 +8,14 @@ import java.util.Arrays;
  */
 public class LeetCode_62_UniquePaths {
     public static void main(String[] args) {
+        int m = 1;
+        int n = 1;
         System.out.println("uniquePaths_dp_loop");
-        System.out.println(uniquePaths_dp_loop(6,3));
+        System.out.println(uniquePaths_dp_loop(m,n));
         System.out.println("uniquePaths_dp_loop_lessMemory");
-        System.out.println(uniquePaths_dp_loop_lessMemory(6,3));
+        System.out.println(uniquePaths_dp_loop_lessMemory(m,n));
         System.out.println("uniquePaths_math");
-        System.out.println(uniquePaths_math(6,3));
+        System.out.println(uniquePaths_math(m,n));
     }
 
     /**
