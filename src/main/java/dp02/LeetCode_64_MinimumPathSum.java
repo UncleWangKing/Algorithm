@@ -45,7 +45,9 @@ public class LeetCode_64_MinimumPathSum {
 
         for (int i = 1; i < n; ++i) dp[i] = dp[i-1] + grid[0][i-1];
         for (int i = 1; i < m; ++i) {
-            //单独解决dp[0]累加更新问题
+            /**
+             * 单独解决dp[0]累加更新问题
+             */
             dp[0] += grid[i-1][0];
             for (int j = 1; j < n; ++j) {
                 dp[j] = Math.min(dp[j] + grid[i-1][j], dp[j-1] + grid[i][j-1]);
