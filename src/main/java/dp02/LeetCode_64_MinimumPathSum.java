@@ -62,6 +62,9 @@ public class LeetCode_64_MinimumPathSum {
      * 状态转换方程:
      * dp[i][j] = min(dp[i-1][j] + grid[i-1][j], dp[i][j-1] + grid[i][j-1]) (dp[i][j]代表“到达”第i行j列所需最小花费)
      * 根据行列大小来选择遍历顺序 可更加节约内存
+     *
+     * 若m > n 横向遍历
+     * 若m < n 纵向遍历
      */
     public static int minPathSum_dp_loop_bestMemory(int[][] grid) {
         int m = grid.length, n = grid[0].length;
