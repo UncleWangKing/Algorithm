@@ -9,19 +9,24 @@ public class LeetCode_746_MinCostClimbingStairs {
         int [] cost = {1, 100, 1, 1, 1, 100, 1, 1, 100, 100};
 //        int [] cost = {10, 15, 20};
 
+        System.out.println("minCostClimbingStairs_dp_loop");
         System.out.println(minCostClimbingStairs_dp_loop(cost));
         int [] dp = new int[cost.length + 1];
+        System.out.println("minCostClimbingStairs_dp_recursion");
         System.out.println(minCostClimbingStairs_dp_recursion(cost.length, cost, dp));
+        System.out.println("minCostClimbingStairs_recursion");
         System.out.println(minCostClimbingStairs_recursion(cost.length, cost));
-        System.out.println("------------");
-        System.out.println(minCostClimbingStairs_dp_loop_less_Memory(cost));
+        System.out.println("minCostClimbingStairs_dp_loop_lessMemory");
+        System.out.println(minCostClimbingStairs_dp_loop_lessMemory(cost));
+        System.out.println("minCostClimbingStairs_dp_otherWay_loop_lessMemory");
+        System.out.println(minCostClimbingStairs_dp_otherWay_loop_lessMemory(cost));
     }
 
     /**
      * 关键:
      * 1.可以从0 或者 1位置为起始点！
      * 2.梯顶不是最后一个数 而是最后一个数后一个位置！
-     * dp[i] = min(dp[i- 2] + cost[i - 2], dp[i - 1] + cost[i - 1])
+     * dp[i] = min(dp[i- 2] + cost[i - 2], dp[i - 1] + cost[i - 1]) (dp[i]代表“到达”第i层所需最小花费)
      * 自底向上(bottom-up)
      */
     public static int minCostClimbingStairs_recursion(int n, int[] cost) {
@@ -37,7 +42,7 @@ public class LeetCode_746_MinCostClimbingStairs {
      * 关键:
      * 1.可以从0 或者 1位置为起始点！
      * 2.梯顶不是最后一个数 而是最后一个数后一个位置！
-     * dp[i] = min(dp[i- 2] + cost[i - 2], dp[i - 1] + cost[i - 1])
+     * dp[i] = min(dp[i- 2] + cost[i - 2], dp[i - 1] + cost[i - 1]) (dp[i]代表“到达”第i层所需最小花费)
      * 自底向上(bottom-up)
      */
     public static int minCostClimbingStairs_dp_recursion(int n, int[] cost, int[] dp) {
@@ -54,7 +59,7 @@ public class LeetCode_746_MinCostClimbingStairs {
      * 关键:
      * 1.可以从0 或者 1位置为起始点！
      * 2.梯顶不是最后一个数 而是最后一个数后一个位置！
-     * dp[i] = min(dp[i- 2] + cost[i - 2], dp[i - 1] + cost[i - 1])
+     * dp[i] = min(dp[i- 2] + cost[i - 2], dp[i - 1] + cost[i - 1]) (dp[i]代表“到达”第i层所需最小花费)
      * 自底向上(bottom-up)
      * 改为循环
      */
@@ -70,13 +75,13 @@ public class LeetCode_746_MinCostClimbingStairs {
      * 关键:
      * 1.可以从0 或者 1位置为起始点！
      * 2.梯顶不是最后一个数 而是最后一个数后一个位置！
-     * dp[i] = min(dp[i- 2] + cost[i - 2], dp[i - 1] + cost[i - 1])
+     * dp[i] = min(dp[i- 2] + cost[i - 2], dp[i - 1] + cost[i - 1]) (dp[i]代表“到达”第i层所需最小花费)
      * 自底向上(bottom-up)
      * 改为循环
      * 优化内存使用(滚动数组---只使用每一轮计算所需的缓存，通常是上一轮或者多轮的结果)
      * 分析可得 只需要两个int变量交替使用即可达到要求
      */
-    public static int minCostClimbingStairs_dp_loop_less_Memory(int[] cost) {
+    public static int minCostClimbingStairs_dp_loop_lessMemory(int[] cost) {
         int temp1 = 0;
         int temp2 = 0;
         int res = 0;
@@ -86,5 +91,27 @@ public class LeetCode_746_MinCostClimbingStairs {
             temp2 = res;
         }
         return res;
+    }
+
+    /**
+     * 关键:
+     * 1.可以从0 或者 1位置为起始点！
+     * 2.梯顶不是最后一个数 而是最后一个数后一个位置！
+     * dp[i] = cost[i] + min(dp[i- 1], dp[i - 2]) (dp[i]代表“经过”第i层所需最小花费)
+     * 自底向上(bottom-up)
+     * 改为循环
+     * 优化内存使用(滚动数组---只使用每一轮计算所需的缓存，通常是上一轮或者多轮的结果)
+     * 分析可得 只需要两个int变量交替使用即可达到要求
+     */
+    public static int minCostClimbingStairs_dp_otherWay_loop_lessMemory(int[] cost) {
+        int temp1 = cost[0];
+        int temp2 = cost[1];
+        int res = 0;
+        for (int i = 2; i < cost.length; ++i) {
+            res = cost[i] + Math.min(temp1, temp2);
+            temp1 = temp2;
+            temp2 = res;
+        }
+        return Math.min(temp1, temp2);
     }
 }
