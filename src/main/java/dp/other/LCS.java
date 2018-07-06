@@ -26,10 +26,12 @@ public class LCS {
 
     /**
      * 状态转换方程
-     * if(x_m == y_n)
+     * if(x[m] == y[n])
      *  dp[m][n] = dp[m-1][n-1] + 1;
      * else
      *  dp[m][n] = max(dp[m-1][n],dp[m][n-1]) + 1;
+     *
+     *  dp[m][n] 代表x长度为x[m]与x[n]的最长公共子序列长度
      */
     public static int longestCS_dp(String x, String y){
         char[] xList = x.toCharArray();
@@ -75,13 +77,16 @@ public class LCS {
     }
 
     /**
-     * 状态转换方程
-     * if(x_m == y_n)
+     * 状态转换方程:
+     * if(x[m-1] == y[n-1])
      *  dp[m][n] = dp[m-1][n-1] + 1;
      * else
      *  dp[m][n] = max(dp[m-1][n],dp[m][n-1]) + 1;
      *
-     *  增加一行一列 动态推导出初始化的行列 代码更加简洁
+     *  dp[m][n] 代表x长度为x[m-1]与x[n-1]的最长公共子序列长度
+     *
+     * 另一只划分方式
+     * 增加一行一列 动态推导出初始化的行列 代码更加简洁
      */
     public static int longestCS_dp_betterlook(String x, String y){
         char[] xList = x.toCharArray();
