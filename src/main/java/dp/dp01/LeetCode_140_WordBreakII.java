@@ -18,16 +18,16 @@ public class LeetCode_140_WordBreakII {
     }
 
     public static List<String> wordBreak(String s, List<String> wordDict) {
-        HashMap<String, List<String>> m = new HashMap();
-        return helper(s, wordDict, m);
+        HashMap<String, List<String>> dp = new HashMap();
+        return helper(s, wordDict, dp);
     }
 
-    public static List<String> helper(String s, List<String> wordDict, HashMap<String, List<String>> m) {
+    public static List<String> helper(String s, List<String> wordDict, HashMap<String, List<String>> dp) {
         /**
          * m作为dp的重复子问题缓存
          */
-        if (m.containsKey(s))
-            return m.get(s);
+        if (dp.containsKey(s))
+            return dp.get(s);
         /**
          * 0 == s 代表分完 用Arrays.asList("")返回是一个巧法 给上层判断是否最后一个字符串
          */
@@ -46,7 +46,7 @@ public class LeetCode_140_WordBreakII {
             /**
              * 递归出子串的拆分
              */
-            List<String> rem = helper(s.substring(word.length()), wordDict, m);
+            List<String> rem = helper(s.substring(word.length()), wordDict, dp);
             /**
              * 将子串加上自身 组成自身的拆分串
              */
@@ -54,7 +54,7 @@ public class LeetCode_140_WordBreakII {
                 res.add(word + (0 == str.length() ? "" : " ") + str);
             }
         }
-        m.put(s, res);
+        dp.put(s, res);
         return res;
     }
 }

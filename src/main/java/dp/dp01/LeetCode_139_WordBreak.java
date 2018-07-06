@@ -22,18 +22,18 @@ public class LeetCode_139_WordBreak {
     public static boolean wordBreak(String s, List<String> wordDict) {
         if(null == s || 0 == s.length())
             return true;
-        boolean[] res = new boolean[s.length()+1];
-        res[0] = true;
+        boolean[] dp = new boolean[s.length()+1];
+        dp[0] = true;
         for (int i = 0; i < s.length(); i++) {
             StringBuilder str = new StringBuilder(s.substring(0, i + 1));
             for(int j = 0; j <= i; j++){
-                if(res[j] && wordDict.contains(str.toString())){
-                    res[i + 1] = true;
+                if(dp[j] && wordDict.contains(str.toString())){
+                    dp[i + 1] = true;
                     break;
                 }
                 str.deleteCharAt(0);
             }
         }
-        return res[s.length()];
+        return dp[s.length()];
     }
 }
