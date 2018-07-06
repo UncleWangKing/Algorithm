@@ -1,4 +1,4 @@
-package dp01;
+package dp.dp01;
 
 import java.util.ArrayList;
 import java.util.Arrays;

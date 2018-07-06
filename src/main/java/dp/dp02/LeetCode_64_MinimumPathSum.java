@@ -1,4 +1,4 @@
-package dp02;
+package dp.dp02;
 
 /**
  * @author ZhangDaPang 285296372@qq.com

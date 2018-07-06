@@ -1,4 +1,4 @@
-package dp02;
+package dp.dp02;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package other;
+package dp.other;
 
 /**
  * @author ZhangDaPang 285296372@qq.com

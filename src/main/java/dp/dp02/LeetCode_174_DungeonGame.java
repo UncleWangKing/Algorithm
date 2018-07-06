@@ -1,4 +1,4 @@
-package dp02;
+package dp.dp02;
 
 /**
  * @author ZhangDaPang 285296372@qq.com
@@ -11,6 +11,12 @@ public class LeetCode_174_DungeonGame {
                         {10,30,-5}};
         System.out.println(calculateMinimumHP_lessMemory(grid));
     }
+
+    /**
+     * 状态转换方程
+     * dp[i][j] = max(1, min(dp[i + 1][j], dp[i][j + 1]) - dungeon[i][j])
+     *
+     */
     //典型的自顶向下
     public static int calculateMinimumHP(int[][] dungeon) {
         int m = dungeon.length, n = dungeon[0].length;
