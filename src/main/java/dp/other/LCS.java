@@ -9,8 +9,8 @@ import util.ZDaPangArrayUtil;
 
 /**
  * 经典问题:最长公共子序列 Longest Common Sequence
- * 1:BDCABA
- * 2:ABCBDAB
+ * 1:ABCBDAB
+ * 2:BDCABA
  * Answer:BCBA 长度4
  * LeetCode上没有
  */
