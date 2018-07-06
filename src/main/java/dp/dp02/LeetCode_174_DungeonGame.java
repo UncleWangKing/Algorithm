@@ -50,15 +50,18 @@ public class LeetCode_174_DungeonGame {
     public static int calculateMinimumHP_lessMemory(int[][] dungeon) {
         int m = dungeon.length, n = dungeon[0].length;
         int []dp = new int[n+1];
-        //初始化为Integer.MAX_VALUE
         Arrays.fill(dp, Integer.MAX_VALUE);
-        //递推初始项
+        /**
+         * 是n-1而不是n 为了让每轮的最“右”的“有效数据”可以排除“来自右方的可能”
+         */
         dp[n-1] = 1;
+
         for (int i = m - 1; i >= 0; --i) {
             for (int j = n - 1; j >= 0; --j) {
                 dp[j] = Math.max(1, Math.min(dp[j], dp[j+1]) - dungeon[i][j]);
             }
         }
+
         return dp[0];
     }
 }
