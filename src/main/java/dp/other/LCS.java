@@ -85,7 +85,7 @@ public class LCS {
      *
      *  dp[m][n] 代表x长度为x[m-1]与x[n-1]的最长公共子序列长度
      *
-     * 另一只划分方式
+     * 另一种划分方式
      * 增加一行一列 动态推导出初始化的行列 代码更加简洁
      */
     public static int longestCS_dp_betterlook(String x, String y){
