@@ -29,7 +29,7 @@ public class LCS {
      * if(x[m] == y[n])
      *  dp[m][n] = dp[m-1][n-1] + 1;
      * else
-     *  dp[m][n] = max(dp[m-1][n],dp[m][n-1]) + 1;
+     *  dp[m][n] = max(dp[m-1][n],dp[m][n-1]);
      *
      *  dp[m][n] 代表x长度为x[m]与x[n]的最长公共子序列长度
      */
@@ -81,7 +81,7 @@ public class LCS {
      * if(x[m-1] == y[n-1])
      *  dp[m][n] = dp[m-1][n-1] + 1;
      * else
-     *  dp[m][n] = max(dp[m-1][n],dp[m][n-1]) + 1;
+     *  dp[m][n] = max(dp[m-1][n],dp[m][n-1]);
      *
      *  dp[m][n] 代表x长度为x[m-1]与x[n-1]的最长公共子序列长度
      *
