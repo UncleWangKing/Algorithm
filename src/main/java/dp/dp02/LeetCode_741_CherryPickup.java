@@ -58,10 +58,18 @@ public class LeetCode_741_CherryPickup {
             for (int i = m - 1; i >= 0; --i) {
                 for (int p = n - 1; p >= 0; --p) {
                     int j = k - i, q = k - p;
+                    /**
+                     * 超出边界 或者 有障碍的点
+                     */
                     if (j < 0 || j >= m || q < 0 || q >= n || grid[i][j] < 0 || grid[p][q] < 0) {
                         dp[i][p] = -1;
                         continue;
                     }
+                    /**
+                     * 状态转换方程的等效写法
+                     * 前三个if负责 “四取一个最大” 加上了一些条件 去掉了一些多余判断
+                     * 最后一个if负责 判断是否重复并加上对应grid的值
+                     */
                     if (i > 0) dp[i][p] = Math.max(dp[i][p], dp[i - 1][p]);
                     if (p > 0) dp[i][p] = Math.max(dp[i][p], dp[i][p - 1]);
                     if (i > 0 && p > 0) dp[i][p] = Math.max(dp[i][p], dp[i - 1][p - 1]);
