@@ -29,6 +29,9 @@ public class LeetCode_63_UniquePathsII {
      *  dp[i][j]代表有多少种方法可到达第i行j列
      *
      *  递推初始项
+     *  可按照本来应该dp[i][0] = dp[0][j] = 1的假设来从左到右从上到下赋值
+     *  只是如果中途遇到障碍(1 == obstacleGrid[i][j])则剩余部分为0
+     *  举例
      *  若obstacleGrid为
      * {{0, 1, 0},
      *  {0, 1, 0},
@@ -39,6 +42,8 @@ public class LeetCode_63_UniquePathsII {
      *  {1, 0, 0},
      *  {1, 0, 0}，
      *  {1, 0, 0}}
+     *  过程是第一行从左到右赋值1时候，在第二个位置遇到了障碍，
+     *  于是所有达到右边的点都不通了，所有右侧全为0，第一列的时候同理。
      */
     public static int uniquePathsWithObstacles_dp_loop(int[][] obstacleGrid) {
         int m = obstacleGrid.length, n = obstacleGrid[0].length;
