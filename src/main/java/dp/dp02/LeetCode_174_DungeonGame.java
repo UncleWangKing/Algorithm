@@ -88,7 +88,7 @@ public class LeetCode_174_DungeonGame {
             int[] dp = new int[m + 1];
             Arrays.fill(dp, Integer.MAX_VALUE);
             /**
-             * 是m-1而不是m 为了让每轮的最“上”的“有效数据”可以排除“来自上方的可能”
+             * 是m-1而不是m 为了让每轮的最“下”的“有效数据”可以排除“来自下方的可能”
              */
             dp[m - 1] = 1;
 
