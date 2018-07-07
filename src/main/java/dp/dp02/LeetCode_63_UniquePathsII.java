@@ -1,12 +1,17 @@
 package dp.dp02;
 
+import util.ZDaPangArrayUtil;
+
 /**
  * @author ZhangDaPang 285296372@qq.com
  * @date 2018/7/3 13:50
  */
 public class LeetCode_63_UniquePathsII {
     public static void main(String[] args) {
-        int grid[][] = {{1, 0}};
+        int grid[][] = {{0, 0, 1},
+                        {0, 1, 0},
+                        {0, 0, 0},
+                        {0, 0, 0}};
         System.out.println("uniquePathsWithObstacles_dp_loop");
         System.out.println(uniquePathsWithObstacles_dp_loop(grid));
         System.out.println("uniquePathsWithObstacles_dp_loop_lessTime");
@@ -24,6 +29,18 @@ public class LeetCode_63_UniquePathsII {
      * else
      *  dp[i][j] = dp[i-1][j] + dp[i][j-1];
      *  dp[i][j]代表有多少种方法可到达第i行j列
+     *
+     *  递推初始项
+     *  若obstacleGrid为
+     * {{0, 1, 0},
+     *  {0, 1, 0},
+     *  {0, 0, 0},
+     *  {0, 0, 0}}
+     * 则为
+     * {{1, 0, 0},
+     *  {1, 0, 0},
+     *  {1, 0, 0}，
+     *  {1, 0, 0}}
      */
     public static int uniquePathsWithObstacles_dp_loop(int[][] obstacleGrid) {
         int m = obstacleGrid.length, n = obstacleGrid[0].length;
