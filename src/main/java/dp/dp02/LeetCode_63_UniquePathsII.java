@@ -23,6 +23,7 @@ public class LeetCode_63_UniquePathsII {
      *  dp[i][j] = 0;
      * else
      *  dp[i][j] = dp[i-1][j] + dp[i][j-1];
+     *  dp[i][j]代表“经过”第i行j列所需最小花费)
      */
     public static int uniquePathsWithObstacles_dp_loop(int[][] obstacleGrid) {
         int m = obstacleGrid.length, n = obstacleGrid[0].length;
