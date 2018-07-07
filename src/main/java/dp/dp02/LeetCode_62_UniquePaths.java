@@ -14,6 +14,8 @@ public class LeetCode_62_UniquePaths {
         System.out.println(uniquePaths_dp_loop(m,n));
         System.out.println("uniquePaths_dp_loop_lessMemory");
         System.out.println(uniquePaths_dp_loop_lessMemory(m,n));
+        System.out.println("uniquePaths_dp_loop_bestMemory");
+        System.out.println(uniquePaths_dp_loop_bestMemory(m,n));
         System.out.println("uniquePaths_math");
         System.out.println(uniquePaths_math(m,n));
     }
@@ -76,6 +78,38 @@ public class LeetCode_62_UniquePaths {
             }
         }
         return dp[n-1];
+    }
+
+    /**
+     * 例:
+     * 若m = 4 ， n = 3
+     * {{1, 1, 1},
+     *  {1, 0, 0},
+     *  {1, 0, 0},
+     *  {1, 0, 0}}
+     *
+     * 更进一步优化内存使用
+     */
+    public static int uniquePaths_dp_loop_bestMemory(int m, int n) {
+        if(m > n) {
+            int[] dp = new int[n];
+            Arrays.fill(dp, 1);
+            for (int i = 1; i < m; i++) {
+                for (int j = 1; j < n; j++) {
+                    dp[j] += dp[j - 1];
+                }
+            }
+            return dp[n - 1];
+        }else{
+            int[] dp = new int[m];
+            Arrays.fill(dp, 1);
+            for (int i = 1; i < n; i++) {
+                for (int j = 1; j < m; j++) {
+                    dp[j] += dp[j - 1];
+                }
+            }
+            return dp[m - 1];
+        }
     }
 
     /**
