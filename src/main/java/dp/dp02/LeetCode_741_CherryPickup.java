@@ -44,7 +44,8 @@ public class LeetCode_741_CherryPickup {
      *  Math.max中四个量，分别表示两人分别从各自的上方或者左方到达当前位置。
      *  PS:注意x1和x2是分别两人的要么都是横向 要么都是纵向的移动位置 上方Math.max中四个量的组合请仔细观察。
      *  递推初始项
-     *
+     *  dp[0][0] = grid[0][0]
+     *  直接滚动数组压掉t
      */
     public static int cherryPickup_dp_loop(int[][] grid) {
         /**
