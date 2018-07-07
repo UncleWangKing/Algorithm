@@ -55,10 +55,10 @@ public class LeetCode_741_CherryPickup {
         int dp[][] = new int [m][n];
         dp[0][0] = grid[0][0];
         for (int k = 1; k < maxStep; ++k) {
-            for (int i = n - 1; i >= 0; --i) {
+            for (int i = m - 1; i >= 0; --i) {
                 for (int p = n - 1; p >= 0; --p) {
                     int j = k - i, q = k - p;
-                    if (j < 0 || j >= n || q < 0 || q >= n || grid[i][j] < 0 || grid[p][q] < 0) {
+                    if (j < 0 || j >= m || q < 0 || q >= n || grid[i][j] < 0 || grid[p][q] < 0) {
                         dp[i][p] = -1;
                         continue;
                     }
