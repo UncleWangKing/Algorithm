@@ -15,6 +15,8 @@ public class LeetCode_174_DungeonGame {
         System.out.println(calculateMinimumHP(grid));
         System.out.println("calculateMinimumHP_lessMemory");
         System.out.println(calculateMinimumHP_lessMemory(grid));
+        System.out.println("calculateMinimumHP_bestMemory");
+        System.out.println(calculateMinimumHP_bestMemory(grid));
     }
 
     /**
@@ -63,5 +65,40 @@ public class LeetCode_174_DungeonGame {
         }
 
         return dp[0];
+    }
+
+    public static int calculateMinimumHP_bestMemory(int[][] dungeon) {
+        int m = dungeon.length, n = dungeon[0].length;
+        if(m > n) {
+            int[] dp = new int[n + 1];
+            Arrays.fill(dp, Integer.MAX_VALUE);
+            /**
+             * 是n-1而不是n 为了让每轮的最“右”的“有效数据”可以排除“来自右方的可能”
+             */
+            dp[n - 1] = 1;
+
+            for (int i = m - 1; i >= 0; --i) {
+                for (int j = n - 1; j >= 0; --j) {
+                    dp[j] = Math.max(1, Math.min(dp[j], dp[j + 1]) - dungeon[i][j]);
+                }
+            }
+
+            return dp[0];
+        }else {
+            int[] dp = new int[m + 1];
+            Arrays.fill(dp, Integer.MAX_VALUE);
+            /**
+             * 是m-1而不是m 为了让每轮的最“上”的“有效数据”可以排除“来自上方的可能”
+             */
+            dp[m - 1] = 1;
+
+            for (int i = n - 1; i >= 0; --i) {
+                for (int j = m - 1; j >= 0; --j) {
+                    dp[j] = Math.max(1, Math.min(dp[j], dp[j + 1]) - dungeon[j][i]);
+                }
+            }
+
+            return dp[0];
+        }
     }
 }
