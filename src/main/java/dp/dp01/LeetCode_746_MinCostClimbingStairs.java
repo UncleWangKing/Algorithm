@@ -11,7 +11,7 @@ public class LeetCode_746_MinCostClimbingStairs {
 
         System.out.println("minCostClimbingStairs_dp_loop");
         System.out.println(minCostClimbingStairs_dp_loop(cost));
-        int [] dp = new int[cost.length + 1];
+        int [] dp = new int[cost.length+1];
         System.out.println("minCostClimbingStairs_dp_recursion");
         System.out.println(minCostClimbingStairs_dp_recursion(cost.length, cost, dp));
         System.out.println("minCostClimbingStairs_recursion");
@@ -30,7 +30,7 @@ public class LeetCode_746_MinCostClimbingStairs {
      * 自底向上(bottom-up)
      */
     public static int minCostClimbingStairs_recursion(int n, int[] cost) {
-        if(0 == n || 1 == n)
+        if(1 == n)
             return 0;
         else if(2 == n)
             return Math.min(cost[0], cost[1]);
@@ -46,7 +46,7 @@ public class LeetCode_746_MinCostClimbingStairs {
      * 自底向上(bottom-up)
      */
     public static int minCostClimbingStairs_dp_recursion(int n, int[] cost, int[] dp) {
-        if(0 == n || 1 == n)
+        if(1 == n)
             return 0;
         else if(2 == n)
             return Math.min(cost[0], cost[1]);
