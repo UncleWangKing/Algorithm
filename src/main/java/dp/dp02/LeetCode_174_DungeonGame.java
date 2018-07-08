@@ -8,10 +8,10 @@ import java.util.Arrays;
  */
 public class LeetCode_174_DungeonGame {
     public static void main(String[] args) {
-        int grid[][] = {{-2,-3,3},
-                        {-5,-10,1},
-                        {10,30,-5}};
-//        int grid[][] = {{100}};
+//        int grid[][] = {{-2,-3,3},
+//                        {-5,-10,1},
+//                        {10,30,-5}};
+        int grid[][] = {{0,-3}};
         System.out.println("calculateMinimumHP_dp_loop");
         System.out.println(calculateMinimumHP_dp_loop(grid));
         System.out.println("calculateMinimumHP_dp_loop_lessMemory");
@@ -45,15 +45,16 @@ public class LeetCode_174_DungeonGame {
 
     public static int calculateMinimumHP_dp_loop_lessMemory(int[][] dungeon) {
         int m = dungeon.length, n = dungeon[0].length;
-        int []dp = new int[n+1];
+        int []dp = new int[n];
         Arrays.fill(dp, Integer.MAX_VALUE);
-        /**
-         * 是n-1而不是n 为了让每轮的最“右”的“有效数据”可以排除“来自右方的可能”
-         */
         dp[n-1] = 1;
 
         for (int i = m - 1; i >= 0; --i) {
-            for (int j = n - 1; j >= 0; --j) {
+            /**
+             * 同理 手动更新 最右一列
+             */
+            dp[n-1] = Math.max(1, dp[n-1] - dungeon[i][n-1]);
+            for (int j = n - 2; j >= 0; --j) {
                 dp[j] = Math.max(1, Math.min(dp[j], dp[j+1]) - dungeon[i][j]);
             }
         }
@@ -64,31 +65,33 @@ public class LeetCode_174_DungeonGame {
     public static int calculateMinimumHP_dp_loop_bestMemory(int[][] dungeon) {
         int m = dungeon.length, n = dungeon[0].length;
         if(m > n) {
-            int[] dp = new int[n + 1];
+            int []dp = new int[n];
             Arrays.fill(dp, Integer.MAX_VALUE);
-            /**
-             * 是n-1而不是n 为了让每轮的最“右”的“有效数据”可以排除“来自右方的可能”
-             */
-            dp[n - 1] = 1;
+            dp[n-1] = 1;
 
             for (int i = m - 1; i >= 0; --i) {
-                for (int j = n - 1; j >= 0; --j) {
-                    dp[j] = Math.max(1, Math.min(dp[j], dp[j + 1]) - dungeon[i][j]);
+                /**
+                 * 同理 手动更新 最右一列
+                 */
+                dp[n-1] = Math.max(1, dp[n-1] - dungeon[i][n-1]);
+                for (int j = n - 2; j >= 0; --j) {
+                    dp[j] = Math.max(1, Math.min(dp[j], dp[j+1]) - dungeon[i][j]);
                 }
             }
 
             return dp[0];
         }else {
-            int[] dp = new int[m + 1];
+            int []dp = new int[m];
             Arrays.fill(dp, Integer.MAX_VALUE);
-            /**
-             * 是m-1而不是m 为了让每轮的最“下”的“有效数据”可以排除“来自下方的可能”
-             */
-            dp[m - 1] = 1;
+            dp[m-1] = 1;
 
             for (int i = n - 1; i >= 0; --i) {
-                for (int j = m - 1; j >= 0; --j) {
-                    dp[j] = Math.max(1, Math.min(dp[j], dp[j + 1]) - dungeon[j][i]);
+                /**
+                 * 同理 手动更新 最右一列
+                 */
+                dp[m-1] = Math.max(1, dp[m-1] - dungeon[m-1][i]);
+                for (int j = m - 2; j >= 0; --j) {
+                    dp[j] = Math.max(1, Math.min(dp[j], dp[j+1]) - dungeon[j][i]);
                 }
             }
 
