@@ -11,12 +11,12 @@ public class LeetCode_174_DungeonGame {
         int grid[][] = {{-2,-3,3},
                         {-5,-10,1},
                         {10,30,-5}};
-        System.out.println("calculateMinimumHP");
-        System.out.println(calculateMinimumHP(grid));
-        System.out.println("calculateMinimumHP_lessMemory");
-        System.out.println(calculateMinimumHP_lessMemory(grid));
-        System.out.println("calculateMinimumHP_bestMemory");
-        System.out.println(calculateMinimumHP_bestMemory(grid));
+        System.out.println("calculateMinimumHP_dp_loop");
+        System.out.println(calculateMinimumHP_dp_loop(grid));
+        System.out.println("calculateMinimumHP_dp_loop_lessMemory");
+        System.out.println(calculateMinimumHP_dp_loop_lessMemory(grid));
+        System.out.println("calculateMinimumHP_dp_loop_bestMemory");
+        System.out.println(calculateMinimumHP_dp_loop_bestMemory(grid));
     }
 
     /**
@@ -25,7 +25,7 @@ public class LeetCode_174_DungeonGame {
      * 自顶向下(top-down)
      */
     //典型的自顶向下
-    public static int calculateMinimumHP(int[][] dungeon) {
+    public static int calculateMinimumHP_dp_loop(int[][] dungeon) {
         int m = dungeon.length, n = dungeon[0].length;
         int [][]dp = new int[m+1][n+1];
         //初始化为Integer.MAX_VALUE
@@ -49,7 +49,7 @@ public class LeetCode_174_DungeonGame {
         return dp[0][0];
     }
 
-    public static int calculateMinimumHP_lessMemory(int[][] dungeon) {
+    public static int calculateMinimumHP_dp_loop_lessMemory(int[][] dungeon) {
         int m = dungeon.length, n = dungeon[0].length;
         int []dp = new int[n+1];
         Arrays.fill(dp, Integer.MAX_VALUE);
@@ -67,7 +67,7 @@ public class LeetCode_174_DungeonGame {
         return dp[0];
     }
 
-    public static int calculateMinimumHP_bestMemory(int[][] dungeon) {
+    public static int calculateMinimumHP_dp_loop_bestMemory(int[][] dungeon) {
         int m = dungeon.length, n = dungeon[0].length;
         if(m > n) {
             int[] dp = new int[n + 1];
