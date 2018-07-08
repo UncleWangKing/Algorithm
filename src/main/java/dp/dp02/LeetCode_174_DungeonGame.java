@@ -11,6 +11,7 @@ public class LeetCode_174_DungeonGame {
         int grid[][] = {{-2,-3,3},
                         {-5,-10,1},
                         {10,30,-5}};
+//        int grid[][] = {{100}};
         System.out.println("calculateMinimumHP_dp_loop");
         System.out.println(calculateMinimumHP_dp_loop(grid));
         System.out.println("calculateMinimumHP_dp_loop_lessMemory");
@@ -27,22 +28,15 @@ public class LeetCode_174_DungeonGame {
     //典型的自顶向下
     public static int calculateMinimumHP_dp_loop(int[][] dungeon) {
         int m = dungeon.length, n = dungeon[0].length;
-        int [][]dp = new int[m+1][n+1];
-        //初始化为Integer.MAX_VALUE
-        Arrays.fill(dp[m], Integer.MAX_VALUE);
-        /**
-         * 上一句的存在 i < m 而不是 i <= m
-         */
-        for (int i = 0; i < m; i++) {
-            dp[i][n] = Integer.MAX_VALUE;
-        }
+        int [][]dp = new int[m][n];
+        dp[m-1][n-1] = Math.max(1, 1 - dungeon[m-1][n-1]);
+        for (int i = m - 2; i >= 0 ; --i)
+            dp[i][n-1] = Math.max(1, dp[i+1][n-1] - dungeon[i][n-1]);
+        for (int i = n - 2; i >= 0 ; --i)
+            dp[m-1][i] = Math.max(1, dp[m-1][i+1] - dungeon[m-1][i]);
 
-        /**
-         * 给第一个递推项dp[m-1][n-1]使用
-         */
-        dp[m][n-1] = 1; dp[m-1][n] = 1;
-        for (int i = m - 1; i >= 0; --i) {
-            for (int j = n - 1; j >= 0; --j) {
+        for (int i = m - 2; i >= 0; --i) {
+            for (int j = n - 2; j >= 0; --j) {
                 dp[i][j] = Math.max(1, Math.min(dp[i+1][j], dp[i][j+1]) - dungeon[i][j]);
             }
         }
