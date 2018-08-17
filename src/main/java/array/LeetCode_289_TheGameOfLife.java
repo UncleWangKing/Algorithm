@@ -2,10 +2,10 @@ package array;
 
 import util.ZDaPangArrayUtil;
 
-//状态0： 死细胞转为死细胞
-//状态1： 活细胞转为活细胞
-//状态2： 活细胞转为死细胞
-//状态3： 死细胞转为活细胞
+//状态0： 死转死
+//状态1： 活转活
+//状态2： 活转死
+//状态3： 死转活
 
 public class LeetCode_289_TheGameOfLife {
     public static void main(String[] args) {
