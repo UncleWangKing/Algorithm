@@ -29,9 +29,9 @@ public class LeetCode_289_TheGameOfLife {
                 if(2 == sum)
                     continue;
                 else if(3 == sum)
-                    board[i][j]=board[i][j]==0?3:1;
+                    board[i][j]=board[i][j] == 0 ? 3 : 1;
                 else
-                    board[i][j]=board[i][j]==1?2:0;
+                    board[i][j]=board[i][j]== 1 ? 2 : 0;
             }
         }
 
