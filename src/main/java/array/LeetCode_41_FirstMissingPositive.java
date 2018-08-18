@@ -13,14 +13,12 @@ public class LeetCode_41_FirstMissingPositive {
 
     public static int firstMissingPositive(int[] nums) {
         for (int i = 0; i < nums.length; i++) {
-            int tempPos = i;
             int tempValue = nums[i];
-            while(tempValue > 0 && tempValue <= nums.length && nums[tempPos] != tempPos + 1){
+            while(tempValue > 0 && tempValue <= nums.length && nums[tempValue - 1] != tempValue){
                 int tempTempValue = nums[tempValue - 1];
                 nums[tempValue - 1] = tempValue;
                 if(tempTempValue < 0)
                     break;
-                tempPos = tempTempValue - 1;
                 tempValue = tempTempValue;
             }
         }
