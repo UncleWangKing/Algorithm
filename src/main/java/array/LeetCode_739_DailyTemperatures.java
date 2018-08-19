@@ -7,10 +7,44 @@ import java.util.*;
 public class LeetCode_739_DailyTemperatures {
     public static void main(String[] args) {
         int list[] = {73, 74, 75, 71, 69, 72, 76, 73};
-        ZDaPangArrayUtil.printArray(dailyTemperatures2(list));
+
+        ZDaPangArrayUtil.printArray(dailyTemperatures3(list));
     }
 
-    //数组二分查询 n^log2n
+    //改用 栈
+    public static int[] dailyTemperaturesv4a(int[] temperatures) {
+        int[] result = new int[temperatures.length];
+        Stack<Integer> stack = new Stack<>();
+        for(int i = 0; i < temperatures.length; i++) {
+            while(! stack.empty() && temperatures[i] > temperatures[stack.peek()]) {
+                int index = stack.pop();
+                result[index] = i - index;
+            }
+            stack.push(i);
+        }
+        return result;
+    }
+
+    //数组 去掉多余的二分 n 从大到小 但是数组删除会浪费时间 用链表也会浪费查找时间
+    public static int[] dailyTemperatures3(int[] temperatures) {
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < temperatures.length; i++) {
+            //强依赖遍历顺序 0->list.size()
+            for (int j = list.size() - 1; list.size() > 0 && temperatures[i] > temperatures[list.get(j)]; j--) {
+                temperatures[list.get(j)] = i - list.get(j);
+                list.remove(list.get(j));
+            }
+            list.add(i);
+        }
+
+        for (int i = 0; i < list.size(); i++) {
+            temperatures[list.get(i)] = 0;
+        }
+
+        return temperatures;
+    }
+
+    //数组二分查询 n^log2n 从大到小
     public static int[] dailyTemperatures2(int[] temperatures) {
         List<Integer> list = new ArrayList<>();
         for (int i = 0; i < temperatures.length; i++) {
