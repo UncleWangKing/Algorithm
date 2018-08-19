@@ -8,11 +8,26 @@ public class LeetCode_739_DailyTemperatures {
     public static void main(String[] args) {
         int list[] = {73, 74, 75, 71, 69, 72, 76, 73};
 
-        ZDaPangArrayUtil.printArray(dailyTemperatures3(list));
+        ZDaPangArrayUtil.printArray(dailyTemperaturesv5(list));
+    }
+
+    //数组代替栈
+    public static int[] dailyTemperaturesv5(int[] temperatures) {
+        int[] result = new int[temperatures.length];
+        int[] stack = new int[temperatures.length];
+        int top = -1;
+        for(int i = 0;i < temperatures.length; i++) {
+            while(top > -1 && temperatures[i] > temperatures[stack[top]]) {
+                int index = stack[top--];
+                result[index] = i - index;
+            }
+            stack[++top] = i;
+        }
+        return result;
     }
 
     //改用 栈
-    public static int[] dailyTemperaturesv4a(int[] temperatures) {
+    public static int[] dailyTemperaturesv4(int[] temperatures) {
         int[] result = new int[temperatures.length];
         Stack<Integer> stack = new Stack<>();
         for(int i = 0; i < temperatures.length; i++) {
