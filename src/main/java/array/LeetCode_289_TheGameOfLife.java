@@ -16,7 +16,7 @@ public class LeetCode_289_TheGameOfLife {
                 {0,0,0}
         };
         gameOfLife(board);
-        ZDaPangArrayUtil.print(board);
+        ZDaPangArrayUtil.printArray2(board);
     }
 
     public static void gameOfLife(int[][] board) {

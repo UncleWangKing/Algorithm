@@ -71,7 +71,7 @@ public class LCS {
             }
         }
 
-        ZDaPangArrayUtil.print(dp);
+        ZDaPangArrayUtil.printArray2(dp);
 
         return dp[m-1][n-1];
     }
@@ -107,7 +107,7 @@ public class LCS {
             }
         }
 
-        ZDaPangArrayUtil.print(dp);
+        ZDaPangArrayUtil.printArray2(dp);
 
         return dp[m][n];
     }
