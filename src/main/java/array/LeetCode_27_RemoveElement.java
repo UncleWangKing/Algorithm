@@ -9,33 +9,23 @@ public class LeetCode_27_RemoveElement {
         ZDaPangArrayUtil.printArray(list);
     }
 
+    /**
+     * 双指针就是最优思路了 如何写优雅 这是抄的100%写法
+     */
     public static int removeElement(int[] nums, int val) {
         if(1 > nums.length)
             return 0;
-        if(1 == nums.length)
-            return val == nums[0] ? 0 : 1;
-        int left = 0;
-        int right = nums.length - 1;
-        int result = 0;
-        while(left < right){
-            if(nums[left] == val){
-                while(left < right){
-                    if(nums[right] != val){
-                        result++;
-                        nums[left] = nums[right--];
-                        break;
-                    }else
-                    right--;
-                }
-            }else
+        int result = 0, left = 0, right = nums.length - 1;
+
+        while(left <= right){
+            if(val != nums[left]){
+                left++;
                 result++;
-            left++;
-            if(left == right){
-                if(nums[left] != val)
-                    result++;
+            }else{
+                nums[left] = nums[right];
+                right--;
             }
         }
-
         return result;
     }
 }
