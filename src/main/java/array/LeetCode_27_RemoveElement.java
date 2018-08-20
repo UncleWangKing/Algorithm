@@ -11,6 +11,8 @@ public class LeetCode_27_RemoveElement {
 
     /**
      * 双指针 你看看人家！！！
+     * 突破常识的地方 平时写循环总是想在某次循环里把某件事做完
+     * 这段代码的else部分就是告诉了你 一次循环也可以只做一半的事情 剩下的交个下次循环
      */
     public static int removeElement2(int[] nums, int val) {
         if(1 > nums.length)
