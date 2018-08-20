@@ -4,8 +4,8 @@ import java.util.*;
 
 public class LeetCode_18_4Sum {
     public static void main(String[] args) {
-        int list[] = {-1,-5,-5,-3,2,5,0,4};
-        System.out.println(fourSum(list, -7));
+        int list[] = {-5,-5,-5,-5,-3,-3,-3,3,3,3,5,5,5};
+        System.out.println(fourSum(list, 0));
     }
 
     public static List<List<Integer>> fourSum(int[] nums, int target) {
