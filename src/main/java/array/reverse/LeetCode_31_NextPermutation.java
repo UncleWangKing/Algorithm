@@ -1,4 +1,4 @@
-package array;
+package array.reverse;
 
 import util.ZDaPangArrayUtil;
 
@@ -30,6 +30,7 @@ public class LeetCode_31_NextPermutation {
                         swapRight = j;
                 }
                 swap(nums, swapLeft, swapRight);
+                //之前写的排序 后来发现 翻转就够了
                 reverse(nums, swapLeft + 1, nums.length);
                 return;
             }
@@ -39,10 +40,9 @@ public class LeetCode_31_NextPermutation {
         reverse(nums, 0, nums.length);
     }
 
-    public static void reverse(int[] list, int begin, int end){
-        int length = (end - begin) / 2;
-        for(int i = begin; i < begin + length ; i++){
-            swap(list, i, begin + end - 1 - i);
+    public static void reverse(int[] list, int start, int end){
+        for(int i = start; i <= (start + end - 1) / 2; i++){
+            swap(list, i, start + end - 1 - i);
         }
     }
 
