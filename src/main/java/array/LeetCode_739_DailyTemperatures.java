@@ -63,7 +63,7 @@ public class LeetCode_739_DailyTemperatures {
     public static int[] dailyTemperatures2(int[] temperatures) {
         List<Integer> list = new ArrayList<>();
         for (int i = 0; i < temperatures.length; i++) {
-            int insertIndex = dichGet(0, list.size(), list, temperatures, temperatures[i]);
+            int insertIndex = binarySearch(0, list.size(), list, temperatures, temperatures[i]);
             list.add(insertIndex, i);
             //强依赖遍历顺序 0->list.size()
             for (int j = list.size() - 1; j > insertIndex ; j--) {
@@ -79,16 +79,16 @@ public class LeetCode_739_DailyTemperatures {
         return temperatures;
     }
 
-    public static int dichGet(int begin, int end, List<Integer> list, int [] temperatures, int value){
+    public static int binarySearch(int begin, int end, List<Integer> list, int [] temperatures, int value){
         if(begin == end)
             return begin;
 
         int mid = (end + begin) / 2;
 
         if (value > temperatures[list.get(mid)]) {
-            return dichGet(begin, mid, list, temperatures, value);
+            return binarySearch(begin, mid, list, temperatures, value);
         } else
-            return dichGet(mid + 1, end, list, temperatures, value);
+            return binarySearch(mid + 1, end, list, temperatures, value);
     }
 
     //超时 map遍历导致n^2
