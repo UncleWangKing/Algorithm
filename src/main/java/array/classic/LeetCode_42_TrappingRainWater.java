@@ -1,4 +1,4 @@
-package array;
+package array.classic;
 
 public class LeetCode_42_TrappingRainWater {
     public static void main(String[] args) {

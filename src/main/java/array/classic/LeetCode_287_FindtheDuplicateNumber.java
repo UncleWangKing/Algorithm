@@ -1,4 +1,4 @@
-package array;
+package array.classic;
 
 public class LeetCode_287_FindtheDuplicateNumber {
     public static void main(String[] args) {
