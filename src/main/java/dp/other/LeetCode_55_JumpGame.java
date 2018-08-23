@@ -10,14 +10,22 @@ public class LeetCode_55_JumpGame {
         System.out.println(canJump_greedy(list));
     }
 
+    /**
+     * 状态转换方程 dp[i] = max(dp[i-1], nums[i-1]) - 1
+     * dp[i]代表到达i点后还能往后触及多少范围
+     */
     public static boolean canJump_dp(int[] nums) {
         int[] dp = new int[nums.length];
         for (int i = 1; i < nums.length; i++) {
             dp[i] = Math.max(dp[i-1], nums[i-1]) - 1;
-            if (dp[i] < 0) return false;
+            if (dp[i] < 0) return false;//跳不到后面了 剪枝
         }
         return dp[dp.length-1] >= 0;
     }
+    /**
+     * 状态转换方程 dp[i] = max(dp[i-1], nums[i-1]) - 1
+     * dp[i]仅和dp[i-1]相关 么有重叠子问题 就是贪心
+     */
     public static boolean canJump_greedy(int[] nums) {
         int n = nums.length, reach = 0;
         for (int i = 0; i < n; ++i) {
