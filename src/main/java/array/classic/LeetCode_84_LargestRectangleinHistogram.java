@@ -25,26 +25,28 @@ public class LeetCode_84_LargestRectangleinHistogram {
         }
         return res;
     }
-    //单调栈
+    //单调栈妙用 st存的下标而不是值
     public static int largestRectangleArea2(int[] heights) {
         int res = 0;
         Stack<Integer> st = new Stack<>();
         int list[] = new int[heights.length + 1];
         System.arraycopy(heights, 0, list,0,  heights.length);
         list[list.length - 1] = 0;
+        //上方一堆丑陋的东西只为了在原数组扩容1 放个0
         for (int i = 0; i < list.length; ++i) {
             if (st.empty() || list[st.peek()] < list[i]) {
                 st.push(i);
             } else {
-                int cur = st.peek(); st.pop();
+                int cur = st.pop();
                 res = Math.max(res, list[cur] * (st.empty() ? i : (i - st.peek() - 1)));
-                --i;
+                --i;//如果做了弹出 i还要再参与一轮
             }
         }
         return res;
     }
 
-    //100% 二分法
+    //100% 分治法 以每个数组中最小值下标为分割
+    //最小值左边的最大矩形 和右边最大矩形 拉通的最小值为高的矩形 三者取最大
     public static int largestRectangleArea3(int[] heights) {
         return find(heights, 0, heights.length - 1);
     }
@@ -59,7 +61,7 @@ public class LeetCode_84_LargestRectangleinHistogram {
 
         int minIndex = left;
         boolean sorted = true;
-
+        //重点取最小值下标 是否升序是个剪枝
         for (int i = left + 1; i <= right; i++) {
             if (h[i] < h[i - 1]) {
                 sorted = false;
@@ -68,7 +70,7 @@ public class LeetCode_84_LargestRectangleinHistogram {
                 minIndex = i;
             }
         }
-
+        //如果升序
         if (sorted) {
             int max = 0;
             for (int i = left; i <= right; i++) {
