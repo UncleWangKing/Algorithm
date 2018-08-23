@@ -1,11 +1,26 @@
 package array.classic;
 
+import util.ZDaPangArrayUtil;
+
 import java.util.Stack;
 
 public class LeetCode_84_LargestRectangleinHistogram {
     public static void main(String[] args) {
         int list[] = {2,2,1,5,6,4,2,3};
-        System.out.println(largestRectangleArea3(list));
+        int[] temp = ZDaPangArrayUtil.createRandomArray(100, 300000);
+
+        long start = System.currentTimeMillis();
+//        largestRectangleArea(temp);
+//        System.out.println("largestRectangleArea:"+(System.currentTimeMillis() - start));
+
+        start = System.currentTimeMillis();
+        largestRectangleArea2(temp);
+        System.out.println("largestRectangleArea2:"+(System.currentTimeMillis() - start));
+
+        start = System.currentTimeMillis();
+        largestRectangleArea3(temp);
+        System.out.println("largestRectangleArea3::"+(System.currentTimeMillis() - start));
+
     }
     //暴力n^2 剪枝
     //每次取到矩形右上角再算面积
@@ -45,7 +60,7 @@ public class LeetCode_84_LargestRectangleinHistogram {
         return res;
     }
 
-    //100% 分治法 以每个数组中最小值下标为分割
+    //100% 分治法 以每个数组中最小值下标为分割  综合测试不如2快 算是钻了oj的空子
     //最小值左边的最大矩形 和右边最大矩形 拉通的最小值为高的矩形 三者取最大
     public static int largestRectangleArea3(int[] heights) {
         return find(heights, 0, heights.length - 1);
