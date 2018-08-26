@@ -53,7 +53,7 @@ public class LeetCode_78_Subsets {
         List<List<Integer>> res = new ArrayList<>();
         res.add(new ArrayList<>());//开始加入一个空集
 
-        long bit = 1, bitmax = (1 << len);
+        long bit = 1, bitmax = 1 << len;
         while(bit < bitmax) {
             List<Integer> tmpres = new ArrayList<>();
             long curBit = bit;
