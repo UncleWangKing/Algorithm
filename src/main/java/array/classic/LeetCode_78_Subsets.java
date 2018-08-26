@@ -10,7 +10,8 @@ public class LeetCode_78_Subsets {
     }
 
     /**
-     * 深搜的循环版
+     * 循环版 --- 加入一个新数后的全组合数 等于原组合数所有集 外加一份 添加了新数的所有集
+     * 只需取出所有集 复制一份 都加入新数就可以了
      */
     public static List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
