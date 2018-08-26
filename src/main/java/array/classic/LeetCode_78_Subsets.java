@@ -1,4 +1,4 @@
-package array;
+package array.classic;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 public class LeetCode_78_Subsets {
     public static void main(String[] args) {
         int list[] = {1,2,3};
-        System.out.println(subsets2(list));
+        System.out.println(subsets(list));
     }
     public static List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
