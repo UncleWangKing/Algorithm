@@ -8,13 +8,13 @@ public class LeetCode_26_RemoveDuplicatesfromSortedArray {
         System.out.println(removeDuplicates(list));
         ZDaPangArrayUtil.printArray(list);
     }
-    public static int removeDuplicates(int[] list) {
+    public static int removeDuplicates(int[] nums) {
         int left = 0;
         int right = 1;
 
-        while (right < list.length)
-            if (list[right++] != list[left])
-                list[++left] = list[right-1];
+        while (right < nums.length)
+            if (nums[right++] != nums[left])
+                nums[++left] = nums[right-1];
 
         return left + 1;
     }
