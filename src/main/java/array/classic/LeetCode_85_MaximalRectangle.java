@@ -10,6 +10,28 @@ public class LeetCode_85_MaximalRectangle {
                 {'1','0','1','1','1'},
                 {'1','1','1','1','1'},
                 {'1','0','0','1','0'}
+                /**
+                 * array:
+                 * 1 0 1 0 0
+                 * 1 0 1 1 1
+                 * 1 1 1 1 1
+                 * 1 0 0 1 0
+                 * left:
+                 * 0 0 2 0 0
+                 * 0 0 2 2 2
+                 * 0 0 2 2 2
+                 * 0 0 0 3 0
+                 * right:
+                 * 1 5 3 5 5
+                 * 1 5 3 5 5
+                 * 1 5 3 5 5
+                 * 1 5 5 4 5
+                 * height:
+                 * 1 0 1 0 0
+                 * 2 0 2 1 1
+                 * 3 1 3 2 2
+                 * 4 0 0 3 0
+                */
         };
         System.out.println(maximalRectangle2(list));
     }
@@ -23,7 +45,7 @@ public class LeetCode_85_MaximalRectangle {
         Arrays.fill(right, n);
         for (int i = 0; i < m; ++i) {//逐行扫描
             int cur_left = 0, cur_right = n;
-            for (int j = 0; j < n; ++j) {//处理当前height '1'累加 '0'清零
+            for (int j = 0; j < n; ++j) {//处理当前height '1'累加 '0'清零 --- 本质也是维护成前N列形成的直方图 当前列是0 清零
                 if (matrix[i][j] == '1') ++height[j];
                 else height[j] = 0;
             }
