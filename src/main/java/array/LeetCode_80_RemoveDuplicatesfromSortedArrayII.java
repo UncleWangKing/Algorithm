@@ -8,6 +8,7 @@ public class LeetCode_80_RemoveDuplicatesfromSortedArrayII {
         System.out.println(removeDuplicates(list));
         ZDaPangArrayUtil.printArray(list);
     }
+    //核心思路就和遮着数组挨个往后看一样 碰到不一样的 先拿2个放过来
     public static int removeDuplicates(int[] nums) {
         int pos = 0;//记录循环中 下一个可以填充值的位置 也就是有效数字下标+1 也就是个数
         int lastValue = 0;//记录循环的上一个值 -- 初始化为nums[0]会过不了[]输入
