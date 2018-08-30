@@ -32,8 +32,10 @@ public class LeetCode_85_MaximalRectangle {
      *
      * 1.left[i][j] right[i][j]分别代表什么意思
      *
-     *      left[i][j] 代表前i(包括i)行数据形成的直方图中，j位置高度为高的矩形的左边界下标。
-     *      right[i][j] 代表前i(包括i)行数据形成的直方图中，j位置高度为高的矩形的右边界下标 + 1。 ---- +1 是为了宽度为1时候 right - left 也有值方便计算
+     *      left[i][j] 代表前i(包括i)行数据形成的直方图中，
+     *      满足height[i][x] < height[i][j]的最大的x，即从j点向左遍历的第一个高度比height[i][j]小的点的右边一个点的下标
+     *      right[i][j] 代表前i(包括i)行数据形成的直方图中，
+     *      满足 height[i][x] < height[i][j]的最小的x，即从j点向右遍历第一个高度比i小的点的左边一个点的下标 + 1 ---- +1 是为了宽度为1时候 right - left 也有值方便计算
      *
      * 观察一组数据
      * array:
