@@ -22,6 +22,7 @@ public class ZDaPangArrayUtil {
         for (int i = 0; i < list.length; i++) {
                 System.out.print(list[i] + ",");
         }
+        System.out.println();
     }
     //生成指定[1-range]范围的count个随机整数组
     public static List<Integer> createRandomList(int range, int count){

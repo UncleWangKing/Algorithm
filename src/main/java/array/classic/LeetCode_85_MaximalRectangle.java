@@ -1,15 +1,20 @@
 package array.classic;
 
+import util.ZDaPangArrayUtil;
+
 import java.util.Arrays;
 import java.util.Stack;
 
 public class LeetCode_85_MaximalRectangle {
     public static void main(String[] args) {
         char [][] list = {
-                {'1','0','1','0','0'},
-                {'1','0','1','1','1'},
-                {'1','1','1','1','1'},
-                {'1','0','0','1','0'}
+                {'0','0','0','1','0','0','0'},
+                {'0','0','1','1','1','0','0'},
+                {'0','1','1','1','1','1','0'}
+//                {'1','0','1','0','0'},
+//                {'1','0','1','1','1'},
+//                {'1','1','1','1','1'},
+//                {'1','0','0','1','0'}
                 /**
                  * array:
                  * 1 0 1 0 0
@@ -36,6 +41,21 @@ public class LeetCode_85_MaximalRectangle {
         System.out.println(maximalRectangle2(list));
     }
 
+    /**
+     * 这是一个精彩的思路 网上看了很多 包括leetcode英文区的discuss 个人感觉都没有说清楚 自己写一个
+     *
+     * 回顾第一种解法 本质是两步
+     *  1.逐行转化为直方图
+     *  2.用84题的解法求得直方图中最大矩形 --- 一句话总结 转成直方图了 扔给84解决
+     *
+     * 这种解法的思路前半部分是一样的
+     *  1.逐行转化为直方图
+     *  2.求得相应最大矩形 --- 不同之处就在第二步
+     * **************************************************************************************************
+     * 该解法的亮点就是 利用了生成直方图的逐行扫描过程 维护出了相应直方图中 各个位置为高的矩形的左右边界*
+     * **************************************************************************************************
+     * 求得相应位置高度的矩形面积也就变成了 (右边界-左边界)*高度  因为每个位置都遍历了 所以 是遍历了所有可能的矩形 也就能得到该直方图的最大矩形
+     */
     public static int maximalRectangle2(char[][] matrix) {
         if(0 == matrix.length || 0 == matrix[0].length) return 0;
         int res = 0, m = matrix.length, n = matrix[0].length;
@@ -53,10 +73,14 @@ public class LeetCode_85_MaximalRectangle {
                 if (matrix[i][j] == '1') left[j] = Math.max(left[j], cur_left);
                 else {left[j] = 0; cur_left = j + 1;}
             }
+            System.out.println("left:");
+            ZDaPangArrayUtil.printArray(left);
             for (int j = n - 1; j >= 0; --j) {//维护right
                 if (matrix[i][j] == '1') right[j] = Math.min(right[j], cur_right);
                 else {right[j] = n; cur_right = j;}
             }
+            System.out.println("right:");
+            ZDaPangArrayUtil.printArray(right);
             for (int j = 0; j < n; ++j) {//维护最大值
                 res = Math.max(res, (right[j] - left[j]) * height[j]);
             }
