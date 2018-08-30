@@ -67,7 +67,7 @@ public class LeetCode_85_MaximalRectangle {
      *
      *  height[i][j] 为0情况上面已经说了，这里看为1的情况。
      *
-     *  令cur_left[i][j] : 表示第i行中，从j位置开始往左，最后出现(最靠左或者说小标最小)的'''连续'''的1,的下标。
+     *  令cur_left[i][j] : 表示第i行中，从j位置开始往左，最后出现(最靠左或者说下标最小)的'''连续'''的1,的下标。
      *  则 left[i][j] = max(cur_left[0][j],...cur_left[i-1][j],cur_left[i][j])
      *  可简化为 left[i][j] = max(left[i-1][j], cur_left[i][j])
      *
