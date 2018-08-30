@@ -99,4 +99,34 @@ public class LeetCode_84_LargestRectangleinHistogram {
             return Math.max(Math.max(maxLeft, maxRight), crossMax);
         }
     }
+
+    /**
+     * 单调栈求出左右每个位置高度上可能最大矩形的左右边界
+     */
+    public static int largestRectangleArea4(int[] heights) {
+        int res = 0;
+        Stack<Integer> st = new Stack<>();
+        int [] left = new int[heights.length];
+        int [] right = new int[heights.length];
+        for (int i = 0; i < heights.length; i++) {
+            while (!st.empty() && heights[st.peek()] >= heights[i]) st.pop();
+            if(st.empty())  left[i] = 0;
+            else            left[i] = st.peek() + 1;
+
+            st.push(i);
+        }
+        st.clear();
+        for (int i = heights.length - 1; i >= 0; i--) {
+            while (!st.empty() && heights[st.peek()] >= heights[i]) st.pop();
+            if(st.empty())  right[i] = heights.length;
+            else            right[i] = st.peek();
+
+            st.push(i);
+        }
+
+        for (int i = 0; i < heights.length; i++)
+            res = Math.max(res, heights[i] * (right[i] - left[i]));
+
+        return res;
+    }
 }
