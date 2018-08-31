@@ -110,16 +110,20 @@ public class LeetCode_84_LargestRectangleinHistogram {
         int [] right = new int[heights.length];
         for (int i = 0; i < heights.length; i++) {
             while (!st.empty() && heights[st.peek()] >= heights[i]) st.pop();
-            if(st.empty())  left[i] = 0;
-            else            left[i] = st.peek() + 1;
+            if(st.empty())
+                left[i] = 0;
+            else
+                left[i] = st.peek() + 1;
 
             st.push(i);
         }
         st.clear();
         for (int i = heights.length - 1; i >= 0; i--) {
             while (!st.empty() && heights[st.peek()] >= heights[i]) st.pop();
-            if(st.empty())  right[i] = heights.length;
-            else            right[i] = st.peek();
+            if(st.empty())
+                right[i] = heights.length;
+            else
+                right[i] = st.peek();
 
             st.push(i);
         }
