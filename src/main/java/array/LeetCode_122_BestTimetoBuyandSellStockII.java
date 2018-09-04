@@ -6,22 +6,22 @@ public class LeetCode_122_BestTimetoBuyandSellStockII {
         System.out.println(maxProfit(list));
     }
 
-    public static int maxProfit(int[] list) {
+    public static int maxProfit(int[] prices) {
         int index = 0;
         int sum = 0;
         boolean isBuying = false;
-        while(index < list.length - 1){
+        while(index < prices.length - 1){
             //没买 并且 下一天价格更高 就买
-            if(list[index] < list[index+1] && ! isBuying) {
-                sum -= list[index];
+            if(prices[index] < prices[index + 1] && ! isBuying) {
+                sum -= prices[index];
                 isBuying = true;
             }//买了 并且 下一天价格更低 就卖
-            else if(list[index] > list[index+1] && isBuying) {
-                sum += list[index];
+            else if(prices[index] > prices[index + 1] && isBuying) {
+                sum += prices[index];
                 isBuying = false;
             }
             index++;
         }
-        return isBuying ? sum + list[list.length-1] : sum;
+        return isBuying ? sum + prices[prices.length - 1] : sum;
     }
 }

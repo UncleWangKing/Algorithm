@@ -9,9 +9,9 @@ public class LeetCode_121_BestTimetoBuyandSellStock {
     /**
      * 假定每个位置卖出 只需得到之前的最低价即可
      */
-    public static int maxProfit(int[] list) {
+    public static int maxProfit(int[] prices) {
         int res = 0, buy = Integer.MAX_VALUE;
-        for (int price : list) {
+        for (int price : prices) {
             buy = Math.min(buy, price);
             res = Math.max(res, price - buy);
         }

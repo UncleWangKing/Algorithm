@@ -6,7 +6,13 @@ public class LeetCode_123_BestTimetoBuyandSellStockIII {
         System.out.println(maxProfit(list));
     }
 
+    //差值第一和第二大的两个单调上升区间
     public static int maxProfit(int[] prices) {
+        int first = Integer.MIN_VALUE, second = Integer.MIN_VALUE;
+        int index = 0;
+        while (index < prices.length - 1) {
 
-    }
+        }
+
+        return first + second;
 }
