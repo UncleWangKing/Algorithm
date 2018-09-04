@@ -5,7 +5,7 @@ import java.util.List;
 
 public class LeetCode_119_PascalsTriangleII {
     public static void main(String[] args) {
-        System.out.println(generate(3));
+        System.out.println(generate(5));
     }
 
     public static List<Integer> generate(int rowIndex) {
