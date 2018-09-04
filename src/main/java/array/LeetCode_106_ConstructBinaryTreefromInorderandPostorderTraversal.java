@@ -32,7 +32,7 @@ public class LeetCode_106_ConstructBinaryTreefromInorderandPostorderTraversal {
 
         //后序的左方取法:
         //begin:pLeft -- 显然
-        //end:pLeft + i - iLeft - 1 --- 关键 i - iLeft - 1 就是左边节点的个数
+        //end:pLeft + i - iLeft - 1 --- 关键 i - iLeft - 1 就是左边节点的个数  -1排除根节点自身
         //后序的右方取法:
         //begin:pLeft + i - iLeft --- 等于左方的end + 1
         //end:pRight - 1 去掉根节点
