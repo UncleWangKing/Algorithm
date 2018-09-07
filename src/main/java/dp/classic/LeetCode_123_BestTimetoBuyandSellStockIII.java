@@ -18,7 +18,7 @@ public class LeetCode_123_BestTimetoBuyandSellStockIII {
                 global[i][j] = Math.max(local[i][j], global[i - 1][j]);
             }
         }
-        return global[n - 1][2];
+        return global[n - 1][maxBuyTime];
     }
 
     //dp空间压缩
