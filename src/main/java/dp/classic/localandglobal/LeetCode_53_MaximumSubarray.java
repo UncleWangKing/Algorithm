@@ -11,7 +11,7 @@ public class LeetCode_53_MaximumSubarray {
         int max = list[0];
         dp[0] = list[0];
         for(int i = 1; i < list.length; i++){
-            dp[i] = dp[i - 1]>0 ? dp[i - 1] + list[i] : list[i];
+            dp[i] = dp[i - 1] > 0 ? dp[i - 1] + list[i] : list[i];
             max = Math.max(dp[i],max);
         }
         return max;
