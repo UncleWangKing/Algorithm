@@ -1,9 +1,11 @@
 package dp.classic.localandglobal;
 
+import util.ZDaPangArrayUtil;
+
 public class LeetCode_123_BestTimetoBuyandSellStockIII {
     public static void main(String[] args) {
-        int list[]  ={3,3,5,0,0,3,1,4};
-        System.out.println(maxProfit(list));
+        int list[]  ={1,3,2,4,0,5};
+        System.out.println(maxProfit5(list));
     }
 
     //dp
@@ -18,6 +20,10 @@ public class LeetCode_123_BestTimetoBuyandSellStockIII {
                 global[i][j] = Math.max(local[i][j], global[i - 1][j]);
             }
         }
+        ZDaPangArrayUtil.printArray2(local);
+        System.out.println("---------------");
+        ZDaPangArrayUtil.printArray2(global);
+        System.out.println("---------------");
         return global[n - 1][maxBuyTime];
     }
 
@@ -64,5 +70,25 @@ public class LeetCode_123_BestTimetoBuyandSellStockIII {
         }
 
         return maxValue;
+    }
+    //最优雅
+
+    /**
+     * 四个变量，分别表示第一次买完，第一次卖完，第二次买完，第二次卖完后手上的钱。
+     * 那么转移就很好写了，每次操作完都要保证手上的钱最多，
+     * b1为之前的值和买当前股票的最大值。
+     * s1为s1和卖掉股票+b1的最大值。
+     * b2、s2以此类推。
+     */
+    public static int maxProfit5(int[] prices) {
+        int b1 = Integer.MIN_VALUE,b2 = Integer.MIN_VALUE;
+        int s1 = 0,s2 = 0;
+        for(int i = 0; i < prices.length; i++){
+            b1 = Math.max(b1, 0  - prices[i]);
+            s1 = Math.max(s1, b1 + prices[i]);
+            b2 = Math.max(b2, s1 - prices[i]);
+            s2 = Math.max(s2, b2 + prices[i]);
+        }
+        return s2;
     }
 }
