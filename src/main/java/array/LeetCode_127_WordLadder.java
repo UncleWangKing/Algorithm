@@ -1,7 +1,6 @@
 package array;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class LeetCode_127_WordLadder {
     public static void main(String[] args) {
@@ -12,39 +11,36 @@ public class LeetCode_127_WordLadder {
         System.out.println(ladderLength(beginWord, endWord, wordList));
     }
 
+    //BFS
     public static int ladderLength(String beginWord, String endWord, List<String> wordList) {
-        int res = 0;
-        for (int i = 0; i < wordList.size();) {
-            String tempWord = "";
-            while (i < wordList.size() && changAble(beginWord, wordList.get(i))) {
-                tempWord = wordList.get(i);
-                if(endWord.equals(wordList.get(i)))
-                    return ++res;
-                i++;
-            }
-            if(tempWord.equals("")){
-                if(i < wordList.size() - 1){
-                    beginWord = wordList.get(i);
-                    i++;
+        Set<String> wordSet = new HashSet<>(wordList);
+        Set<String> visited = new HashSet<>();
+        visited.add(beginWord);
+        int dist = 1;
+
+        while (!visited.contains(endWord)) {
+            Set<String> temp = new HashSet<>();
+            for (String word: visited) {
+                for (int i = 0; i < word.length(); i++) {
+                    char[] chars = word.toCharArray();
+                    for (int j = (int)'a'; j < (int)'z' + 1; j++) {
+                        chars[i] = (char)j;
+                        String newWord = new String(chars);
+                        if (wordSet.contains(newWord)) {
+                            temp.add(newWord);
+                            wordSet.remove(newWord);
+                        }
+                    }
                 }
-                else
-                    return 0;
             }
-            else
-                beginWord = tempWord;
+            dist += 1;
+            if (temp.size() == 0) { // it nevert get to the endWord
+                return 0;
+            }
 
-            res++;
+            visited = temp;
         }
-        return 0;
-    }
 
-    public static boolean changAble(String left, String right){
-        char[] l = left.toCharArray();
-        char[] r = right.toCharArray();
-        int count = 0;
-        for (int i = 0; i < l.length; i++)
-            if(l[i] != r[i])
-                count++;
-        return 1 == count;
+        return dist;
     }
 }
