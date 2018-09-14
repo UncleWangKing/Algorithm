@@ -6,7 +6,7 @@ package dp.dp01;
  */
 public class LeetCode_746_MinCostClimbingStairs {
     public static void main(String[] args) {
-        int [] cost = {1, 100, 1, 1, 1, 100, 1, 1, 100, 100};
+        int [] cost = {1, 100, 1, 1, 1, 100, 1, 1, 100, 1};
 //        int [] cost = {10, 15, 20};
 
         System.out.println("minCostClimbingStairs_dp_loop");
@@ -20,6 +20,28 @@ public class LeetCode_746_MinCostClimbingStairs {
         System.out.println(minCostClimbingStairs_dp_loop_lessMemory(cost));
         System.out.println("minCostClimbingStairs_dp_otherWay_loop_lessMemory");
         System.out.println(minCostClimbingStairs_dp_otherWay_loop_lessMemory(cost));
+        System.out.println("search");
+//        search(0, 0, cost);
+//        search(1, 0, cost);
+        search(-1, 0, cost);
+        System.out.println(minCost);
+    }
+
+    private static int minCost = Integer.MAX_VALUE;
+
+    public static void search(int step, int costSum, int[] cost) {
+        if(step > cost.length) return;
+        if(step == cost.length){
+            minCost = Math.min(costSum, minCost);
+            return;
+        }
+        costSum += cost[step];
+            search(step + 1, costSum, cost);
+        costSum -= cost[step];
+
+        costSum += cost[step];
+        search(step + 2, costSum, cost);
+        costSum -= cost[step];
     }
 
     /**

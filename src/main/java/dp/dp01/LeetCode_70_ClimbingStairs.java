@@ -10,7 +10,7 @@ package dp.dp01;
  */
 public class LeetCode_70_ClimbingStairs {
     public static void main(String[] args) {
-        int n = 30;
+        int n = 44;
         int[] dp = new int[n+1];
 //        System.out.println("climbStairs_recursion");
 //        System.out.println(climbStairs_recursion(n));
@@ -20,6 +20,23 @@ public class LeetCode_70_ClimbingStairs {
         System.out.println(climbStairs_dp_loop(n));
         System.out.println("climbStairs_dp_loop_lessMemory");
         System.out.println(climbStairs_dp_loop_lessMemory(n));
+        System.out.println("search");
+        search(0, n);
+        System.out.println(count);
+    }
+
+    private static int count = 0;
+
+    public static void search(int step, int n){
+        if(step > n)
+            return;
+        if(step == n) {
+            count++;
+            return;
+        }
+
+        search(step + 1,n);
+        search(step + 2, n);
     }
 
     /**
