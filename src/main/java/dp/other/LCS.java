@@ -36,44 +36,39 @@ public class LCS {
     public static int longestCS_dp(String x, String y){
         char[] xList = x.toCharArray();
         char[] yList = y.toCharArray();
-        int m = xList.length;
-        int n = yList.length;
-        int dp[][] = new int[m][n];
+        int dp[][] = new int[xList.length][yList.length];
 
         /**
          * 横向扫描 初始化第一行和第一例
          * 默认是0 匹配上为1
          */
-        boolean flag = false;
-        for (int i = 0; i < n; i++) {
-            if(xList[0] == yList[i] || flag) {
+        for (int i = 1; i < yList.length; i++)
+            if(xList[0] == yList[i])
                 dp[0][i] = 1;
-                flag = true;
-            }
-        }
-        flag = false;
-        for (int i = 0; i < m; i++) {
-            if(yList[0] == xList[i] || flag) {
+            else
+                dp[0][i] = dp[0][i - 1];
+
+        for (int i = 1; i < xList.length; i++)
+            if(yList[0] == xList[i] )
                 dp[i][0] = 1;
-                flag = true;
-            }
-        }
+            else
+                dp[i][0] = dp[i - 1][0];
 
         /**
          * 开始根据方程递推
          */
-        for (int i = 1; i < m; i++) {
-            for (int j = 1; j < n; j++) {
+        for (int i = 1; i < xList.length; i++) {
+            for (int j = 1; j < yList.length; j++) {
                 if(xList[i] == yList[j])
-                    dp[i][j] = dp[i-1][j-1] + 1;
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
                 else
-                    dp[i][j] = Math.max(dp[i-1][j],dp[i][j-1]);
+                    dp[i][j] = Math.max(dp[i - 1][j],dp[i][j - 1]);
             }
         }
 
         ZDaPangArrayUtil.printArray2(dp);
 
-        return dp[m-1][n-1];
+        return dp[xList.length - 1][yList.length - 1];
     }
 
     /**
@@ -93,17 +88,17 @@ public class LCS {
         char[] yList = y.toCharArray();
         int m = xList.length;
         int n = yList.length;
-        int dp[][] = new int[m+1][n+1];
+        int dp[][] = new int[m + 1][n + 1];
 
         /**
          * 开始根据方程递推
          */
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
-                if(xList[i-1] == yList[j-1])
-                    dp[i][j] = dp[i-1][j-1] + 1;
+                if(xList[i - 1] == yList[j - 1])
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
                 else
-                    dp[i][j] = Math.max(dp[i-1][j],dp[i][j-1]);
+                    dp[i][j] = Math.max(dp[i - 1][j],dp[i][j - 1]);
             }
         }
 
