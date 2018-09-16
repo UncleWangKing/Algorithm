@@ -23,7 +23,8 @@ public class LeetCode_746_MinCostClimbingStairs {
         System.out.println("search");
 //        search(0, 0, cost);
 //        search(1, 0, cost);
-        search(-1, 0, cost);
+        search(0, 0, cost);
+        search(1, 0, cost);
         System.out.println(minCost);
     }
 
@@ -31,17 +32,14 @@ public class LeetCode_746_MinCostClimbingStairs {
 
     public static void search(int step, int costSum, int[] cost) {
         if(step > cost.length) return;
-        if(step == cost.length){
+        if(step == cost.length) {
             minCost = Math.min(costSum, minCost);
             return;
         }
-        costSum += cost[step];
-            search(step + 1, costSum, cost);
-        costSum -= cost[step];
 
-        costSum += cost[step];
-        search(step + 2, costSum, cost);
-        costSum -= cost[step];
+        search(step + 1, costSum + cost[step], cost);
+
+        search(step + 2, costSum + cost[step], cost);
     }
 
     /**
