@@ -1,4 +1,4 @@
-package array;
+package array.indexmagic;
 
 import java.util.LinkedList;
 import java.util.List;

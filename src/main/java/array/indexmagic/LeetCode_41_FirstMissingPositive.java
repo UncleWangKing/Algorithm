@@ -1,4 +1,4 @@
-package array;
+package array.indexmagic;
 
 /**
  * 核心思路:利用该题中 数组位置和值的强关联进行数值调整
