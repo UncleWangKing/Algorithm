@@ -15,7 +15,7 @@ public class LeetCode_448_FindAllNumbersDisappearedinanArray {
     }
 
     /**
-     * 每个数放入
+     * 沿用442思路 只是第二次以后索引到都不再不转回来
      */
     public static List<Integer> findDisappearedNumbers(int[] nums) {
         List<Integer> resultList = new LinkedList<>();

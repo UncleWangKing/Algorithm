@@ -13,7 +13,11 @@ public class LeetCode_442_FindAllDuplicatesinanArray {
 
         System.out.println(findDuplicates(list));
     }
-    //看漏了 1 ≤ a[i] ≤ n  想了两天 本来还很期待是什么惊人的操作
+    /**
+     * 看漏了 1 ≤ a[i] ≤ n  想了两天 本来还很期待是什么惊人的操作
+     * 对应位置转为相同绝对值的负数 两次的才会第二次被索引到 才会查出是负数
+     */
+
     public static List<Integer> findDuplicates(int[] nums) {
         List<Integer> resultList = new LinkedList<>();
         for (int i = 0; i < nums.length; i++) {
