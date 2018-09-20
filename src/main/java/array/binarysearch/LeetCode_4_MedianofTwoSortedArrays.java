@@ -44,13 +44,13 @@ public class LeetCode_4_MedianofTwoSortedArrays {
             int mid1 = m + n - mid2;//左边部分切割位置
             //四种极限切割情况 以及默认正常情况
             //为了L R比较大小时候统一 有一些小操作 仔细观察即可
-            double L1 = 0 == mid1 ? Double.MIN_VALUE : nums1[(mid1 - 1) / 2];
-            double L2 = 0 == mid2 ? Double.MIN_VALUE : nums2[(mid2 - 1) / 2];
-            double R1 = mid1 == m * 2 ? Double.MAX_VALUE : nums1[mid1 / 2];
-            double R2 = mid2 == n * 2 ? Double.MAX_VALUE : nums2[mid2 / 2];
-            if (L1 > R2) left = mid2 + 1;
-            else if (L2 > R1) right = mid2 - 1;
-            else return (Math.max(L1, L2) + Math.min(R1, R2)) / 2;
+            double leftMax1 = 0 == mid1 ? Double.MIN_VALUE : nums1[(mid1 - 1) / 2];
+            double leftMax2 = 0 == mid2 ? Double.MIN_VALUE : nums2[(mid2 - 1) / 2];
+            double rightMin1 = mid1 == m * 2 ? Double.MAX_VALUE : nums1[mid1 / 2];
+            double rightMin2 = mid2 == n * 2 ? Double.MAX_VALUE : nums2[mid2 / 2];
+            if (leftMax1 > rightMin2) left = mid2 + 1;
+            else if (leftMax2 > rightMin1) right = mid2 - 1;
+            else return (Math.max(leftMax1, leftMax2) + Math.min(rightMin1, rightMin2)) / 2;
         }
         return -1;
     }
