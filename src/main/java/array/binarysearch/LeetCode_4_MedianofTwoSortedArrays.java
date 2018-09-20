@@ -26,7 +26,7 @@ public class LeetCode_4_MedianofTwoSortedArrays {
     public static double findMedianSortedArrays2(int[] nums1, int[] nums2) {
         int m = nums1.length, n = nums2.length;
         if (m < n) return findMedianSortedArrays(nums2, nums1);//确保数组1长度大于数组2 -- m >= n
-        if (n == 0) return (nums1[(m - 1) / 2] + nums1[m / 2]) / 2.0;//如果数组2是空 -- 剪枝
+        if (0 == n) return (nums1[(m - 1) / 2] + nums1[m / 2]) / 2.0;//如果数组2是空 -- 剪枝
         int left = 0, right = 2 * n;
         while (left <= right) {
             int mid2 = (left + right) / 2;
@@ -44,18 +44,18 @@ public class LeetCode_4_MedianofTwoSortedArrays {
     //log(m + n) -- best
     public static double findMedianSortedArrays3(int[] nums1, int[] nums2) {
         int total = nums1.length + nums2.length;
-        if (total % 2 == 1)
+        if (1 == (total & 1))//奇数
             return findKth(nums1, 0, nums2, 0, total / 2 + 1);
         else
             return (findKth(nums1, 0, nums2, 0, total / 2) + findKth(nums1, 0, nums2, 0, total / 2 + 1)) / 2.0;
     }
 
-    public static int findKth(int[] nums1, int a, int[] nums2, int b, int k) {
-        if (nums1.length - a > nums2.length - b)
+    public static int findKth(int[] nums1, int a, int[] nums2, int b, int k) {//k代表第几个数 而不是下标签
+        if (nums1.length - a > nums2.length - b)//确保num2更长
             return findKth(nums2, b, nums1, a, k);
-        if (nums1.length - a == 0)
+        if (0 == nums1.length - a)
             return nums2[b + k - 1];
-        if (k == 1)
+        if (1 == k)
             return Math.min(nums1[a], nums2[b]);
 
         int k1 = Math.min(nums1.length - a, k / 2);
