@@ -31,6 +31,8 @@ public class LeetCode_4_MedianofTwoSortedArrays {
      *  2. max(m[i - 1], n[j - 1]) <= min(m[i], n[j])
      *
      *  切出来不满足条件 再根据情况二分调整 mid1和mid2联动 只需要保证left或者right正确二分调整即可
+     *
+     *  核心思路总结:构造出满足条件的两个分割点，然后二分移动其中一个，并根据相应规则调整另一个，二分的左右方向选取问题得到了解决！！！
      */
     public static double findMedianSortedArrays2(int[] nums1, int[] nums2) {
         int m = nums1.length, n = nums2.length;
