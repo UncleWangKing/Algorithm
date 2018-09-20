@@ -28,7 +28,7 @@ public class LeetCode_4_MedianofTwoSortedArrays {
      *  根据中位数定义分别在两个数组进行分割
      *  保证两点:
      *  1. mid1 + mid2 == (m - mid1) + (n - mid2) ==> mid1 = (m + n) / 2 - mid2
-     *  2. max (m[i - 1], n[j - 1]) <= min (m[ i ] , n[ j ])
+     *  2. max(m[i - 1], n[j - 1]) <= min(m[i], n[j])
      *
      *  切出来不满足条件 再根据情况二分调整 mid1和mid2联动 只需要保证left或者right正确二分调整即可
      */
