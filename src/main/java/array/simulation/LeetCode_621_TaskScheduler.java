@@ -35,6 +35,11 @@ public class LeetCode_621_TaskScheduler {
         Arrays.sort(cnt);
         int i = 25, mx = cnt[25], len = tasks.length;
         while (i >= 0 && cnt[i] == mx) --i;
+        /**
+         * mx 最多字母减数量 ，mx - 1中间slot数量
+         * n + 1 slot宽度
+         * 25 - i 并列最多字母数量 AAABBB 就是2 A和B两种并列最多 -- 本质是最后一个slot之前没纳入计算 单独来处理
+         */
         return Math.max(len, (mx - 1) * (n + 1) + 25 - i);
     }
 }
