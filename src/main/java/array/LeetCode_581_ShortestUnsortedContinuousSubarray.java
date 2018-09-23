@@ -10,8 +10,7 @@ public class LeetCode_581_ShortestUnsortedContinuousSubarray {
         int list[] = {2,1,5,3,4};//5
         System.out.println(findUnsortedSubarray2(list));
     }
-    //逆序数组在中间 好办 双指针往中间走 然后求差值
-    //逆序在两边 且有重复 如1,3,2,2,2
+    //逆序数组在中间 好办 双指针往中间走 然后回走 求差值
     public static int findUnsortedSubarray(int[] nums) {
         int left = 0, right = nums.length - 1;
         //找左右的第一个出现逆的位置
