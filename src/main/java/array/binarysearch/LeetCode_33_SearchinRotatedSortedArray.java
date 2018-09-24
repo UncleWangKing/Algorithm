@@ -10,7 +10,6 @@ public class LeetCode_33_SearchinRotatedSortedArray {
         return binarySearch2(0, nums.length - 1, nums, target);
     }
 
-    //循环比递归快一丢丢 [0，len-1] 闭区间 循环
     public static int binarySearch2(int begin, int end, int[] list, int target) {
         while (begin <= end) {
             int mid = (begin + end) / 2;
@@ -29,7 +28,6 @@ public class LeetCode_33_SearchinRotatedSortedArray {
         return -1;
     }
 
-    //区分单调的情况即可 [0，len-1] 闭区间 递归
     public static int binarySearch(int begin, int end, int[] list, int target){
         if(begin == end)
             return target == list[begin] ? begin : -1;
