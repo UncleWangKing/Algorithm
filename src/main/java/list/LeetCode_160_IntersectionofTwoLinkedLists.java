@@ -1,7 +1,5 @@
 package list;
 
-import java.lang.reflect.GenericArrayType;
-
 public class LeetCode_160_IntersectionofTwoLinkedLists {
     public static void main(String[] args) {
         /**
