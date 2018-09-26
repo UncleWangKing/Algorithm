@@ -14,6 +14,12 @@ public class LeetCode_689_MaximumSumofThreeNonOverlappingSubarrays {
 
     /**
      * 针对该题的方案
+     * 分成左中右三部分来解
+     * 1.分别求出数组当前下标的左方和右方存在的3数和最大值
+     * 2.再遍历一遍所有3数和，这个就是中间的3数和，匹配上相应的左右最大3数和
+     * caution：
+     * 1.使用累加数组来方便计算数组和。
+     * 2.由于返回结果要求的原因，临时数组存的是数组的起始下标。
      * @param nums input array of numbers
      * @param k length of each interval
      * @return
