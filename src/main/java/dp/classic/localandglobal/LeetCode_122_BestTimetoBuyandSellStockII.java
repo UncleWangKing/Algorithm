@@ -1,4 +1,4 @@
-package array;
+package dp.classic.localandglobal;
 
 public class LeetCode_122_BestTimetoBuyandSellStockII {
     public static void main(String[] args) {
