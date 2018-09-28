@@ -6,6 +6,9 @@ public class LeetCode_122_BestTimetoBuyandSellStockII {
         System.out.println(maxProfit(list));
     }
 
+    /**
+     * 自己傻夫夫的模拟思路
+     */
     public static int maxProfit(int[] prices) {
         int index = 0;
         int sum = 0;
@@ -23,5 +26,18 @@ public class LeetCode_122_BestTimetoBuyandSellStockII {
             index++;
         }
         return isBuying ? sum + prices[prices.length - 1] : sum;
+    }
+
+    /**
+     * 更本质的思路 就是吃光每一个递增值
+     */
+    public static int maxProfit2(int[] prices) {
+        int res = 0;
+        for (int i = 0; i < prices.length - 1; ++i) {
+            if (prices[i] < prices[i + 1]) {
+                res += prices[i + 1] - prices[i];
+            }
+        }
+        return res;
     }
 }

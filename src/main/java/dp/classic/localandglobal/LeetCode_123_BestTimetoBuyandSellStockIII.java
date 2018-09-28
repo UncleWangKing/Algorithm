@@ -16,8 +16,18 @@ public class LeetCode_123_BestTimetoBuyandSellStockIII {
         for (int i = 1; i < prices.length; ++i) {
             int diff = prices[i] - prices[i - 1];
             for (int j = 1; j <= 2; ++j) {
-                local[i][j] = Math.max(global[i - 1][j - 1] + Math.max(diff, 0), local[i - 1][j] + diff);
-                global[i][j] = Math.max(local[i][j], global[i - 1][j]);
+                /**
+                 * 注意 local[i][j] 才是表示必须在第i天卖出
+                 * global[i][j] 表示第i天时的最优结果 并不一定在第i天卖出
+                 * 所以 global[i - 1][j - 1] + Math.max(diff, 0) 这个式子意思是 想取到 i天比i - 1天有上升，
+                 * 并且i - 1比i - 2或之前的数有下降的情况，增加一次 i - 1 到 i 的交易就能取到
+                 * 但是如果是global[i - 1][j - 1]是等于local[i - 1][j - 1]也就是i - 1天卖出的时候，即使上升，
+                 * 也没法通过增加交易次数来吃掉这个上升，因为只多出一个值，买卖至少要两个值
+                 * 而这个遗憾被local[i - 1][j] + diff 弥补了
+                 * 递推式解决dp 就是靠分类讨论 保证你的分类是完备的就好 方程可以多样
+                 */
+                local[i][j] = Math.max(global[i - 1][j - 1] + Math.max(diff, 0), local[i - 1][j] + diff);//两个max 四种情况
+                global[i][j] = Math.max(local[i][j], global[i - 1][j]);//当前局部的最优或者过去的全局最优
             }
         }
         ZDaPangArrayUtil.printArray2(local);
