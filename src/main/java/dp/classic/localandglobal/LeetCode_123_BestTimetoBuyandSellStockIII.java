@@ -5,7 +5,7 @@ import util.ZDaPangArrayUtil;
 public class LeetCode_123_BestTimetoBuyandSellStockIII {
     public static void main(String[] args) {
         int list[]  ={1,3,2,4,0,5};
-        System.out.println(maxProfit5(list));
+        System.out.println(maxProfit2(list));
     }
 
     //dp
@@ -40,9 +40,8 @@ public class LeetCode_123_BestTimetoBuyandSellStockIII {
     //dp空间压缩
     public static int maxProfit2(int[] prices) {
         if (0 == prices.length) return 0;
-        int maxBuyTime = 2;
-        int global[] = new int[maxBuyTime + 1];
-        int local[] = new int[maxBuyTime + 1];
+        int global[] = new int[2 + 1];
+        int local[] = new int[2 + 1];
         for (int i = 0; i < prices.length - 1; ++i) {
             int diff = prices[i + 1] - prices[i];
             for (int j = 2; j >= 1; --j) {
@@ -52,8 +51,29 @@ public class LeetCode_123_BestTimetoBuyandSellStockIII {
         }
         return global[2];
     }
-    //买两次
+
+    /**
+     * 最优雅
+     * 四个变量，分别表示第一次买完，第一次卖完，第二次买完，第二次卖完后手上的钱。
+     * 那么转移就很好写了，每次操作完都要保证手上的钱最多，
+     * b1为之前的值和买当前股票的最大值。
+     * s1为s1和卖掉股票+b1的最大值。
+     * b2、s2以此类推。
+     */
     public static int maxProfit3(int[] prices) {
+        int b1 = Integer.MIN_VALUE,b2 = Integer.MIN_VALUE;
+        int s1 = 0,s2 = 0;
+        for(int i = 0; i < prices.length; i++){
+            b1 = Math.max(b1, 0  - prices[i]);
+            s1 = Math.max(s1, b1 + prices[i]);
+            b2 = Math.max(b2, s1 - prices[i]);
+            s2 = Math.max(s2, b2 + prices[i]);
+        }
+        return s2;
+    }
+
+    //买两次
+    public static int maxProfit4(int[] prices) {
         if(prices == null || prices.length<=1)
             return 0;
         //只买一次
@@ -80,25 +100,5 @@ public class LeetCode_123_BestTimetoBuyandSellStockIII {
         }
 
         return maxValue;
-    }
-    //最优雅
-
-    /**
-     * 四个变量，分别表示第一次买完，第一次卖完，第二次买完，第二次卖完后手上的钱。
-     * 那么转移就很好写了，每次操作完都要保证手上的钱最多，
-     * b1为之前的值和买当前股票的最大值。
-     * s1为s1和卖掉股票+b1的最大值。
-     * b2、s2以此类推。
-     */
-    public static int maxProfit5(int[] prices) {
-        int b1 = Integer.MIN_VALUE,b2 = Integer.MIN_VALUE;
-        int s1 = 0,s2 = 0;
-        for(int i = 0; i < prices.length; i++){
-            b1 = Math.max(b1, 0  - prices[i]);
-            s1 = Math.max(s1, b1 + prices[i]);
-            b2 = Math.max(b2, s1 - prices[i]);
-            s2 = Math.max(s2, b2 + prices[i]);
-        }
-        return s2;
     }
 }
