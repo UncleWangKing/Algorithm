@@ -7,8 +7,8 @@ package other;
  */
 public class BuildHouse {
     public static void main(String[] args) {
-        int list[] = {2,3,1,2,4,3};
-        System.out.println(minWidth(list, 7));
+        int list[] = {2,3,1,2,4,3,7};
+        System.out.println(minWidth(list, -7));
     }
 
     public static int minWidth(int [] list, int k){
@@ -18,7 +18,7 @@ public class BuildHouse {
         while (right < list.length){
             sum += list[right];
             if(sum >= k) {
-                while (left <= right && sum - list[left] >= k)
+                while (left < right && sum - list[left] >= k)
                     sum -= list[left++];
                 minWidth = Math.min(minWidth, right - left + 1);
             }
