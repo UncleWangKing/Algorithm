@@ -22,14 +22,9 @@ public class LeetCode_729_MyCalendarI {
         }
 
         public boolean book(int start, int end) {
-            for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-                if((start >= entry.getKey() && start < entry.getValue()
-                    ||
-                    (end > entry.getKey() && end < entry.getValue()))
-                    ||
-                    (start < entry.getKey() && end >= entry.getValue()))
+            for (Map.Entry<Integer, Integer> entry : map.entrySet())
+                if(! (start >= entry.getValue() || end <= entry.getKey()))
                     return false;
-            }
 
             map.put(start, end);
             return true;
