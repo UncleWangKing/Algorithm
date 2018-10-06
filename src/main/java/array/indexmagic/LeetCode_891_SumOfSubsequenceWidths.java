@@ -20,14 +20,12 @@ public class LeetCode_891_SumOfSubsequenceWidths {
         Arrays.sort(A);
         long ans = 0;
         long [] pow2 = new long[20001];
-        for(int i = 0; i <= A.length; ++i)
-        {
+        for(int i = 0; i <= A.length; ++i){
             if(i == 0) pow2[i] = 1;
             else pow2[i] = pow2[i - 1] * 2 % 1000000007;
         }
 
-        for(int i = 0; i < A.length; ++i)
-        {
+        for(int i = 0; i < A.length; ++i){
             ans += (pow2[i] - 1) * A[i] % 1000000007;
             ans = (ans - (pow2[A.length - 1 - i] - 1) * A[i]) % 1000000007;
         }
