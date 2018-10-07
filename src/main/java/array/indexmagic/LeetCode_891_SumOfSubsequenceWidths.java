@@ -34,29 +34,16 @@ public class LeetCode_891_SumOfSubsequenceWidths {
     }
 
     /**
-     * [1,2,3,4,5]
-     * 最大值的组合数量为
-     * 5: 2^4-1=15
-     * 4: 2^3-1=7
-     * 3: 2^2-1=3
-     * 2: 2^1-1=1
-     * 最小值的组合数量为
-     * 1: 2^4-1=15
-     * 2: 2^3-1=7
-     * 3: 2^2-1=3
-     * 4: 2^1-1=1
-     * 两组之间的差值为2，4，8=>2^1,2^2,2^3
-
-     * 这里还利用了数组内值小于等于数组下标这个特性 用了方便写法 -- A[A.length - i - 1]
-     * 都要注意的是取余的时机 仔细观察 都有讲究
+     * 和上方一样的思路 A[i]作为被减数总次数 减去 A[i]作为减数总次数 累积
+     * 利用了取余和 加减乘 的分配率
      */
     public static int sumSubseqWidths2(int[] A) {
         Arrays.sort(A);
         long c = 1, res = 0, mod = (long)1e9+7;
 
         for (int i = 0; i < A.length; i++, c = (c << 1) % mod)
-            res = (res + A[i] * c - A[A.length - i - 1] * c) % mod;
+            res = (res + (A[i] - A[A.length - i - 1]) * c) % mod;
 
-        return (int)res;
+        return (int)res;//应该写成 (res + mod) % mod 保证是正值 但题目数据目前都是正值 也能过
     }
 }
