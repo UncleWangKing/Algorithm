@@ -50,11 +50,18 @@ public class LeetCode_768_MaxChunksToMakeSortedII {
      * 这里记录最大值数量  ---- grandyang博客这里没有看清这一层 算是超过了大佬当时的思维？
      * 这样最大值的存在数量 也就是块儿的数量了
      * [2,1,3,4,4] 为例
+     * 记录最大值
      * 2
      * 2
      * 2 3
      * 2 3 4
      * 2 3 4 4
+     * 记录最小值
+     * 2
+     * 1
+     * 1 3
+     * 1 3 4
+     * 1 3 4 4
      */
     public static int maxChunksToSorted3(int[] arr) {
         Stack<Integer> st = new Stack<>();
