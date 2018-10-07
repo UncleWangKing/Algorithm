@@ -5,8 +5,9 @@ import java.util.Stack;
 
 public class LeetCode_768_MaxChunksToMakeSortedII {
     public static void main(String[] args) {
-        int list[] = {2,1,3,4,4};//4
-        System.out.println(maxChunksToSorted3(list));
+//        int list[] = {2,1,3,4,4};//4
+        int list[] = {4,2,2,1,1};//1
+        System.out.println(maxChunksToSorted4(list));
     }
 
     /**
@@ -56,12 +57,6 @@ public class LeetCode_768_MaxChunksToMakeSortedII {
      * 2 3
      * 2 3 4
      * 2 3 4 4
-     * 记录最小值
-     * 2
-     * 1
-     * 1 3
-     * 1 3 4
-     * 1 3 4 4
      */
     public static int maxChunksToSorted3(int[] arr) {
         Stack<Integer> st = new Stack<>();
@@ -75,5 +70,19 @@ public class LeetCode_768_MaxChunksToMakeSortedII {
             }
         }
         return st.size();
+    }
+
+    /**
+     * 记录最小值 --- 待完成
+     * [2,1,3,4,4]
+     * 2
+     * 1
+     * 1 3
+     * 1 3 4
+     * 1 3 4 4
+     */
+    public static int maxChunksToSorted4(int[] arr) {
+
+        return 0;
     }
 }
