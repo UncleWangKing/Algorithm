@@ -59,6 +59,9 @@ public class LeetCode_782_TransformtoChessboard {
         for(int i = 0; i < n; i++) {
             row += board[0][i];
             col += board[i][0];
+            /**
+             * 假定0101这样的最终排列的不符合数量 移动只需数量除2 因为每次移动 消除两个不吻合
+             */
             if(board[0][i] != i % 2) cntrow++;
             if(board[i][0] != i % 2) cntcol++;
         }
@@ -81,6 +84,9 @@ public class LeetCode_782_TransformtoChessboard {
                 cntcol = n - cntcol;
             res = cntrow + cntcol;
         }
-        return res >> 1;//除2
+        /**
+         * 移动只需数量除2 因为每次移动 消除两个不吻合
+         */
+        return res >> 1;
     }
 }
