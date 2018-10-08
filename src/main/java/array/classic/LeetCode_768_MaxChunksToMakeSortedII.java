@@ -5,8 +5,8 @@ import java.util.Stack;
 
 public class LeetCode_768_MaxChunksToMakeSortedII {
     public static void main(String[] args) {
-//        int list[] = {2,1,3,4,4};//4
-        int list[] = {4,2,2,1,1};//1
+        int list[] = {2,1,3,4,4};//4
+//        int list[] = {4,2,2,1,1};//1
         System.out.println(maxChunksToSorted4(list));
     }
 
@@ -57,6 +57,7 @@ public class LeetCode_768_MaxChunksToMakeSortedII {
      * 2 3
      * 2 3 4
      * 2 3 4 4
+     * 递增栈 正向遍历
      */
     public static int maxChunksToSorted3(int[] arr) {
         Stack<Integer> st = new Stack<>();
@@ -73,16 +74,24 @@ public class LeetCode_768_MaxChunksToMakeSortedII {
     }
 
     /**
-     * 记录最小值 --- 待完成
+     * 记录最小值 --- 递减栈 反向遍历
      * [2,1,3,4,4]
-     * 2
-     * 1
-     * 1 3
-     * 1 3 4
-     * 1 3 4 4
+     * 4
+     * 4 4
+     * 4 4 3
+     * 4 4 3 1
      */
     public static int maxChunksToSorted4(int[] arr) {
-
-        return 0;
+        Stack<Integer> st = new Stack<>();
+        for (int i = arr.length - 1; i >= 0; --i) {
+            if (st.isEmpty() || st.peek() >= arr[i]) {
+                st.push(arr[i]);
+            } else {
+                int curMin = st.pop();
+                while (!st.empty() && st.peek() < arr[i]) st.pop();
+                st.push(curMin);
+            }
+        }
+        return st.size();
     }
 }
