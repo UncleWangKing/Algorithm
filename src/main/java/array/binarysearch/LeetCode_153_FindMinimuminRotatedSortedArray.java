@@ -15,7 +15,7 @@ public class LeetCode_153_FindMinimuminRotatedSortedArray {
         int begin = 0, end = nums.length - 1;
         while(begin < end) {
             int mid = (begin + end) / 2;
-            if(nums[begin] < nums[mid]) {//左单调 -- 题目不存在重复
+            if(nums[begin] < nums[mid]) {//左单调 -- 题目不存在重复 不考虑等于情况
                 if(nums[mid] < nums[end])
                     return nums[begin];
                 else begin = mid;
@@ -28,5 +28,20 @@ public class LeetCode_153_FindMinimuminRotatedSortedArray {
         }
 
         return nums[begin];
+    }
+    /**
+     * grandyang 大佬写法
+     */
+    public static int findMin2(int[] nums) {
+        int left = 0, right = nums.length - 1;
+        if (nums[left] > nums[right]) {
+            while (left != (right - 1)) {
+                int mid = (left + right) / 2;
+                if (nums[left] < nums[mid]) left = mid;
+                else right = mid;
+            }
+            return Math.min(nums[left], nums[right]);
+        }
+        return nums[0];
     }
 }

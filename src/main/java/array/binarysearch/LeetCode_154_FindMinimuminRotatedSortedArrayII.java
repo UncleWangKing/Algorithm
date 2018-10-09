@@ -9,7 +9,7 @@ public class LeetCode_154_FindMinimuminRotatedSortedArrayII {
     }
 
     /**
-     * 有问题
+     * 碰上重复就完全没办法选择左右了 只能+1去重 最坏退化到O(n)
      */
     public static int findMin(int[] nums) {
         int begin = 0, end = nums.length - 1;
