@@ -1,4 +1,4 @@
-package array.simulation;
+package array.space;
 
 import java.util.Arrays;
 
@@ -90,7 +90,8 @@ public class LeetCode_825_FriendsofAppropriateAges {
         for(int i = 15; i <= 120; ++i) {//根据规则 15岁以下 也就是14岁开始 14/2 + 7 = 14 是没有朋友的 Σ(⊙▽⊙"a
             if(numInAge[i] == 0) continue;
             int count = sumInAge[i] - sumInAge[i / 2 + 7];//轻易得到可与i年龄人做朋友总人数
-            res += count * numInAge[i] - numInAge[i]; //不能和自己做朋友 so  - numInAge[i]
+            count--;//包含同龄人是可以的 但是不能包含自己
+            res += count * numInAge[i]; //不能和自己做朋友 so  - numInAge[i]
         }
         return res;
     }
