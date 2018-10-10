@@ -6,8 +6,8 @@ package array.binarysearch;
  */
 public class LeetCode_35_SearchInsertPosition {
     public static void main(String[] args) {
-        int list[] = {1, 3, 5, 6};
-        System.out.println(searchInsert2(list, 4));
+        int list[] = {1, 3};
+        System.out.println(searchInsert2(list, 0));
     }
 
     public static int searchInsert(int[] nums, int target) {
@@ -32,7 +32,7 @@ public class LeetCode_35_SearchInsertPosition {
     //左闭右闭[begin，mid] 循环
     public static int searchInsert2(int[] nums, int target) {
         int begin = 0, end = nums.length;
-        while(begin < end){
+        while(begin != end){
             int mid = begin + (end - begin) / 2;//防溢出 或者 无符号右移 (end + begin) >>> 2
             if(target < nums[mid])
                 end = mid;
