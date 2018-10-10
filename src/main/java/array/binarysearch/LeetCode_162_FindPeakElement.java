@@ -7,7 +7,7 @@ public class LeetCode_162_FindPeakElement {
     }
 
     /**
-     * 1 2 4地距离扩大 遇到更小值 再4 2 1收缩
+     * 迷迷糊糊
      */
     public static int findPeakElement(int[] nums) {
         int left = 0, right = nums.length - 1;
