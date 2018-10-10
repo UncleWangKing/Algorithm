@@ -7,7 +7,7 @@ package array.binarysearch;
 public class LeetCode_35_SearchInsertPosition {
     public static void main(String[] args) {
         int list[] = {1, 3, 5, 6};
-        System.out.println(searchInsert2(list, 5));
+        System.out.println(searchInsert2(list, 4));
     }
 
     public static int searchInsert(int[] nums, int target) {
@@ -32,9 +32,8 @@ public class LeetCode_35_SearchInsertPosition {
     //左闭右闭[begin，mid] 循环
     public static int searchInsert2(int[] nums, int target) {
         int begin = 0, end = nums.length;
-        //因为左开 [0, mid)，i==j的时候，迭代就已经完成了
         while(begin < end){
-            int mid = begin + (end - begin) / 2;
+            int mid = begin + (end - begin) / 2;//防溢出 或者 无符号右移 (end + begin) >>> 2
             if(target < nums[mid])
                 end = mid;
             else if(target > nums[mid])
@@ -42,6 +41,6 @@ public class LeetCode_35_SearchInsertPosition {
             else
                 return mid;//题目说明无重复 相等直接剪枝
         }
-        return end;
+        return begin;
     }
 }
