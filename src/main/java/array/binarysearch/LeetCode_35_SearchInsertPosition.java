@@ -11,37 +11,37 @@ public class LeetCode_35_SearchInsertPosition {
     }
 
     public static int searchInsert(int[] nums, int target) {
-        return binarySearch(0, nums.length - 1, nums, target);
+        return binarySearch(0, nums.length, nums, target);
     }
 
-    //左闭[0，mid] 右开(mid, len-1]写法 递归
+    //左闭右闭[begin，mid] 递归
     public static int binarySearch(int begin, int end, int[] list, int target){
-        if(begin == end)//和下方不同 end一开始是length - 1
-            return target > list[begin] ? begin + 1 : begin;
+        if(begin == end)
+            return begin;
 
-        int mid = (end + begin) / 2;
+        int mid = begin + (end - begin) / 2;//防溢出 或者 无符号右移 (end + begin) >>> 2
 
-        if (target <= list[mid])// <= 而不是 < -- 因为左方是 闭区间 相等的情况要包含进左方
+        if (target < list[mid])
             return binarySearch(begin, mid, list, target);
-        else
+        else if(target > list[mid])
             return binarySearch(mid + 1, end, list, target);
+        else
+            return mid;//题目说明无重复 相等直接剪枝
     }
 
-    //左开 [0, mid) 右开(mid, len-1] 写法 循环
+    //左闭右闭[begin，mid] 循环
     public static int searchInsert2(int[] nums, int target) {
-        int i = 0,j = nums.length;
+        int begin = 0, end = nums.length;
         //因为左开 [0, mid)，i==j的时候，迭代就已经完成了
-        while(i < j){
-            int mid = (i + j) / 2;
-            if(nums[mid] == target)//左右开的写法 必须要有这个返回
-                return mid;
+        while(begin < end){
+            int mid = begin + (end - begin) / 2;
             if(target < nums[mid])//< 而不是 <= -- 左右开
-                //因为左开 [0, mid)的写法target < nums[mid] 所以即使j==mid,mid也刚好没有取到
-                j = mid;
+                end = mid;
+            else if(target > nums[mid])
+                begin = mid + 1;
             else
-                //因为右开(mid, len-1] ，为了target == nums[mid]时不取到mid，所以mid + 1
-                i = mid + 1;
+                return mid;//题目说明无重复 相等直接剪枝
         }
-        return j;
+        return end;
     }
 }
