@@ -15,20 +15,6 @@ public class LeetCode_167_TwoSumII_InputArrayisSorted {
         ZDaPangArrayUtil.printArray(twoSum2(list, n));
     }
 
-    public static int[] twoSum(int[] numbers, int target) {
-        Map<Integer, Integer> m = new HashMap<>();
-        int[] res = new int[2];
-        for (int i = 0; i < numbers.length; ++i) {
-            if (m.containsKey(target - numbers[i])) {
-                res[0] = Math.min(i + 1,m.get(target - numbers[i]) + 1);
-                res[1] = Math.max(i + 1,m.get(target - numbers[i]) + 1);
-                break;
-            }
-            m.put(numbers[i], i);
-        }
-        return res;
-    }
-
     /**
      * 网上最快解
      */
