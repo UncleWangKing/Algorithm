@@ -35,7 +35,7 @@ public class LeetCode_35_SearchInsertPosition {
         //因为左开 [0, mid)，i==j的时候，迭代就已经完成了
         while(begin < end){
             int mid = begin + (end - begin) / 2;
-            if(target < nums[mid])//< 而不是 <= -- 左右开
+            if(target < nums[mid])
                 end = mid;
             else if(target > nums[mid])
                 begin = mid + 1;
