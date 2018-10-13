@@ -1,4 +1,4 @@
-package array;
+package array.combination;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,7 +24,7 @@ public class LeetCode_40_CombinationSumII {
                                      List<Integer> curr) {
         if (target > 0) {
             for (int i = step; i < candidates.length; i++) {
-                //只去一个 去重关键
+                //只取一个 去重关键
                 if (candidates[i] > target || ((i > step) && (candidates[i - 1] == candidates[i])))
                     continue;
 
