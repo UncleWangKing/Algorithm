@@ -70,6 +70,7 @@ public class LeetCode_169_MajorityElement {
     /**
      * bit trick
      * 统计32位上 最多的是0还是1 然后拼装成最后结果
+     * O(n)32n也是n  O(1)
      */
     public static int majorityElement3(int[] nums) {
         int res = 0, n = nums.length;
