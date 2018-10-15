@@ -16,6 +16,9 @@ public class LeetCode_169_MajorityElement {
         return   majorityElement( nums,0,nums.length-1) ;
     }
 
+    /**
+     * O(nlog2n) O(1)
+     */
     public static int majorityElement(int[] nums,int start,int end) {
         if(start == end)
             return nums[start];
@@ -38,7 +41,7 @@ public class LeetCode_169_MajorityElement {
     }
 
     /**
-     * 摩尔投票法
+     * 摩尔投票法 O(n) O(1)
      */
     public static int majorityElement2(int[] nums,int start,int end) {
         int res = 0, cnt = 0;
@@ -51,7 +54,7 @@ public class LeetCode_169_MajorityElement {
     }
 
     /**
-     * hashmap
+     * hashmap O(n) O(n)
      */
     public static int majorityElement2(int[] nums) {
         Map<Integer, Integer> map = new HashMap<>();

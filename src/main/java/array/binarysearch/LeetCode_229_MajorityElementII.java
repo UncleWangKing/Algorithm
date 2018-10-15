@@ -10,7 +10,7 @@ public class LeetCode_229_MajorityElementII {
     }
 
     /**
-     * 题目要求空间为O(1)
+     * O(n) O(1)
      */
     public static List<Integer> majorityElement(int[] nums) {
         Map<Integer, Integer> map = new HashMap<>();
