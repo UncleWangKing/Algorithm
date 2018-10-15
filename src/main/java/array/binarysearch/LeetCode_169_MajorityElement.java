@@ -66,4 +66,21 @@ public class LeetCode_169_MajorityElement {
         }
         return 0;
     }
+
+    /**
+     * bit trick
+     */
+    public static int majorityElement3(int[] nums) {
+        int res = 0, n = nums.length;
+        for (int i = 0; i < 32; ++i) {
+            int ones = 0, zeros = 0;
+            for (int num : nums) {
+                if (ones > n / 2 || zeros > n / 2) break;
+                if ((num & (1 << i)) != 0) ++ones;
+                else ++zeros;
+            }
+            if (ones > zeros) res |= (1 << i);
+        }
+        return res;
+    }
 }

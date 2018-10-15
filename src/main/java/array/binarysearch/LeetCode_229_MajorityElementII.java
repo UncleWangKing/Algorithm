@@ -10,7 +10,7 @@ public class LeetCode_229_MajorityElementII {
     }
 
     /**
-     * O(n) O(1)
+     * O(n) O(n)
      */
     public static List<Integer> majorityElement(int[] nums) {
         Map<Integer, Integer> map = new HashMap<>();
