@@ -38,6 +38,19 @@ public class LeetCode_169_MajorityElement {
     }
 
     /**
+     * 摩尔投票法
+     */
+    public static int majorityElement2(int[] nums,int start,int end) {
+        int res = 0, cnt = 0;
+        for (int num : nums) {
+            if (cnt == 0) {res = num; ++cnt;}
+            else if (num == res) ++cnt;
+            else --cnt;
+        }
+        return res;
+    }
+
+    /**
      * hashmap
      */
     public static int majorityElement2(int[] nums) {

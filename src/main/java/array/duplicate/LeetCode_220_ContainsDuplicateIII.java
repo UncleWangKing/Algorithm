@@ -1,6 +1,5 @@
 package array.duplicate;
 
-import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
