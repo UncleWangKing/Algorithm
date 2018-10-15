@@ -30,21 +30,21 @@ public class LeetCode_229_MajorityElementII {
      */
     public static List<Integer> majorityElement2(int[] nums) {
         List<Integer> res = new LinkedList<>();
-        int m = 0, n = 0, cm = 0, cn = 0;
+        int m = 0, n = 0, countm = 0, countn = 0;
         for (int a : nums) {
-            if (a == m) ++cm;
-            else if (a ==n) ++cn;
-            else if (cm == 0) {m = a; cm = 1;}
-            else if (cn == 0) {n = a; cn = 1;}
-            else {--cm; --cn;}
+            if (a == m) ++countm;
+            else if (a == n) ++countn;
+            else if (countm == 0) {m = a; countm = 1;}
+            else if (countn == 0) {n = a; countn = 1;}
+            else {--countm; --countn;}
         }
-        cm = cn = 0;
+        countm = countn = 0;
         for (int a : nums) {
-            if (a == m) ++cm;
-            else if (a == n) ++cn;
+            if (a == m) ++countm;
+            else if (a == n) ++countn;
         }
-        if (cm > nums.length / 3) res.add(m);
-        if (cn > nums.length / 3) res.add(n);
+        if (countm > nums.length / 3) res.add(m);
+        if (countn > nums.length / 3) res.add(n);
         return res;
     }
 }
