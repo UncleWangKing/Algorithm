@@ -14,13 +14,13 @@ public class LeetCode_34_FindFirstAndLastPositionofElementinSortedArray {
      * 锻炼二分的写法
      */
     public static int[] searchRange(int[] nums, int target) {
-        if(nums.length > 0) {
+//        if(nums.length > 0) {
             int first = findFirst(nums, 0, nums.length - 1, target);
             if (-1 != first) {
                 int last = findLast(nums, 0, nums.length, target);
                 return new int[]{first, last};
             }
-        }
+//        }
         return new int[]{-1 ,-1};
     }
 

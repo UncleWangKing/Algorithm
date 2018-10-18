@@ -1,4 +1,4 @@
-package array.indexmagic;
+package array.sub;
 
 import java.util.Arrays;
 
