@@ -2,6 +2,14 @@ package dp.classic;
 
 import java.util.Stack;
 
+/**
+ * 注意 两个解法都是O(n)
+ * 以为在求边界时候使用了栈 而栈最多入n次出n次
+ * 所以不能算O(n^2)
+ * 2018/10/16晚上 翻身群里 toad想到了dp fighter想到了左右去重
+ * 而我因为看不懂这是O(n) 而纠结到了2点
+ * 一开始自己的思路是左右去重
+ */
 public class LeetCode_907_SumofSubarrayMinimums {
     public static void main(String[] args) {
 //        int list[] = {3,1,2,4};//17
