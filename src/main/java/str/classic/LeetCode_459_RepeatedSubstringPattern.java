@@ -2,7 +2,7 @@ package str.classic;
 
 public class LeetCode_459_RepeatedSubstringPattern {
     public static void main(String[] args) {
-        System.out.println(repeatedSubstringPattern("abcabcabcabc"));
+        System.out.println(repeatedSubstringPattern2("abcdabcabcabc"));
     }
 
     public static boolean repeatedSubstringPattern(String s) {
@@ -32,7 +32,7 @@ public class LeetCode_459_RepeatedSubstringPattern {
         int dp[] = new int[s.length() + 1];
         while (i < n) {
             if (s.charAt(i) == s.charAt(j)) dp[++i] = ++j;
-            else if (j == 0) ++i;
+            else if (0 == j) ++i;
             else j = dp[j];
         }
         return 0 != dp[n] && (dp[n] % (n - dp[n]) == 0);
