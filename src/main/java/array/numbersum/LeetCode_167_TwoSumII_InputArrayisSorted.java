@@ -2,9 +2,6 @@ package array.numbersum;
 
 import util.ZDaPangArrayUtil;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * @author ZhangDaPang 285296372@qq.com
  * @date 2018/10/10 18:10
