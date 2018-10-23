@@ -7,7 +7,7 @@ import util.ZDaPangArrayUtil;
  * 首先，迭代计算出0、1 和 2 元素的个数，然后按照0、1、2的排序，重写当前数组。
  * 你能想出一个仅使用常数空间的一趟扫描算法吗？
  */
-public class LeetCode_79_SortColors {
+public class LeetCode_75_SortColors {
     public static void main(String[] args) {
 //        int [] list = {0,0,1,0,1,1};
 //        int [] list = {2,0,1};
