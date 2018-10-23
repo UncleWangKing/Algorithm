@@ -2,7 +2,8 @@ package str.classic;
 
 public class LeetCode_459_RepeatedSubstringPattern {
     public static void main(String[] args) {
-        System.out.println(repeatedSubstringPattern2("abcdabcabcabc"));
+        System.out.println(2 | 3 << 2);
+        System.out.println(repeatedSubstringPattern2("abababddabab"));
     }
 
     public static boolean repeatedSubstringPattern(String s) {
@@ -27,6 +28,9 @@ public class LeetCode_459_RepeatedSubstringPattern {
         return false;
     }
 
+    /**
+     * 类似kmp的最长公共前后缀 满足0 != dp[n] && (dp[n] % (n - dp[n]) == 0)
+     */
     public static boolean repeatedSubstringPattern2(String s) {
         int i = 1, j = 0, n = s.length();
         int dp[] = new int[s.length() + 1];
@@ -35,10 +39,10 @@ public class LeetCode_459_RepeatedSubstringPattern {
             else if (0 == j) ++i;
             else j = dp[j];
         }
-        return 0 != dp[n] && (dp[n] % (n - dp[n]) == 0);
+        return 0 != dp[n] && (0 == dp[n] % (n - dp[n]));
     }
 
     public static boolean repeatedSubstringPattern3(String s) {
-        return (s + s).substring(1, s.length() * 2 - 1).contains(s);
+        return s.concat(s).substring(1, s.length() * 2 - 1).contains(s);
     }
 }
