@@ -39,7 +39,7 @@ public class LeetCode_835_ImageOverlap {
         List<Integer> LB = new ArrayList<>();
         Map<Integer, Integer> count = new HashMap<>();
         /**
-         * 数组是正方形 且 长度 <= 30 所以百位千位以上记录行移动数量 个位十位记录例移动数量
+         * 数组是正方形 且 长度 <= 30 所以百位千位以上记录'行'移动数量 个位十位记录'列'移动数量
          * 相应的LA LB的 i - j 就能得到一种行列走法的唯一标识
          */
         for (int i = 0; i < N * N; ++i) if (A[i / N][i % N] == 1) LA.add(i / N * 100 + i % N);
