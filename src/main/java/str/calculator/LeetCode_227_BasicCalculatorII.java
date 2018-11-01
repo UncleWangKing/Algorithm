@@ -24,7 +24,7 @@ public class LeetCode_227_BasicCalculatorII {
     /**
      * 保证两点
      * 1.先乘除后加减 -- 靠递归顺序
-     * 2.加减之间 乘除之间 从左往右计算 -- 靠遍历顺序 -- indexOf
+     * 2.加减之间 乘除之间 从左往右计算 -- 靠遍历顺序 -- lastIndexOf
      * 但是递归StackOverFlow!!!
      */
     public static int helper(String s){
@@ -45,8 +45,9 @@ public class LeetCode_227_BasicCalculatorII {
     }
 
     /**
-     * opt储存上一次操作 一开始默认是 '+'
-     * curRes储存连续乘除的结果集
+     * 只有加减乘除优先级
+     * 其实本质就是------------有且仅有一层括号，不会出现括号嵌套
+     * 那么用栈就没有必要了，用一个变量res代替栈的功能即可,毕竟用栈只需要一层栈。
      * 妙不可言
      */
     public static int calculate2(String s) {
@@ -54,7 +55,7 @@ public class LeetCode_227_BasicCalculatorII {
         char op = '+';
         for (int i = 0; i < n; ++i) {
             char c = s.charAt(i);
-            if (c >= '0' && c <= '9') {
+            if (c >= '0') {
                 num = num * 10 + c - '0';
             }
             if (c == '+' || c == '-' || c == '*' || c == '/' || i == n - 1) {
