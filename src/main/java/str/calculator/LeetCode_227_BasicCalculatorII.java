@@ -47,7 +47,7 @@ public class LeetCode_227_BasicCalculatorII {
     /**
      * 只有加减乘除优先级
      * 其实本质就是------------有且仅有一层括号，不会出现括号嵌套
-     * 那么用栈就没有必要了，用一个变量res代替栈的功能即可,毕竟用栈只需要一层栈。
+     * 那么用栈就没有必要了，curRes,毕竟用栈只需要一层栈。
      * 妙不可言
      */
     public static int calculate2(String s) {
