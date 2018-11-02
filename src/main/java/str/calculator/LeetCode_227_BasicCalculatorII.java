@@ -1,5 +1,7 @@
 package str.calculator;
 
+import java.util.Stack;
+
 /**
  * @author ZhangDaPang 285296372@qq.com
  * @date 2018/10/31 17:47
@@ -12,36 +14,30 @@ public class LeetCode_227_BasicCalculatorII {
         System.out.println(calculate2("1+2*5/3+6/4*2"));//6
     }
 
-    /**
-     * 值都是 非负 整数
-     * 简化了很多事
-     */
     public static int calculate(String s) {
-        s = s.replace(" ", "");
-        return helper(s);
-    }
-
-    /**
-     * 保证两点
-     * 1.先乘除后加减 -- 靠递归顺序
-     * 2.加减之间 乘除之间 从左往右计算 -- 靠遍历顺序 -- lastIndexOf
-     * 但是递归StackOverFlow!!!
-     */
-    public static int helper(String s){
-        int i = s.lastIndexOf('+');
-        int j = s.lastIndexOf('-');
-        if(-1 != i || -1 != j)
-            return i > j ?
-                    helper(s.substring(0, i)) + helper(s.substring(i + 1, s.length())) :
-                    helper(s.substring(0, j)) - helper(s.substring(j + 1, s.length()));
-
-        i = s.lastIndexOf('*');
-        j = s.lastIndexOf('/');
-        if(-1 != i || -1 != j)
-            return i > j ? helper(s.substring(0, i)) * helper(s.substring(i + 1, s.length())) :
-                    helper(s.substring(0, j)) / helper(s.substring(j + 1, s.length()));
-
-        return Integer.valueOf(s);
+        int res = 0, num = 0, n = s.length();
+        char op = '+';
+        Stack<Integer> st = new Stack<>();
+        for (int i = 0; i < n; ++i) {
+            char c = s.charAt(i);
+            if (c >= '0') {
+                num = num * 10 + c - '0';
+            }
+            if ((c < '0' && c != ' ') || i == n - 1) {
+                if (op == '+') st.push(num);
+                if (op == '-') st.push(-num);
+                if (op == '*' || op == '/') {
+                    int tmp = (op == '*') ? st.pop() * num : st.pop() / num;
+                    st.push(tmp);
+                }
+                op = c;
+                num = 0;
+            }
+        }
+        while (!st.empty()) {
+            res += st.pop();
+        }
+        return res;
     }
 
     /**
