@@ -62,4 +62,51 @@ public class LeetCode_842_SplitArrayIntoFibonacciSequence {
 
         return list;
     }
+    /**
+     * 看看人家！！！
+     */
+    public static List<Integer> splitIntoFibonacci2(String S) {
+        List<Integer> res = new ArrayList<>(S.length());
+
+        for (int i = 1; i < S.length() && i < 11; i++) {
+            if (S.charAt(0) == '0' && i > 1) {
+                break;
+            }
+
+            for (int j = 1; j < S.length() - i && j < 11; j++) {
+                if (S.charAt(i) == '0' && j > 1) {
+                    break;
+                }
+                long a = Long.parseLong(S.substring(0, i));
+                long b = Long.parseLong(S.substring(i, i + j));
+
+                res.add((int) a);
+                res.add((int) b);
+
+                if (isFibonacci(S, a, b, i + j, res)) {
+                    return res;
+                }
+                res.clear();
+            }
+        }
+
+        return res;
+    }
+
+
+    private static boolean isFibonacci(String S, long a, long b, int idx, List<Integer> res) {
+        long sum = a + b;
+        if (sum > Integer.MAX_VALUE) {
+            return false;
+        }
+        String sumStr = String.valueOf(sum);
+        if (S.startsWith(sumStr, idx)) {
+            res.add((int) sum);
+            if (idx + sumStr.length() == S.length()) {
+                return true;
+            }
+            return isFibonacci(S, b, sum, idx + sumStr.length(), res);
+        }
+        return false;
+    }
 }
