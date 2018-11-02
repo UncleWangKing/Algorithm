@@ -1,4 +1,4 @@
-package str.simulation;
+package str.classic;
 
 import java.util.ArrayList;
 import java.util.List;
