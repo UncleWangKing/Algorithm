@@ -25,17 +25,15 @@ public class LeetCode_842_SplitArrayIntoFibonacciSequence {
         List<Integer> list = new ArrayList<>();
         for (int i = 1; i <= Math.min(10, S.length()); i++) {//F[i] 在 int范围内 -- 剪枝动作
             long first = Long.valueOf(S.substring(0, i));
-            list.add((int)first);
             for (int j = i + 1; j < Math.min(i + 10, S.length()); j++) {
                 long second = Long.valueOf(S.substring(i, j));
+                list.add((int)first);
                 list.add((int)second);
                 long tempFirst = first;
                 long tempSecond = second;
                 int start = j;
                 int end = j + 1;
                 while (end <= S.length()) {
-                    if(end - start > 10)
-                        break;
                     long third = Long.valueOf(S.substring(start, end));
                     if(third > tempFirst + tempSecond || third > Integer.MAX_VALUE)
                         break;
@@ -46,16 +44,13 @@ public class LeetCode_842_SplitArrayIntoFibonacciSequence {
                         start = end;
                         if(end == S.length())
                             return list;
-                    }else if('0' == S.charAt(start))//0开头只需要验证第一个数是0的情况
-                        break;
+                    }
                     end++;
                 }
                 list.clear();
-                list.add((int)first);
                 if('0' == S.charAt(i))//0开头只需要验证第一个数是0的情况
                     break;
             }
-            list.clear();
             if('0' == S.charAt(0))//0开头只需要验证第一个数是0的情况
                 break;
         }
