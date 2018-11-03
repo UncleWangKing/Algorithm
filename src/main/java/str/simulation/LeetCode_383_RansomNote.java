@@ -30,4 +30,24 @@ public class LeetCode_383_RansomNote {
 
         return 0 == ransomNote.length();
     }
+
+    public boolean canConstruct2(String ransomNote, String magazine) {
+        boolean ans = true;
+        int[] marked = new int[256];
+        char[] c = magazine.toCharArray();
+        char[] x = ransomNote.toCharArray();
+        for(int i=0; i<c.length; i++){
+            marked[c[i]]++;
+        }
+        for(int i=0; i<x.length; i++){
+            if(marked[x[i]]==0){
+                ans=false;
+                break;
+            }
+            else{
+                marked[x[i]]--;
+            }
+        }
+        return ans;
+    }
 }
