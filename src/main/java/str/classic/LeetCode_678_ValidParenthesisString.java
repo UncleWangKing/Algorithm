@@ -12,42 +12,12 @@ public class LeetCode_678_ValidParenthesisString {
     }
 
     /**
-     * 自己的思路
-     * 利用平衡括号思路 只是多了个* 那么单独计数 看*个数能否弥补左右个数差
-     * *可以 左-右-空
-     * PS:
-     * 1.*只能用一次 而且受限于位置不可随意用
-     * 2.定性后清零
-     */
-    public static boolean checkValidString(String s) {
-        int left = 0, right = 0, star = 0;
-
-        for (char c : s.toCharArray()) {
-            if('(' == c)
-                left++;
-            else if(')' == c)
-                right++;
-            else star++;
-
-            if(left < right){//不够了
-                if(left + star < right)//怎么都不够
-                    return false;
-                star -= right - left;//satr填坑
-                left = 0;
-                right = 0;
-            }
-        }
-
-        return left <= star + right && left + star >= right;
-    }
-
-    /**
      * '('和*分别压栈
      * 遇到')'弹'('  '('弹完弹'*'
      * 最后如果left star 都不为空 区分*) 和 *(两个模式 如果后者模式 即存在栈顶的*在一个'('左方 false
      * 如果最终left用完 true 否则说明(右方的星号不够用
      */
-    public static boolean checkValidString2(String s) {
+    public static boolean checkValidString(String s) {
         Stack<Integer> left = new Stack<>();
         Stack<Integer> star = new Stack<>();
         for (int i = 0; i < s.length(); ++i) {
@@ -67,9 +37,11 @@ public class LeetCode_678_ValidParenthesisString {
     }
 
     /**
-     *
+     * 正反两遍
+     * 正时 将*当'('
+     * 反时 将*当')'
      */
-    public static boolean checkValidString3(String s) {
+    public static boolean checkValidString2(String s) {
         int left = 0, right = 0, n = s.length();
         for (int i = 0; i < n; ++i) {
             if (s.charAt(i) == '(' || s.charAt(i) == '*') ++left;
@@ -88,7 +60,7 @@ public class LeetCode_678_ValidParenthesisString {
     /**
      * 递归法暴力 遇到* 将*的三种情况都带入
      */
-    public static boolean checkValidString4(String s) {
+    public static boolean checkValidString3(String s) {
         return helper(s, 0, 0);
     }
 
@@ -111,7 +83,7 @@ public class LeetCode_678_ValidParenthesisString {
      * low high 分别代表遍历过程中 可存在的左括号个数的 下限 和 上限
      * 上限 < 0 false
      */
-    public static boolean checkValidString5(String s) {
+    public static boolean checkValidString4(String s) {
         int low = 0, high = 0;
         for (char c : s.toCharArray()) {
             if (c == '(') {
