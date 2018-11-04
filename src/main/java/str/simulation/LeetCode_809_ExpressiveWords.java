@@ -13,10 +13,10 @@ public class LeetCode_809_ExpressiveWords {
 //        String S = "heeellooo";String[] words = {"hello", "hi", "helo"};
 //        String S = "zzzzzyyyyy";String[] words = {"zzyy", "zy", "zyy"};
         String S = "abcd";String[] words = {"abc"};
-        System.out.println(expressiveWords2(S, words));
+        System.out.println(expressiveWords(S, words));
     }
 
-    public static int expressiveWords2(String S, String[] words) {
+    public static int expressiveWords(String S, String[] words) {
         int res = 0;
         for (String W : words) if (check(S, W)) res++;
         return res;
