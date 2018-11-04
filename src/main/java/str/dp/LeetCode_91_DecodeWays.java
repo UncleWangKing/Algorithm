@@ -2,11 +2,10 @@ package str.dp;
 
 public class LeetCode_91_DecodeWays {
     public static void main(String[] args) {
-        System.out.println(numDecodings("6"));
+        System.out.println(numDecodings2("0"));
     }
 
     public static int numDecodings(String s) {
-        if (s.isEmpty() || (s.length() > 1 && s.charAt(0) == '0')) return 0;
         int[] dp = new int[s.length() + 1];
         dp[0] = 1;
         for (int i = 1; i < dp.length; ++i) {
@@ -22,7 +21,7 @@ public class LeetCode_91_DecodeWays {
      * 空间压缩
      */
     public static int numDecodings2(String s) {
-        if (s.isEmpty() || (s.length() > 1 && s.charAt(0) == '0')) return 0;
+        if (s.isEmpty() || (s.length() >= 1 && s.charAt(0) == '0')) return 0;
         int c1 = 1, c2 = 1;
         for (int i = 1; i < s.length(); ++i) {
             if (s.charAt(i) == '0') c1 = 0;
