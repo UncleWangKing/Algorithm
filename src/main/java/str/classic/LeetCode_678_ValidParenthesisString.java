@@ -12,12 +12,34 @@ public class LeetCode_678_ValidParenthesisString {
     }
 
     /**
+     * 递归法暴力 遇到* 将*的三种情况都带入
+     */
+    public static boolean checkValidString(String s) {
+        return helper(s, 0, 0);
+    }
+
+    public static boolean helper(String s, int start, int cnt) {
+        if (cnt < 0) return false;
+        for (int i = start; i < s.length(); ++i) {
+            if (s.charAt(i) == '(') {
+                ++cnt;
+            } else if (s.charAt(i) == ')') {
+                if (cnt <= 0) return false;
+                --cnt;
+            } else {
+                return helper(s, i + 1, cnt) || helper(s, i + 1, cnt + 1) || helper(s, i + 1, cnt - 1);
+            }
+        }
+        return cnt == 0;
+    }
+
+    /**
      * '('和*分别压栈
      * 遇到')'弹'('  '('弹完弹'*'
      * 最后如果left star 都不为空 区分*) 和 *(两个模式 如果后者模式 即存在栈顶的*在一个'('左方 false
      * 如果最终left用完 true 否则说明(右方的星号不够用
      */
-    public static boolean checkValidString(String s) {
+    public static boolean checkValidString2(String s) {
         Stack<Integer> left = new Stack<>();
         Stack<Integer> star = new Stack<>();
         for (int i = 0; i < s.length(); ++i) {
@@ -41,7 +63,7 @@ public class LeetCode_678_ValidParenthesisString {
      * 正时 将*当'('
      * 反时 将*当')'
      */
-    public static boolean checkValidString2(String s) {
+    public static boolean checkValidString3(String s) {
         int left = 0, right = 0, n = s.length();
         for (int i = 0; i < n; ++i) {
             if (s.charAt(i) == '(' || s.charAt(i) == '*') ++left;
@@ -55,28 +77,6 @@ public class LeetCode_678_ValidParenthesisString {
             if (right < 0) return false;
         }
         return true;
-    }
-
-    /**
-     * 递归法暴力 遇到* 将*的三种情况都带入
-     */
-    public static boolean checkValidString3(String s) {
-        return helper(s, 0, 0);
-    }
-
-    public static boolean helper(String s, int start, int cnt) {
-        if (cnt < 0) return false;
-        for (int i = start; i < s.length(); ++i) {
-            if (s.charAt(i) == '(') {
-                ++cnt;
-            } else if (s.charAt(i) == ')') {
-                if (cnt <= 0) return false;
-                --cnt;
-            } else {
-                return helper(s, i + 1, cnt) || helper(s, i + 1, cnt + 1) || helper(s, i + 1, cnt - 1);
-            }
-        }
-        return cnt == 0;
     }
 
     /**
