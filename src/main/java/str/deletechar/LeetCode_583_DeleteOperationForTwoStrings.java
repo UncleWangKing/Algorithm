@@ -1,6 +1,4 @@
-package str.classic;
-
-import util.ZDaPangArrayUtil;
+package str.deletechar;
 
 public class LeetCode_583_DeleteOperationForTwoStrings {
     public static void main(String[] args) {
