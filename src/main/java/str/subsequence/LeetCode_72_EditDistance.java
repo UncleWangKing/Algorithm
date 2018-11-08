@@ -1,4 +1,4 @@
-package str.deletechar;
+package str.subsequence;
 
 public class LeetCode_72_EditDistance {
     public static void main(String[] args) {

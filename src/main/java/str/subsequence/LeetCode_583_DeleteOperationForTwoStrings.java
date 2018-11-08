@@ -1,4 +1,4 @@
-package str.deletechar;
+package str.subsequence;
 
 public class LeetCode_583_DeleteOperationForTwoStrings {
     public static void main(String[] args) {

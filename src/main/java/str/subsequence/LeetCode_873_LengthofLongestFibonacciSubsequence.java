@@ -1,4 +1,4 @@
-package dp;
+package str.subsequence;
 
 import java.util.HashMap;
 import java.util.HashSet;

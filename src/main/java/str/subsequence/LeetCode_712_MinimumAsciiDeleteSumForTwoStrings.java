@@ -1,6 +1,4 @@
-package str.deletechar;
-
-import java.util.Arrays;
+package str.subsequence;
 
 public class LeetCode_712_MinimumAsciiDeleteSumForTwoStrings {
     public static void main(String[] args) {
