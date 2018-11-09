@@ -14,6 +14,7 @@ public class LeetCode_34_FindFirstAndLastPositionofElementinSortedArray {
      * 锻炼二分的写法
      */
     public static int[] searchRange(int[] nums, int target) {
+        if(0 == nums.length) return new int[]{-1 ,-1};
         int first = findFirst(nums, 0, nums.length - 1, target);
         if (-1 != first) {
             int last = findLast(nums, 0, nums.length, target);
@@ -24,7 +25,7 @@ public class LeetCode_34_FindFirstAndLastPositionofElementinSortedArray {
 
     public static int findFirst(int[] nums, int begin, int end, int target){
         while (begin < end){
-            int mid = (begin + end) >>> 1;
+            int mid = begin + (end - begin) / 2;
             if(nums[mid] >= target)
                 end = mid;
             else
@@ -35,7 +36,7 @@ public class LeetCode_34_FindFirstAndLastPositionofElementinSortedArray {
 
     public static int findLast(int[] nums, int begin, int end, int target){
         while (begin < end){
-            int mid = (begin + end) >>> 1;
+            int mid = begin + (end - begin) / 2;
             if(nums[mid] <= target)
                 begin = mid + 1;
             else

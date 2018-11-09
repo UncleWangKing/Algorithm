@@ -23,7 +23,7 @@ public class LeetCode_169_MajorityElement {
         if(start == end)
             return nums[start];
 
-        int half = (start + end) >>> 1;
+        int half = start + (end - start) / 2;
         int left = majorityElement(nums, start,  half);
         int right = majorityElement(nums, half + 1,  end);
         if(left == right)

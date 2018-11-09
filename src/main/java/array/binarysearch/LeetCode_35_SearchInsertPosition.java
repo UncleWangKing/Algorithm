@@ -19,7 +19,7 @@ public class LeetCode_35_SearchInsertPosition {
         if(begin == end)
             return begin;
 
-        int mid = begin + (end - begin) / 2;//防溢出 或者 无符号右移 (end + begin) >>> 2
+        int mid = begin + (end - begin) / 2;//防溢出
 
         if (target < list[mid])
             return binarySearch(begin, mid, list, target);
@@ -33,7 +33,7 @@ public class LeetCode_35_SearchInsertPosition {
     public static int searchInsert2(int[] nums, int target) {
         int begin = 0, end = nums.length;
         while(begin != end){
-            int mid = begin + (end - begin) / 2;//防溢出 或者 无符号右移 (end + begin) >>> 2
+            int mid = begin + (end - begin) / 2;//防溢出
             if(target < nums[mid])
                 end = mid;
             else if(target > nums[mid])
