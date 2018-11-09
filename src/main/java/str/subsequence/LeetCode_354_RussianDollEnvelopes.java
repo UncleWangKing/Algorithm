@@ -7,7 +7,7 @@ public class LeetCode_354_RussianDollEnvelopes {
 //        int[][] envelopes = {{5,4},{6,4},{6,7},{2,3}};//3
         int[][] envelopes = {{1,3},{3,5},{6,7},{6,8},{8,4},{9,5}};//3
 //        int[][] envelopes = {{1,1},{1,1},{1,1}};//3
-        System.out.println(maxEnvelopes(envelopes));
+        System.out.println(maxEnvelopes2(envelopes));
     }
     //变种的Lis 宽高都要更大 那么排序先 -- 宽高固定 认真读题~
     public static int maxEnvelopes(int[][] envelopes) {
@@ -44,9 +44,11 @@ public class LeetCode_354_RussianDollEnvelopes {
     }
 
     /**
-     * 码是人家香 为何别人这么快~
+     * 几处优化和细节
      * 1.原地排序
-     * 2.宽度都排好序了，只用看高度，用300题的二分优化方式查找
+     * 2.排序用了个方法排除[0]相等的情况，一看就懂。
+     * 3.宽度都排好序了，只用看高度，用300题的二分优化方式查找.
+     * 4.300题同样的思路，换了个写法，你还认识吗。
      */
     public static int maxEnvelopes2(int[][] envelopes) {
         if(envelopes == null || envelopes.length == 0
@@ -65,7 +67,7 @@ public class LeetCode_354_RussianDollEnvelopes {
         for (int[] envelop : envelopes) {
             int i = 0, j = count;
             while (i < j) {
-                int m = (i + j) / 2;
+                int m = i + (j - i) / 2;
                 if (dp[m] < envelop[1]) i = m + 1;
                 else j = m;
             }
