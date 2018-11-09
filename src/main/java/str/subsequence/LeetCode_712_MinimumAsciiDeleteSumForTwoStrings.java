@@ -25,7 +25,7 @@ public class LeetCode_712_MinimumAsciiDeleteSumForTwoStrings {
     }
 
     /**
-     * 和我一开始思路一样 求最大ascii值的 公共川
+     * 和我一开始思路一样 求最大ascii值的 公共子序列
      * 注意这里不是LCS 不是长度最长
      * 有没有普通走楼梯变成了带权值走楼梯的意思
      */
