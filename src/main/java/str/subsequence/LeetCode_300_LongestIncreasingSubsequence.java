@@ -46,7 +46,13 @@ public class LeetCode_300_LongestIncreasingSubsequence {
     }
 
     /**
-     * java 数组扩容不便 与使用了index 本质是二分查找第一个不小于比新来的数 替换
+     * 本题属于子序列中的特殊题，特殊就特殊在上升，有序很容易想到二分。
+     * 思考：我们能否用一个结构维护出目前搜索到的上升序列 便于我们新增长度。
+     * 方案：维护一个有序数组，当新来的数大于最后一个，直接加入。
+     * 否则替换中间第一个严格大于新来数的数。
+     * 查找替换数的过程即可二分。那么数组长度既是结果。
+     * java 数组扩容不便 与使用了index
+     * PS:dp数组中结果并非最终结果，只是一个便于搜索的中间结果。
      */
     public static int lengthOfLIS2(int[] nums) {
         int len = nums.length;
@@ -61,7 +67,7 @@ public class LeetCode_300_LongestIncreasingSubsequence {
                 int left = 0, right = index - 1;
                 while (left < right){
                     int mid = left + (right - left) / 2;
-                    if(dp[mid] <= nums[i])
+                    if(dp[mid] < nums[i])
                         left = mid + 1;
                     else
                         right = mid;
