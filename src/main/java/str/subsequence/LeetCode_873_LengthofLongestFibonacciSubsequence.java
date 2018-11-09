@@ -40,14 +40,15 @@ public class LeetCode_873_LengthofLongestFibonacciSubsequence {
      * dp
      */
     public static int lenLongestFibSubseq2(int[] A) {
-        int retData=0;
-        int length = A.length;
+        int retData = 0;
         Map<Integer,Integer> dataMap = new HashMap<>();
-        for(int i=0;i < length;i++)
+
+        for(int i = 0; i < A.length; i++)
             dataMap.put(A[i], i);
-        int [][]tmpData = new int[length][length];
-        for(int i = length - 1; i >= 0; i--){
-            for(int j = i + 1; j < length; j++){
+        int [][]tmpData = new int[A.length][A.length];
+
+        for(int i = A.length - 1; i >= 0; i--){
+            for(int j = i + 1; j < A.length; j++){
                 if(dataMap.containsKey(A[i] + A[j])){
                     int position = dataMap.get(A[i] + A[j]);
                     tmpData[i][j] = tmpData[j][position] + 1;
@@ -57,6 +58,7 @@ public class LeetCode_873_LengthofLongestFibonacciSubsequence {
                 }
             }
         }
+
         return retData;
     }
 }
