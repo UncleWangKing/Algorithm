@@ -25,9 +25,14 @@ public class LeetCode_712_MinimumAsciiDeleteSumForTwoStrings {
     }
 
     /**
-     * 和我一开始思路一样 求最大ascii值的 公共子序列
-     * 注意这里不是LCS 不是长度最长
-     * 有没有普通走楼梯变成了带权值走楼梯的意思
+     * 两个字符串Ascii总值一定，求出Ascii值最大的公共子序列，然后总值减去其2倍即可。
+     * 依然是求公共子序列，但是要求不再是“最长”，而是Ascii值最大，dp条件变变即可。
+     * 有没有二维走楼梯变二维带权值走楼梯的感觉？
+     * dp[i][j] 代表将s1 0 到 i - 1 和 s2 0 到 j - 1 的Ascii值最大的公共子序列
+     * if (s1.charAt(i - 1) == s2.charAt(j - 1))//相同 对于Ascii值纯增益 加上就行
+     *  dp[i][j] = dp[i - 1][j - 1] + s1.charAt(i - 1);
+     * else//不同 选之前最大的
+     *  dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
      */
     public static int minimumDeleteSum2(String s1, String s2) {
         int m = s1.length(), n = s2.length();

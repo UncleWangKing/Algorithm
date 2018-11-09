@@ -3,11 +3,26 @@ package str.subsequence;
 public class LeetCode_72_EditDistance {
     public static void main(String[] args) {
         String word1 = "intention", word2 = "execution";
-        System.out.println(minDistance(word1, word2));
+        System.out.println(minDistance2(word1, word2));
     }
 
     /**
-     *
+     * 本质还是LCS。回忆这三个题走来。
+     * 1.最长公共子序列。
+     * 2.Ascii值最大公共子序列。
+     * 3."消耗"最小公共子序列。
+     * dp[i][j] 代表将s1 0 到 i - 1 和 s2 0 到 j - 1 完成"转换"的最小消耗
+     * if(s1[i - 1] == s2[j - 1])//相同 无消耗
+     *  dp[i][j] = dp[i - 1][j - 1];
+     * else
+     *  dp[i][j] = min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]) + 1;
+     * 上方三个式子的意义
+     * dp[i - 1][j]左边少一个 要多增1
+     * dp[i][j - 1]右边多一个 要多删1
+     * dp[i - 1][j - 1]左右都少一个 要多变1
+     * 初始项易得
+     * dp[0][j] = j;
+     * dp[i][0] = i;
      */
     public static int minDistance(String word1, String word2) {
         int n1 = word1.length(), n2 = word2.length();
@@ -25,37 +40,42 @@ public class LeetCode_72_EditDistance {
         }
         return dp[n1][n2];
     }
-    /**
-     * 定义一个表达式D(i,j)。它表示从第1个字单词的第0位至第i位形成的子串和第2个单词的第0位至第j位形成的子串的编辑距离。
-     * 显然，可以计算出动态规划的初始表达式，如下:
-     * D(i,0) = i
-     * D(0,j) = j
-     * 然后，考虑动态规划的状态转移方程式，如下:
-     * D(i-1, j) + 1
-     * D(i,j)=min    ( D(i, j-1) + 1 )
-     * D(i-1, j-1) +1 【if  X(i) != Y(j)  】; D(i-1,j-1) 【if  X(i) == Y(j)】
 
-     * 上面的状态转移方程的含义是，D(i,j)的值，
-     * 要么是D(i-1, j)的操作完成之后删除一个字符(第1个单词的第i个字符)，
-     * 要么是D(i, j-1)的操作完成之后增加一个字符(第2个单词的第j个字符)，
-     * 要么是D(i-1, j-1)的操作完成自后替换一个字符(如果第1个单词的第i个字符和第2个单词的第j个字符不等)，
-     * 或者是D(i-1, j-1)的操作完成自后什么也不做(如果第1个单词的第i个字符和第2个单词的第j个字符相等)。
+    /**
+     * 递归写法 更容易看出方程中三个项的意义
      */
     public static int minDistance2(String word1, String word2) {
-        int[][] dp = new int[word1.length() + 1][word2.length() + 1];
-        return edit(word1.length(),word2.length(),word1,word2,dp);
-    }
-    public static int edit(int l, int r, String w1, String w2, int[][] dp){
-        if(0 == l) return r; if(0 == r) return l;
-        if(0 != dp[l][r]) return dp[l][r];
-        int min = Integer.MAX_VALUE;
-        if(w1.charAt(l - 1) != w2.charAt(r - 1)){
-            min = Math.min(edit(l - 1, r, w1, w2, dp) + 1, edit(l,r - 1, w1, w2, dp) + 1);
-            min = Math.min(edit(l - 1,r-1, w1, w2, dp) + 1, min);
-        }else{
-            min = edit(l - 1,r-1, w1, w2, dp);
+        if (word1.equals("") || word2.equals("")) {
+            return Math.max(word1.length(), word2.length());
         }
-        dp[l][r] = min;
-        return min;
+        int dp[][] = new int[word1.length()][word2.length()];
+        for (int i = 0; i < word1.length(); i++) {
+            for (int j = 0; j < word2.length(); j++) {
+                dp[i][j] = -1;
+            }
+        }
+        minDistance(word1.toCharArray(), 0, word2.toCharArray(), 0, dp);
+        return dp[0][0];
+    }
+
+    private static int minDistance(char[] word1, int i, char[] word2, int j, int[][] dp) {
+        if (i == word1.length || j == word2.length) {
+            return Math.max(word1.length - i, word2.length - j);
+        }
+        if (dp[i][j] >= 0) {
+            return dp[i][j];
+        }
+        int d = 0;
+        if (word1[i] == word2[j]) {
+            d = minDistance(word1, i + 1, word2, j + 1, dp);
+
+        } else {
+            int replace = minDistance(word1, i + 1, word2, j + 1, dp);
+            int del = minDistance(word1, i + 1, word2, j, dp);
+            int insert = minDistance(word1, i, word2, j + 1, dp);
+            d = Math.min(Math.min(replace, del), insert) + 1;
+        }
+        dp[i][j] = d;
+        return d;
     }
 }
