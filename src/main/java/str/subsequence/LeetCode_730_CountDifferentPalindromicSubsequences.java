@@ -1,4 +1,4 @@
-package str.classic;
+package str.subsequence;
 
 public class LeetCode_730_CountDifferentPalindromicSubsequences {
     public static void main(String[] args) {
