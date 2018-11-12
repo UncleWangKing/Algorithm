@@ -22,7 +22,7 @@ public class LeetCode_214_ShortestPalindrome {
     }
 
     /**
-     * 只算头部部分
+     * 只算头部部分 求出0开头的最大回文子串 然后右方剩余部分翻转就是要补在头部的
      */
     public static String shortestPalindrome2(String s) {
         int i = 0, end = s.length() - 1, j = end;
