@@ -2,7 +2,7 @@ package str.simulation;
 
 public class LeetCode_214_ShortestPalindrome {
     public static void main(String[] args) {
-        System.out.println(shortestPalindrome("aacecaaa"));
+        System.out.println(shortestPalindrome3("adcba"));
     }
 
     /**
@@ -40,7 +40,7 @@ public class LeetCode_214_ShortestPalindrome {
     /**
      * 漂亮的递归
      */
-    public String shortestPalindrome3(String s) {
+    public static String shortestPalindrome3(String s) {
         int j = 0;
         // 找出s对于s.reverse的子串
         for (int i = s.length() - 1; i >= 0; i--) {
