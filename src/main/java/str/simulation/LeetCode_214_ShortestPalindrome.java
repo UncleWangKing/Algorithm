@@ -21,6 +21,9 @@ public class LeetCode_214_ShortestPalindrome {
         return r.substring(0, s.length() - next[t.length() - 1]) + s;
     }
 
+    /**
+     * 只算头部部分
+     */
     public static String shortestPalindrome2(String s) {
         int i = 0, end = s.length() - 1, j = end;
         char []arr = s.toCharArray();
@@ -32,5 +35,28 @@ public class LeetCode_214_ShortestPalindrome {
             }
         }
         return new StringBuilder(s.substring(end + 1)).reverse().toString() + s;
+    }
+
+    /**
+     * 漂亮的递归
+     */
+    public String shortestPalindrome3(String s) {
+        int j = 0;
+        // 找出s对于s.reverse的子串
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (s.charAt(i) == s.charAt(j)) {
+                j++;
+            }
+        }
+        // 递归边界: s本身就是回文子串
+        if (j == s.length()) {
+            return s;
+        }
+        String suffix = s.substring(j);
+
+        return new StringBuffer(suffix).reverse().
+                append(shortestPalindrome(s.substring(0, j))).
+                append(suffix).
+                toString();
     }
 }
