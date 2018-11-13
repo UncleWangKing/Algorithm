@@ -7,6 +7,13 @@ public class LeetCode_97_InterleavingString {
     }
 
     /**
+     *   Ø d b b c a
+     * Ø T F F F F F
+     * a T F F F F F
+     * a T T T T T F
+     * b F T T F T F
+     * c F F T T T T
+     * c F F F T F T
      * 左方或者上方有一条路能通就行
      */
     public static boolean isInterleave(String s1, String s2, String s3) {
