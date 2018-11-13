@@ -5,6 +5,13 @@ public class LeetCode_730_CountDifferentPalindromicSubsequences {
         System.out.println(countPalindromicSubsequences("bccb"));
     }
 
+    /**
+     *   b c c b
+     * b 1 2 3 6
+     * c 0 1 2 3
+     * c 0 0 1 2
+     * b 0 0 0 1
+     */
     public static int countPalindromicSubsequences(String S) {
         int n = S.length(), M = 1000000007;
         int [][]dp = new int[n][n];
