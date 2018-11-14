@@ -1,4 +1,4 @@
-package str.classic;
+package str.slidwindow;
 
 import java.util.ArrayList;
 import java.util.HashMap;

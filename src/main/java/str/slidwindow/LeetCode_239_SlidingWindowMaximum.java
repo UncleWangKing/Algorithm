@@ -1,4 +1,4 @@
-package array;
+package str.slidwindow;
 
 import util.ZDaPangArrayUtil;
 

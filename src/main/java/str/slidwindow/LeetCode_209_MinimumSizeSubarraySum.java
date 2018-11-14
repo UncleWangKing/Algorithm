@@ -1,4 +1,4 @@
-package array.binarysearch;
+package str.slidwindow;
 
 public class LeetCode_209_MinimumSizeSubarraySum {
     public static void main(String[] args) {
