@@ -22,6 +22,9 @@ public class LeetCode_438_FindAllAnagramsInAString {
         if (s.isEmpty()) return res;
         int []map = new int[256];
         for (char c : p.toCharArray()) ++map[c];
+        for (int i = 0; i < p.length() - s.length() + 1; i++) {
+
+        }
         return res;
     }
 }
