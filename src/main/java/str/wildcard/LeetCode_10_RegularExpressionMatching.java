@@ -33,7 +33,7 @@ public class LeetCode_10_RegularExpressionMatching {
     }
 
     /**
-     * StackOverflowError
+     *
      */
     public static boolean isMatch2(String s, String p) {
         if (p.isEmpty()) return s.isEmpty();
