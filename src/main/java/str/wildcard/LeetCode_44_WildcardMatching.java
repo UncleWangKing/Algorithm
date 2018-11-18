@@ -7,32 +7,62 @@ public class LeetCode_44_WildcardMatching {
         System.out.println(isMatch(s, p));
     }
 
+    /**
+     * O(m*n) 贪心 回溯
+     * 回溯部分:
+     * 本质就是遇到*就挨个尝试让*从空串开始用，之后继续，
+     * 如果之后配不上，可能是*用错了，让*多配一个，sp分别回溯再试
+     * 贪心部分:
+     * 只用关系最后一个*
+     * 如果之前的*和最后一个*之间没有非*字母，也就是连续的全是*，那么可以当成一个*，也就成了关心最后一个*
+     * 如果之前的*和最后一个*之间有非*字母，也就是*(非*，可能是普通字母a，也可能是?)*，配到最后一个*，表示之前的非*都被消耗了，是最理想情况，绝对不用回溯。
+     */
     public static boolean isMatch(String s, String p) {
         int sIndex = 0, pIndex = 0, match = 0, starIdx = -1;
         while (sIndex < s.length()){
-            // advancing both pointers
             if (pIndex < p.length()  && (p.charAt(pIndex) == '?' || s.charAt(sIndex) == p.charAt(pIndex))){
                 sIndex++;
                 pIndex++;
             }
-            // * found, only advancing pattern pointer
             else if (pIndex < p.length() && p.charAt(pIndex) == '*'){
+                /**
+                 * 保存p中最后出现的*位置
+                 */
                 starIdx = pIndex;
+                /**
+                 * 保存s中遇到最后*时候的字符位置
+                 */
                 match = sIndex;
+                /**
+                 * 只让p位置++因为*可以当空串，所以s的不能被跳过一个
+                 */
                 pIndex++;
             }
-            // last pattern pointer was *, advancing string pointer
+            /**
+             * 没配上，如果之前p出现过*，那么可能是*没用对，回溯再试
+             */
             else if (starIdx != -1){
-                pIndex = starIdx + 1;
+                /**
+                 * p的最后一个*的上一次配法不行 要尝试躲让*配一个
+                 * 也就是匹配回溯了
+                 */
                 match++;
+                /**
+                 * s p位置进行相应回溯 s回溯到match位置 + 1 p回溯到最后一个*后方
+                 */
+                pIndex = starIdx + 1;
                 sIndex = match;
             }
-            //current pattern pointer is not star, last patter pointer was not *
-            //characters do not match
+            /**
+             * p不是*也没配上 GG
+             */
             else return false;
         }
 
-        //check for remaining characters in pattern
+        /**
+         * 上方保证了s被配完
+         * 因为*可以被当空串，所以s配完后 如果p后面有多余的*是依然可以配上的
+         */
         while (pIndex < p.length() && p.charAt(pIndex) == '*')
             pIndex++;
 
