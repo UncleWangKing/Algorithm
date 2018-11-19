@@ -25,6 +25,11 @@ public class LeetCode_10_RegularExpressionMatching {
             if (s.isEmpty()) return false;
             return (s.charAt(0) == p.charAt(0) || '.' == p.charAt(0)) && isMatch(s.substring(1, s.length()), p.substring(1, p.length()));
         }
+        /**
+         * 到这里p(1)一定是* 然后将*前一个数 从0次开始 逐个+1
+         * s = s.substring(1, s.length()) s配了一个 p不变
+         * 是+1次的成型所在
+         */
         while (!s.isEmpty() && (s.charAt(0) == p.charAt(0) ||  '.' == p.charAt(0))) {
             if (isMatch(s, p.substring(2, p.length()))) return true;
             s = s.substring(1, s.length());
@@ -33,11 +38,23 @@ public class LeetCode_10_RegularExpressionMatching {
     }
 
     /**
-     *
+     * 上一个写法简化版
      */
     public static boolean isMatch2(String s, String p) {
+        /**
+         * p是空 那么是有s是空能配上
+         */
         if (p.isEmpty()) return s.isEmpty();
+        /**
+         * p(1)是* 与否 直接迭代 反正都递归了 也就将上方的循环写成了递归
+         * 本质还是 等于*时 将*前一个数 从0次开始 依次使用
+         */
         if (p.length() > 1 && p.charAt(1) == '*') {
+            /**
+             * 左方是用0次 右方是+1次
+             * isMatch2(s.substring(1, s.length()), p) 这个写法 s配了一个 p不变
+             * 是+1次的成型所在
+             */
             return isMatch2(s, p.substring(2, p.length())) || (! s.isEmpty() && (s.charAt(0) == p.charAt(0) || p.charAt(0) == '.') && isMatch2(s.substring(1, s.length()), p));
         } else {
             return !s.isEmpty() && (s.charAt(0) == p.charAt(0) || p.charAt(0) == '.') && isMatch2(s.substring(1, s.length()), p.substring(1, p.length()));
