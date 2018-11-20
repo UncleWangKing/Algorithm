@@ -70,9 +70,6 @@ public class LeetCode_10_RegularExpressionMatching {
      *  a F F F F T T F T T
      *  a F F F F F T F T T
      *
-     *  s ""
-     *  p "a*"
-     *  这种情况看初始项 如果为*那么*前可以为0个 所以对应的dp[i][j - 2]位置如果可配 那么一定可配
      */
 
     public static boolean isMatch3(String s, String p) {
@@ -81,6 +78,9 @@ public class LeetCode_10_RegularExpressionMatching {
         dp[0][0] = true;
         /**
          * 初始项 默认了输入数据不可能以*开头！
+         *  s ""
+         *  p "a*"
+         *  这种情况看初始项 如果为*那么*前可以为0个 所以对应的dp[i][j - 2]位置如果可配 那么一定可配
          */
         for (int i = 1; i <= p.length(); i++) {
             if(p.charAt(i - 1) == '*')
@@ -88,13 +88,35 @@ public class LeetCode_10_RegularExpressionMatching {
         }
         for (int i = 1; i <= m; ++i) {
             for (int j = 1; j <= n; ++j) {
+                /**
+                 * 不是* 直接看能否配上 这里不是*的方法比较委婉 因为s中没有* 配上一定就不是*了
+                 */
                 if(s.charAt(i - 1) == p.charAt(j - 1) || p.charAt(j - 1) == '.') {
                     dp[i][j] = dp[i - 1][j - 1];
                 }else if(p.charAt(j - 1) == '*'){
-                    if(s.charAt(i - 1) != p.charAt(j - 1) && p.charAt(j - 1) != '.'){
+                    /**
+                     * 是* 那么 *当0个还是多个
+                     */
+                    if(s.charAt(i - 1) != p.charAt(j - 2) && p.charAt(j - 2) != '.'){
+                        /**
+                         *  s "b"
+                         *  p "a*"
+                         *  上一个值不等
+                         * 只能当0个
+                         */
                         dp[i][j] = dp[i][j - 2];
                     }else {
-                        dp[i][j] = dp[i][j - 2] || dp[i - 1][j] || dp[i][j  - 1];
+                        /**
+                         *  上一个相等
+                         * 可能当0或多个
+                         *  s "a"
+                         *  p "a*a" 0个  dp[i][j - 2]
+                         *  s "a"
+                         *  p "a*a" 1个  dp[i - 1][j]
+                         *  s "aaa"
+                         *  p "a*" 多个 dp[i][j - 1]
+                         */
+                        dp[i][j] = dp[i][j - 2] || dp[i - 1][j] || dp[i][j - 1];
                     }
                 }
             }
