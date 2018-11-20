@@ -6,14 +6,14 @@ public class LeetCode_10_RegularExpressionMatching {
 //        System.out.println(isMatch(s, p));
 //        s = "aab"; p = "c*a*b";//true
 //        System.out.println(isMatch(s, p));
-        s = "aa"; p = "a*";//true
+//        s = "aa"; p = "a*";//true
 //        System.out.println(isMatch(s, p));
 //        s = "aa"; p = "a";//false
 //        System.out.println(isMatch(s, p));
 //        s = "ab"; p = ".*";//true
 //        System.out.println(isMatch(s, p));
-//        s = "aaa"; p = "ab*a*c*a";//true
-        System.out.println(isMatch2(s, p));
+        s = "aaa"; p = "ab*a*c*a";//true
+        System.out.println(isMatch3(s, p));
     }
 
     public static boolean isMatch(String s, String p) {
@@ -60,6 +60,16 @@ public class LeetCode_10_RegularExpressionMatching {
             return !s.isEmpty() && (s.charAt(0) == p.charAt(0) || p.charAt(0) == '.') && isMatch2(s.substring(1, s.length()), p.substring(1, p.length()));
         }
     }
+
+    /**
+     * "aaa"; p = "ab*a*c*a"
+     *
+     *      a b * a * c * a
+     *    T F F F F F F F F
+     *  a F T F T F T F T F
+     *  a F F F F T T F T T
+     *  a F F F F F T F T T
+     */
 
     public static boolean isMatch3(String s, String p) {
         int m = s.length(), n = p.length();
