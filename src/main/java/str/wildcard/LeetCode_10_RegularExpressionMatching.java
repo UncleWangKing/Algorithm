@@ -69,18 +69,33 @@ public class LeetCode_10_RegularExpressionMatching {
      *  a F T F T F T F T F
      *  a F F F F T T F T T
      *  a F F F F F T F T T
+     *
+     *  s ""
+     *  p "a*"
+     *  这种情况看初始项 如果为*那么*前可以为0个 所以对应的dp[i][j - 2]位置如果可配 那么一定可配
      */
 
     public static boolean isMatch3(String s, String p) {
         int m = s.length(), n = p.length();
         boolean dp[][] = new boolean[m + 1][n + 1];
         dp[0][0] = true;
-        for (int i = 0; i <= m; ++i) {
+        /**
+         * 初始项 默认了输入数据不可能以*开头！
+         */
+        for (int i = 1; i <= p.length(); i++) {
+            if(p.charAt(i - 1) == '*')
+                dp[0][i] = dp[0][i - 2];
+        }
+        for (int i = 1; i <= m; ++i) {
             for (int j = 1; j <= n; ++j) {
-                if (j > 1 && p.charAt(j - 1) == '*') {
-                    dp[i][j] = dp[i][j - 2] || (i > 0 && (s.charAt(i - 1) == p.charAt(j - 2) || p.charAt(j - 2) == '.') && dp[i - 1][j]);
-                } else {
-                    dp[i][j] = i > 0 && dp[i - 1][j - 1] && (s.charAt(i - 1) == p.charAt(j - 1) || p.charAt(j - 1) == '.');
+                if(s.charAt(i - 1) == p.charAt(j - 1) || p.charAt(j - 1) == '.') {
+                    dp[i][j] = dp[i - 1][j - 1];
+                }else if(p.charAt(j - 1) == '*'){
+                    if(s.charAt(i - 1) != p.charAt(j - 1) && p.charAt(j - 1) != '.'){
+                        dp[i][j] = dp[i][j - 2];
+                    }else {
+                        dp[i][j] = dp[i][j - 2] || dp[i - 1][j] || dp[i][j  - 1];
+                    }
                 }
             }
         }
