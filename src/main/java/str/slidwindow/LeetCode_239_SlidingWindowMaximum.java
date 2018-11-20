@@ -2,6 +2,9 @@ package str.slidwindow;
 
 import util.ZDaPangArrayUtil;
 
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -31,11 +34,14 @@ public class LeetCode_239_SlidingWindowMaximum {
             getOut(vec, nums[j]);
             putIn(vec, nums[i]);
         }
-        result[result.length-1] = vec.firstElement();
+        result[result.length - 1] = vec.firstElement();
 
         return result;
     }
 
+    /**
+     * T掉小于等于我的 保持队列单调递减
+     */
     public static void putIn(Stack<Integer> vec, int value){
         while (! vec.empty()) {
             if(vec.lastElement() < value)
@@ -46,6 +52,9 @@ public class LeetCode_239_SlidingWindowMaximum {
         vec.push(value);
     }
 
+    /**
+     * 不是最大的不T
+     */
     public static void getOut(Stack<Integer> vec, int value){
         if(vec.firstElement() == value)
             vec.removeElementAt(0);
