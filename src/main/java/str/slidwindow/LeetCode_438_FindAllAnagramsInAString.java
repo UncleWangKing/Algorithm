@@ -1,6 +1,5 @@
 package str.slidwindow;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class LeetCode_438_FindAllAnagramsInAString {
         int left = 0, right = 0, cnt = p.length(), n = s.length();
         for (char c : p.toCharArray()) ++m[c];
         while (right < n) {
-            if (m[s.charAt(right++)]-- >= 1) --cnt;
+            if (m[s.charAt(right++)]-- > 0) --cnt;
             if (cnt == 0) res.add(left);
             /**
              * 利用了惰性判断 right - left == p.length() 不成立时
