@@ -11,13 +11,13 @@ public class LeetCode_567_PermutationInString {
     }
 
     public static boolean checkInclusion(String s1, String s2) {
-        int n1 = s1.length(), n2 = s2.length(), cnt = n1, left = 0;
+        int cnt = s1.length(), left = 0;
         int[] m = new int[128];
         for (char c : s1.toCharArray()) ++m[c];
-        for (int right = 0; right < n2; ++right) {
+        for (int right = 0; right < s2.length(); ++right) {
             if (m[s2.charAt(right)]-- > 0) --cnt;
-            while (cnt == 0) {
-                if (right - left + 1 == n1) return true;
+            while (0 == cnt) {
+                if (right - left + 1 == s1.length()) return true;
                 if (++m[s2.charAt(left++)] > 0) ++cnt;
             }
         }
