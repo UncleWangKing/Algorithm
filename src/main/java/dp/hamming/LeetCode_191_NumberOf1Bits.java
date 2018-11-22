@@ -1,4 +1,4 @@
-package array.simulation;
+package dp.hamming;
 
 public class LeetCode_191_NumberOf1Bits {
     public static void main(String[] args) {
