@@ -9,6 +9,11 @@ public class LeetCode_242_ValidAnagram {
         System.out.println(isAnagram("rat", "tar"));
     }
 
+    /**
+     * 核心思路，检测t是否和s的字母种类以及相应个数完全一样。记录s各类字母的个数，然后在t中匹配。
+     * 记录的结构可以用map，不过因为字母全小写且仅有26个，那么可以用数组代替。
+     * 这个数组代替map的操作，是字符串类题目的基操。
+     */
     public static boolean isAnagram(String s, String t) {
         if (s.length() != t.length()) return false;
         int m[] = new int[26];

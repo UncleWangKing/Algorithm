@@ -42,16 +42,30 @@ public class LeetCode_30_SubstringWithConcatenationOfAllWords {
     }
 
     /**
-     * 由于题目要求导致
-     * 单词可以很方便地取出和比较 那么把单词当字母 也就变成了76题！
+     * 字母变单词了怎么办。首先，本题有个重要条件，所有单词长度相等。
+     * 那么假设长度为k
+     * 可以将s 划分为s[0] s[1] s[2] .. s[k - 2]开头的，以固定k长度为分割的"单词串"。
+     * 再将words中单词存入hashmap便于查找，就变成了第三题了。
      */
     public static List<Integer> findSubstring2(String s, String[] words) {
+        /**
+         * 边界条件检测
+         */
         List<Integer> res = new ArrayList<>();
         if (s.isEmpty() || 0 == words.length) return res;
         int n = s.length(), cnt = words.length, len = words[0].length();
         Map<String, Integer> m1 = new HashMap<>();
+        /**
+         * words单词放入map里 就和之前数组存字符一个道理
+         */
         for (String a : words) m1.put(a, m1.getOrDefault(a, 0) + 1);//++m1[a]
+        /**
+         * 外层循环构建了 s[0] s[1] s[2] .. s[k - 2]开头的，以固定k长度为分割的"单词串"。
+         */
         for (int i = 0; i < len; ++i) {
+            /**
+             * 内层就是和上一题一个道理了 双指针走起
+             */
             int left = i, count = 0;
             Map<String, Integer> m2 = new HashMap<>();
             for (int j = i; j <= n - len; j += len) {

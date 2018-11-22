@@ -14,7 +14,10 @@ public class LeetCode_438_FindAllAnagramsInAString {
         System.out.println(findAnagrams(s, p));
     }
 
-
+    /**
+     * 上一题只找一个，这题找所有。双指针的思路不变，只是中途不return而已。
+     * 同时注意 s: "abab" p: "ab" 这个用例，不要找到一个串就跳过整个串。
+     */
     public static List<Integer> findAnagrams(String s, String p) {
         List<Integer> res = new LinkedList<>();
         if (s.isEmpty()) return res;
