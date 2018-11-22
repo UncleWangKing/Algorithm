@@ -111,8 +111,8 @@ public class LeetCode_10_RegularExpressionMatching {
                          * 可能当0或多个
                          *  s "a"
                          *  p "a*"
-                         *  0个  dp[i][j - 2]
-                         *  1个 dp[i][j - 1]
+                         *  0个   dp[i][j - 2]
+                         *  1个   dp[i][j - 1]
                          *  多个  dp[i - 1][j]
                          */
                         dp[i][j] = dp[i][j - 2] || dp[i][j - 1] || dp[i - 1][j];
