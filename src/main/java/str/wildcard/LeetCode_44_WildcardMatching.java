@@ -81,7 +81,7 @@ public class LeetCode_44_WildcardMatching {
      *
      * s内容固定，唯有p中?和*的情况特殊，?其实最简单，直接当匹配即可，*要特殊对待
      * 1.p.charAt(j - 1) != '*'
-     *  就简单了 配么一样 要么p是? 且左上相等
+     *  就简单了 要么一样 要么p是? 且左上相等
      *  dp[i][j] = (s.charAt(i - 1) == p.charAt(j - 1) || p.charAt(j - 1) == '?') && dp[i - 1][j - 1];
      * 2.p.charAt(j - 1) == '*'
      * s = s[0, i] = "acdcb" p = p[0, j] = "a*"为例
