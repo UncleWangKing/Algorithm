@@ -88,12 +88,7 @@ public class LeetCode_10_RegularExpressionMatching {
         }
         for (int i = 1; i <= m; ++i) {
             for (int j = 1; j <= n; ++j) {
-                /**
-                 * 不是* 直接看能否配上 这里不是*的方法比较委婉 因为s中没有* 配上一定就不是*了
-                 */
-                if(s.charAt(i - 1) == p.charAt(j - 1) || p.charAt(j - 1) == '.') {
-                    dp[i][j] = dp[i - 1][j - 1];
-                }else if(p.charAt(j - 1) == '*'){
+                if(p.charAt(j - 1) == '*'){
                     /**
                      * 是* 那么 *当0个还是多个
                      */
@@ -117,6 +112,8 @@ public class LeetCode_10_RegularExpressionMatching {
                          */
                         dp[i][j] = dp[i][j - 2] || dp[i][j - 1] || dp[i - 1][j];
                     }
+                }else {
+                    dp[i][j] = dp[i - 1][j - 1] && (s.charAt(i - 1) == p.charAt(j - 1) || p.charAt(j - 1) == '.');
                 }
             }
         }
