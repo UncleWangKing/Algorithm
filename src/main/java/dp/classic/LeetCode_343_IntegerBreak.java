@@ -44,15 +44,15 @@ public class LeetCode_343_IntegerBreak {
     /**
      * 直接拆分出3的个数和余数
      * 余数只有2和4的情况 如何体现很巧妙
-     * n -= 5 这个操作 其实是减3和减2的合并操作
-     * 然后减去的3和2都在下方式子加了回来 确避免了 n % 3 == 0的情况。
+     * n -= 2 这个操作
+     * 然后减去的2都在下方式子加了回来 确避免了 n % 3 == 0的情况。
      * 非常精彩
      * 将 [0,1,2]余数的可能 变成了[2,3,4]妙不可言
      */
     public static int integerBreak3(int n) {
         if (n == 2 || n == 3) return n - 1;
         if (n == 4) return 4;
-        n -= 5;
-        return (int)Math.pow(3, (n / 3 + 1)) * (n % 3 + 2);
+        n -= 2;
+        return (int)Math.pow(3, (n / 3)) * (n % 3 + 2);
     }
 }
