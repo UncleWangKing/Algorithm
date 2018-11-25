@@ -26,8 +26,8 @@ public class LeetCode_200_NumberOfIslands {
                         int x = i + d[0];
                         int y = j + d[1];
                         if (x >= 0 && x < rows && y >= 0 && y < cols && grid[x][y] == '1') {
-                            int id1 = i*cols + j;
-                            int id2 = x*cols + y;
+                            int id1 = i * cols + j;
+                            int id2 = x * cols + y;
                             uf.union(id1, id2);
                         }
                     }
