@@ -11,12 +11,12 @@ public class LeetCode_338_CountingBits {
      * 正常dp 奇偶区分
      */
     public static int[] countBits(int num) {
-        int []res = new int[num + 1];
+        int []dp = new int[num + 1];
         for (int i = 1; i <= num; ++i) {
-            if (i % 2 == 0) res[i] = res[i / 2];
-            else res[i] = res[i / 2] + 1;
+            if (i % 2 == 0) dp[i] = dp[i / 2];
+            else dp[i] = dp[i / 2] + 1;
         }
-        return res;
+        return dp;
     }
 
     /**
@@ -27,10 +27,10 @@ public class LeetCode_338_CountingBits {
      * 参考汉明距离191这道题
      */
     public static int[] countBits2(int num) {
-        int []res = new int[num + 1];
+        int []dp = new int[num + 1];
         for (int i = 1; i <= num; ++i) {
-            res[i] = res[i & (i - 1)] + 1;
+            dp[i] = dp[i & (i - 1)] + 1;
         }
-        return res;
+        return dp;
     }
 }
