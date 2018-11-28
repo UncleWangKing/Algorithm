@@ -26,7 +26,7 @@ public class LeetCode_765_CouplesHoldingHands {
     }
 
     /**
-     * UF
+     * UF 建立在贪心的基础上
      */
     public static int minSwapsCouples2(int[] row) {
         int cnt = row.length / 2;
