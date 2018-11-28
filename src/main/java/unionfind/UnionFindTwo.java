@@ -22,7 +22,7 @@ public class UnionFindTwo {
         int find1 = find(node1);
         int find2 = find(node2);
         if(find1 != find2) {
-            father[find1] = find2;
+            father[find1] = find2;//这个写法是x归到y根下
             count--;
         }
     }

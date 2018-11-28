@@ -42,7 +42,7 @@ public class UnionFindOne {
         int fx = find(x);
         int fy = find(y);
         if (fx != fy) {
-            root[fy] = fx;
+            root[fy] = fx;//这个写法是y归到x根下
             count--;
         }
     }

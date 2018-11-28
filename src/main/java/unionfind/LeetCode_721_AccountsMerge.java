@@ -29,7 +29,7 @@ public class LeetCode_721_AccountsMerge {
     }
 
     public static List<List<String>> accountsMerge(List<List<String>> accounts) {
-        List<List<String>> result = new ArrayList<>();
+        List<List<String>> result = new LinkedList<>();//只有插入和遍历 没有查找 链表比数组好
         int[] person = new int[accounts.size()];
         for (int i = 0; i < person.length; ++i) {
             person[i] = i;
