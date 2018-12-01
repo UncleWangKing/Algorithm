@@ -26,9 +26,10 @@ public class LeetCode_778_SwimInRisingWater {
         int N = grid.length;
         int lf = 0;
         int rt = N * N;
+        int[][] dir = {{-1, 0},{0, 1},{0, -1},{1, 0}};
         while (lf < rt) {
             int mid = lf + (rt - lf) / 2;
-            if (go(grid, 0, 0, new boolean[N][N], mid)) {
+            if (go(grid, 0, 0, new boolean[N][N], mid, dir)) {
                 rt = mid;
             }
             else {
@@ -38,8 +39,7 @@ public class LeetCode_778_SwimInRisingWater {
         return rt;
     }
 
-    private static int[][] dir = {{-1, 0},{0, 1},{0, -1},{1, 0}};
-    private static boolean go(int[][] grid, int i, int j, boolean[][] vis, int mid) {
+    private static boolean go(int[][] grid, int i, int j, boolean[][] vis, int mid, int[][] dir) {
         int N = grid.length;
         if (i == N - 1 && j == N - 1) return true;
         vis[i][j] = true;
@@ -51,7 +51,7 @@ public class LeetCode_778_SwimInRisingWater {
              * 这句是水位限制的体现
              */
             if (ni >= 0 && ni < N && nj >= 0 && nj < N && !vis[ni][nj] && Math.max(grid[ni][nj], mid) == Math.max(grid[i][j], mid)) {
-                if (go(grid, ni, nj, vis, mid)) return true;
+                if (go(grid, ni, nj, vis, mid, dir)) return true;
             }
         }
         return false;
@@ -68,7 +68,7 @@ public class LeetCode_778_SwimInRisingWater {
         int n = grid.length;
         int[][] dp  = new int[n][n];
         /**
-         * 便于用 Math.max(cur, grid[x][y]) >= dp[x][y] 的方式来判断visited
+         * dp初始项 初始化所有值 有意思
          */
         for (int i = 0; i < n; i++) {
             Arrays.fill(dp[i], Integer.MAX_VALUE);
@@ -79,8 +79,9 @@ public class LeetCode_778_SwimInRisingWater {
     public static void helper(int[][] grid, int x, int y, int cur, int[][] dp, int[][]dirs) {
         int n = grid.length;
         /**
-         *  Math.max(cur, grid[x][y]) >= dp[x][y] 除了判断visited
-         *  还能让更小的值更新过来
+         *  Math.max(cur, grid[x][y]) >= dp[x][y] 除了相当于判断visited的功能
+         *  还能让更小的值更新过来 更大的值不会覆盖
+         *  达到dp[i][j] = max(grid[i][j], min(上下左右)) 效果
          */
         if (x < 0 || x >= n || y < 0 || y >= n || Math.max(cur, grid[x][y]) >= dp[x][y]) return;
         dp[x][y] = Math.max(cur, grid[x][y]);
