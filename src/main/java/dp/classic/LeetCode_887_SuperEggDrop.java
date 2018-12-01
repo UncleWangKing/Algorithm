@@ -52,9 +52,23 @@ public class LeetCode_887_SuperEggDrop {
      * dp[k][0] = 0
      * dp[1][m] = m (m > 0)
      * dp[k][m] = dp[k - 1][m - 1] + dp[k][m - 1] + 1 (k > 0, m > 0)
-     * 空间压缩
+     *
      */
     public static int superEggDrop2(int K, int N) {
+        int[][] dp = new int[N + 1][K + 1];
+        int m = 0;
+        while (dp[m][K] < N) {
+            ++m;
+            for (int k = 1; k <= K; ++k)
+                dp[m][k] = dp[m - 1][k - 1] + dp[m - 1][k] + 1;
+        }
+        return m;
+    }
+
+    /**
+     * 将上方解法空间压缩
+     */
+    public static int superEggDrop3(int K, int N) {
         int dp[] = new int[K + 1], m = 0;
         for (m = 0; dp[K] < N; ++m)
             for (int k = K; k > 0; --k)
