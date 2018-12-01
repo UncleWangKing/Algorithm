@@ -93,8 +93,6 @@ public class LeetCode_85_MaximalRectangle {
      * 5 5 5 5 5      1 5 3 5 5
      * 1 5 5 4 5      1 5 5 4 5
      *
-     *  PS:正式因为这个简化的表达式有状态转换方程的感觉 很多人说这种解法是动归解法 也不能说有错 确实在求left right时候用了dp --- 准确说是贪心
-     *  但并非属于核心解法 毕竟没有给出最终结果值相关的状态转换方程
      */
     public static int maximalRectangle2(char[][] matrix) {
         if(0 == matrix.length || 0 == matrix[0].length) return 0;
