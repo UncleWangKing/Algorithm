@@ -1,4 +1,4 @@
-package array.binarysearch;
+package binarysearch;
 
 public class LeetCode_153_FindMinimuminRotatedSortedArray {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package array.binarysearch;
+package binarysearch;
 
 public class LeetCode_4_MedianofTwoSortedArrays {
     public static void main(String[] args) {

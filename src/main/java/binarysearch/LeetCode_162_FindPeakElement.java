@@ -1,4 +1,4 @@
-package array.binarysearch;
+package binarysearch;
 
 public class LeetCode_162_FindPeakElement {
     public static void main(String[] args) {

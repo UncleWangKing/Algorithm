@@ -1,4 +1,4 @@
-package array.binarysearch;
+package binarysearch;
 
 /**
  * 和一般的二分稍有不同 不是找某个值是否存在 而是找插入位置 所以结果一定是有的。
