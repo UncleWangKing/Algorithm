@@ -22,7 +22,7 @@ public class LeetCode_367_ValidPerfectSquare {
     }
 
     /**
-     * 方法1改进版
+     * 牛顿迭代法
      */
     public static boolean isPerfectSquare2(int num) {
         long x = num;
