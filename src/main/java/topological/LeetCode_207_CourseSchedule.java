@@ -61,6 +61,10 @@ public class LeetCode_207_CourseSchedule {
         }
         return true;
     }
+
+    /**
+     * 0表示还未访问过，1表示已经访问了(被之前的dfs访问)，-1表示有冲突(当前dfs过程中再次进入)
+     */
     private static boolean dfsFinish(List<List<Integer>> graph, int visit, int[] isVisited){
         if(1 == isVisited[visit])
             return true;
