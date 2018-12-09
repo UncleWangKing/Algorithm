@@ -49,7 +49,7 @@ public class LeetCode_207_CourseSchedule {
     public static boolean canFinish2(int numCourses, int[][] prerequisites){
         int[] isVisited = new int[numCourses];
         List<List<Integer>> graph = new ArrayList<>(numCourses);
-        for(int i = 0;i < numCourses; i++){
+        for(int i = 0; i < numCourses; i++){
             graph.add(new ArrayList<>());
         }
         for (int[] edge : prerequisites) {
@@ -61,16 +61,12 @@ public class LeetCode_207_CourseSchedule {
         }
         return true;
     }
-    private static boolean dfsFinish(List<List<Integer>> graph,int visit,int[] isVisited){
-        if(isVisited[visit] == 1)
+    private static boolean dfsFinish(List<List<Integer>> graph, int visit, int[] isVisited){
+        if(1 == isVisited[visit])
             return true;
-        if(isVisited[visit] == -1)
+        if(-1 == isVisited[visit])
             return false;
         isVisited[visit] = -1;
-        if(graph.get(visit) == null || graph.get(visit).size() == 0){
-            isVisited[visit] = 1;
-            return true;
-        }
         for(int next : graph.get(visit)){
             if(!dfsFinish(graph, next, isVisited))
                 return false;
