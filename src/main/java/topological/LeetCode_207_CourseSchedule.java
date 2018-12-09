@@ -12,7 +12,7 @@ public class LeetCode_207_CourseSchedule {
     }
 
     /**
-     * BFS
+     * BFS 每次将入度为0的点剔除 并将其指向的点入度-1 看最后是否还有入度不为0的点 有就有环
      */
     public static boolean canFinish(int numCourses, int[][] prerequisites) {
         List<List<Integer>> graph = new ArrayList<>();
@@ -47,8 +47,6 @@ public class LeetCode_207_CourseSchedule {
      * DFS
      */
     public static boolean canFinish2(int numCourses, int[][] prerequisites){
-        if(numCourses == 0 || prerequisites == null || prerequisites.length == 0|| prerequisites[0].length <= 1)
-            return true;
         int[] isVisited = new int[numCourses];
         List<List<Integer>> graph = new ArrayList<>(numCourses);
         for(int i = 0;i < numCourses; i++){
