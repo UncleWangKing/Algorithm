@@ -44,9 +44,39 @@ public class LeetCode_207_CourseSchedule {
     }
 
     /**
+     * BFS 省空间
+     */
+    public static boolean canFinish2(int numCourses, int[][] prerequisites) {
+        int[] in = new int[numCourses];
+        for (int[] edge : prerequisites) {
+            in[edge[0]]++;
+        }
+
+        Queue<Integer> queue = new LinkedList<>();
+        for (int i = 0; i < numCourses; i++) {
+            if (in[i] == 0) queue.add(i);
+        }
+
+        while(!queue.isEmpty()) {
+            int i = queue.poll();
+            for (int[] pre: prerequisites) {
+                if(pre[1] == i){
+                    in[pre[0]]--;
+                    if(0 == in[pre[0]])
+                        queue.add(pre[0]);
+                }
+            }
+        }
+
+        for (int i = 0; i < numCourses; i++)
+            if (in[i] != 0) return false;
+        return true;
+    }
+
+    /**
      * DFS
      */
-    public static boolean canFinish2(int numCourses, int[][] prerequisites){
+    public static boolean canFinish3(int numCourses, int[][] prerequisites){
         int[] isVisited = new int[numCourses];
         List<List<Integer>> graph = new ArrayList<>(numCourses);
         for(int i = 0; i < numCourses; i++){
