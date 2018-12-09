@@ -52,8 +52,8 @@ public class LeetCode_207_CourseSchedule {
         for(int i = 0;i < numCourses; i++){
             graph.add(new ArrayList<>());
         }
-        for(int i = 0; i < prerequisites.length; i++){
-            graph.get(prerequisites[i][0]).add(prerequisites[i][1]);
+        for (int[] edge : prerequisites) {
+            graph.get(edge[1]).add(edge[0]);
         }
         for(int i = 0; i < numCourses; i++){
             if(!dfsFinish(graph, i, isVisited))
