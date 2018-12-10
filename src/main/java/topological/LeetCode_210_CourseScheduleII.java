@@ -46,6 +46,7 @@ public class LeetCode_210_CourseScheduleII {
                     res[index++] = a;
                 }
             }
+
         }
 
         return index == numCourses ? res : new int[]{};
