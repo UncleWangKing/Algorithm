@@ -3,13 +3,13 @@ package binarysearch.classic;
 public class LeetCode_230_KthSmallestElementInABst {
     /**
      输入: root = [5,3,6,2,4,null,null,1], k = 3
-             5
+                 5
+               / \
+             3   6
            / \
-         3   6
-       / \
-     2   4
-   /
-  1
+         2   4
+       /
+      1
      输出: 3
      */
     public static void main(String[] args) {
