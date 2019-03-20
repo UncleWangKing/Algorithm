@@ -28,7 +28,14 @@ public class LeetCode_222_CountCompleteTreeNodes {
          */
 
     }
-
+    /**
+     完全二叉树的高度直接通过不断访问左子树获取
+     判断左右子树的高度:
+     递归过程：
+     如果相等说明左子树是满二叉树, 然后进一步判断右子树的节点数(最后一层最后出现的节点必然在右子树中)
+     如果不等说明右子树是深度小于左子树的满二叉树, 然后进一步判断左子树的节点数(最后一层最后出现的节点必然在左子树中)
+     **/
+    //循环写法 -- 更漂亮
     public static int countNodes(TreeNode root) {
         int hLeft = 0, hRight = 0;
         TreeNode pLeft = root, pRight = root;
@@ -49,13 +56,7 @@ public class LeetCode_222_CountCompleteTreeNodes {
         return countNodes(root.left) + countNodes(root.right) + 1;
     }
 
-    /**
-     完全二叉树的高度直接通过不断访问左子树获取
-     判断左右子树的高度:
-     递归过程：
-     如果相等说明左子树是满二叉树, 然后进一步判断右子树的节点数(最后一层最后出现的节点必然在右子树中)
-     如果不等说明右子树是深度小于左子树的满二叉树, 然后进一步判断左子树的节点数(最后一层最后出现的节点必然在左子树中)
-     **/
+    //递归写法
     public static int countNodes2(TreeNode root) {
         if(root == null)
             return 0;
