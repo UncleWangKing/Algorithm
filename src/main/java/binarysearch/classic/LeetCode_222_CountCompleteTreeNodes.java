@@ -61,7 +61,7 @@ public class LeetCode_222_CountCompleteTreeNodes {
             return 0;
         int ld = getDepth(root.left);
         int rd = getDepth(root.right);
-        if(ld==rd)
+        if(ld == rd)
             //1(根节点)+(1 << ld)-1(左完全左子树节点数) + 右子树节点数量
             return (1 << ld) + countNodes(root.right);  //左移代替了Math.pow
         else
@@ -70,7 +70,7 @@ public class LeetCode_222_CountCompleteTreeNodes {
     }
 
     private static int getDepth(TreeNode r){
-        int depth =0;
+        int depth = 0;
         while(r != null){
             depth++;
             /**
