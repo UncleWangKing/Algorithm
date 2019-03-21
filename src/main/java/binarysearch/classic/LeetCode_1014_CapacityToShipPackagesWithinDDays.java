@@ -1,4 +1,4 @@
-package binarysearch;
+package binarysearch.classic;
 
 /**
  * @author ZhangDaPang 285296372@qq.com
