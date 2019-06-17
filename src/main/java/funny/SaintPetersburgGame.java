@@ -32,13 +32,9 @@ public class SaintPetersburgGame {
          */
         long times = 1000_000;
         for (int i = 0; i < times; i++) {
-            long reward = 0;
-            while (1 != random.nextInt(2)){
-                if(0 == reward)
-                    reward = 2;
-                else
-                    reward *= 2;
-            }
+            long reward = 2;
+            while (1 != random.nextInt(2))
+                reward *= 2;
             total_sum += reward;
         }
         /**
